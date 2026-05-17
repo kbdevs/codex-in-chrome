@@ -1,0 +1,97 @@
+{
+  "update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "Codex",
+  "version": "1.0.70",
+  "description": "Codex in Chrome (Beta)",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Open Codex"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "activeTab",
+    "scripting",
+    "debugger",
+    "tabGroups",
+    "tabs",
+    "alarms",
+    "notifications",
+    "webNavigation",
+    "declarativeNetRequestWithHostAccess",
+    "offscreen",
+    "nativeMessaging",
+    "unlimitedStorage",
+    "downloads",
+    "identity"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "storage": {
+    "managed_schema": "managed_schema.json"
+  },
+  "content_scripts": [
+    {
+      "js": ["assets/content-script.ts-Bwa5rY9t.js"],
+      "matches": ["https://chatgpt.com/*", "https://*.chatgpt.com/*"],
+      "run_at": "document_end"
+    },
+    {
+      "js": ["assets/accessibility-tree.js-DxrE0N5Q.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "js": ["assets/agent-visual-indicator.js-CQ3yeUso.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://chatgpt.com/*",
+      "https://*.chatgpt.com/*",
+      "https://openai.com/*",
+      "https://*.openai.com/*"
+    ]
+  },
+  "commands": {
+    "toggle-side-panel": {
+      "suggested_key": {
+        "default": "Ctrl+E",
+        "mac": "Command+E"
+      },
+      "description": "Toggle Codex side panel"
+    }
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr5M/DZ28sAuOnk9v8C2IPTLNEZ0F0pv9qwRzMAbGbE0NB6I6T+wS6Na2n0sbQOK98iezN2FX26dsBWMELXtf4YCETdRiFSBOnNhZObZdrxeTTrhk1AhKA/Id5vgDWfSZ3Q+9BjBWHYK9yuTGo3PMK/yOW/CH6cSn07btvn7Aq+t+KrAwGOJewCN7gGojOrshJs/YwdxwxpUnb7s6QbFGkPKg9G6as4y4ipQ8fiQHRAcKm+mUK/CoCVSL+c4Yog0CSJqEEaruOeh8CgM4V0LX4kw5rs/4THAvTwtYRsW0n3faVR7uGj1eadsWuKciQHxpRMI9I4EE7yuaxavv3Agf6QIDAQAB",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://api.openai.com wss://api.openai.com https://auth.openai.com https://chatgpt.com https://*.chatgpt.com wss://chatgpt.com wss://*.chatgpt.com https://openai.com https://*.openai.com https://platform.openai.com https://api.segment.io https://*.segment.com https://*.ingest.us.sentry.io https://api.honeycomb.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+  },
+  "web_accessible_resources": [
+    {
+      "matches": ["https://*.chatgpt.com/*", "https://chatgpt.com/*"],
+      "resources": ["assets/content-script.ts-Bwa5rY9t.js"],
+      "use_dynamic_url": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "resources": [
+        "assets/accessibility-tree.js-DxrE0N5Q.js",
+        "assets/agent-visual-indicator.js-CQ3yeUso.js"
+      ],
+      "use_dynamic_url": false
+    }
+  ]
+}
