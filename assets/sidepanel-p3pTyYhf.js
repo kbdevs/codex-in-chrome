@@ -119,7 +119,6 @@ import {
   ch as Be,
   a8 as He,
   ci as Ue,
-  a0 as qe,
   aa as Ze,
   a9 as We,
   ac as Ge,
@@ -200,6 +199,10 @@ import {
 import { t as hn } from "./punycode.es6-D49_gIz_.js";
 import { P as mn } from "./PairingPrompt-Bqsp4vIU.js";
 function fn() {}
+const getAnalyticsContext = () => ({ analytics: null });
+const trackEvent = (...args) => {
+  void args;
+};
 void 0 === globalThis.Buffer && (globalThis.Buffer = h.Buffer);
 var gn = class extends R {
   #e;
@@ -15666,16 +15669,6 @@ const rl = nl(il),
     "studio.cn-north-1.sagemaker.com.cn",
     "studio.cn-northwest-1.sagemaker.com.cn",
     "*.experiments.sagemaker.aws",
-    "analytics-gateway.ap-northeast-1.amazonaws.com",
-    "analytics-gateway.ap-northeast-2.amazonaws.com",
-    "analytics-gateway.ap-south-1.amazonaws.com",
-    "analytics-gateway.ap-southeast-1.amazonaws.com",
-    "analytics-gateway.ap-southeast-2.amazonaws.com",
-    "analytics-gateway.eu-central-1.amazonaws.com",
-    "analytics-gateway.eu-west-1.amazonaws.com",
-    "analytics-gateway.us-east-1.amazonaws.com",
-    "analytics-gateway.us-east-2.amazonaws.com",
-    "analytics-gateway.us-west-2.amazonaws.com",
     "amplifyapp.com",
     "*.awsapprunner.com",
     "webview-assets.aws-cloud9.af-south-1.amazonaws.com",
@@ -44141,7 +44134,7 @@ class jA {
     } catch (t) {
       return;
     }
-    this.analytics.track("Segment Consent Preference", void 0, {
+    trackEvent("Segment Consent Preference", void 0, {
       consent: { categoryPreferences: e },
     });
   }
@@ -44415,7 +44408,7 @@ const $A = (e) => ({
   analytics: e.analytics,
   necessary: !0,
 });
-const BA = dA()?.disableNonessentialTelemetry ?? !1,
+const BA = !0,
   HA =
     Ub || BA
       ? new (class {
@@ -44610,7 +44603,7 @@ const BA = dA()?.disableNonessentialTelemetry ?? !1,
     "mode",
     "step",
   ]);
-const qA = dA()?.disableEssentialTelemetry ?? !1,
+const qA = !0,
   ZA = [
     "chatgpt.com",
     "claude.com",
@@ -44749,47 +44742,6 @@ qb(function (e, t) {
 }, me.O11Y_INTERNALS);
 var iN = {};
 dA();
-const rN =
-  "staging" === iN.NEXT_PUBLIC_APP_ENV
-    ? "/api/event_logging/batch?test_mode=true"
-    : "/api/event_logging/batch";
-let aN = [];
-const lN = new Set();
-if ("undefined" != typeof window) {
-  const e = () => {
-    !(async function () {
-      if (0 === aN.length) return;
-      const e = [...aN];
-      aN = [];
-      const t = { events: e };
-      try {
-        await fetch(rN, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-service-name": "claude_ai_web",
-          },
-          body: JSON.stringify(t),
-          credentials: "include",
-          keepalive: !0,
-        });
-      } catch {
-        for (const t of e)
-          lN.delete(
-            `${t.event_data.experiment_id}:${t.event_data.variation_id}`,
-          );
-      }
-    })();
-  };
-  (document.addEventListener(
-    "visibilitychange",
-    () => {
-      "hidden" === document.visibilityState && e();
-    },
-    { passive: !0 },
-  ),
-    window.addEventListener("pagehide", e, { passive: !0 }));
-}
 (a.createContext(!0), a.createContext(0));
 const cN = a.createContext(null);
 const uN = {
@@ -46900,146 +46852,7 @@ function yN({
     }),
   });
 }
-const bN =
-  "undefined" != typeof window && window.self !== window.top
-    ? () => ({ track: () => Promise.resolve() })
-    : () => {
-        const { analytics: e } = (() => {
-            const {
-                segmentKey: e,
-                segmentCdnHost: t,
-                segmentApiHost: n,
-              } = lA(),
-              { requiresExplicitConsent: s, gpcStatus: o } = oN(),
-              i = a.useCallback(() => {
-                HA.reset();
-              }, []);
-            return {
-              analytics: null,
-              reset: i,
-            };
-          })(),
-          t = a.useContext(cN),
-          { preferences: n } = oN(),
-          s = aa("log_segment_events"),
-          o = (() => {
-            const e = aa("claude_ai_segment_enabled");
-            return !Ub && e;
-          })(),
-          i = a.useMemo(() => s && !Ub, [s]),
-          r = xe.useSearchParams().has(we),
-          {
-            account: l,
-            activeOrganization: c,
-            isLoading: u,
-          } = (() => {
-            const e = a.useContext(nN);
-            if (!e) throw new Error("Must call inside CurrentAccountProvider");
-            return e;
-          })(),
-          d = cA(),
-          { ipCountry: p } = lA(),
-          h = l?.uuid,
-          m = c?.uuid,
-          f = c?.billing_type,
-          g = a.useRef([]),
-          v = a.useRef(!1),
-          y = u && !v.current,
-          b = a.useCallback(
-            (t) => e && o && (!(!t && !l) || n.analytics),
-            [e, o, l, n.analytics],
-          ),
-          k = a.useCallback((e) => mN(e ?? l, c, p), [l, c, p]),
-          x = a.useCallback(
-            async (s, o) => {
-              if (y)
-                return void g.current.push(() => {
-                  x(s, o);
-                });
-              const { event_key: a, ...l } = s,
-                c = {
-                  account_uuid: o?.uuid ?? h,
-                  organization_uuid: m,
-                  billing_type: f,
-                  surface: d,
-                  ...hN(),
-                  ...(r ? { incognito_mode: !0 } : null),
-                  ...uN[a],
-                  ...l,
-                },
-                u = !1 !== n.marketing && dN.has(a),
-                p = {
-                  context: { traits: k(o) },
-                  integrations: u ? pN : void 0,
-                };
-              (i && he.info(me.SEGMENT_EVENT, `track: ${a}`, c, p),
-                b(o)
-                  ? (await e?.track(a, c, p), t?.track(a, c, p))
-                  : i &&
-                    he.info(
-                      me.SEGMENT_EVENT,
-                      `DROPPED track: ${a} (shouldSendToSegment=false)`,
-                    ));
-            },
-            [e, t, h, m, f, d, i, b, k, r, y, n.marketing],
-          ),
-          w = a.useCallback(
-            async (n, s) => {
-              (i && he.info(me.SEGMENT_EVENT, `identify: ${n}`, s),
-                b() && (await e?.identify(n, s), t?.identify(n, s)));
-            },
-            [e, t, b, i],
-          ),
-          _ = a.useCallback(
-            async (t, n) => {
-              (i && he.info(me.SEGMENT_EVENT, `alias: ${n} -> ${t}`),
-                b() && (await e?.alias(t, n)));
-            },
-            [e, b, i],
-          ),
-          C = a.useCallback(
-            async (t, n) => {
-              if (y)
-                return void g.current.push(() => {
-                  C(t, n);
-                });
-              if ((i && he.info(me.SEGMENT_EVENT, `page_view: ${t}`, n), !b()))
-                return;
-              const s = (await e?.user())?.id() ?? void 0,
-                o = l?.uuid ?? void 0;
-              (o && s !== o) || (await e?.page(t, n));
-            },
-            [e, b, l, i, y],
-          );
-        a.useEffect(() => {
-          const e = (e) => {
-            if (g.current.length > 0 && !v.current) {
-              const t = [...g.current];
-              ((g.current = []),
-                (v.current = !0),
-                i &&
-                  he.info(
-                    me.SEGMENT_EVENT,
-                    `Flushing ${t.length} queued events (${e})`,
-                  ),
-                t.forEach((e) => e()));
-            }
-          };
-          if (!u) return void e("loaded");
-          const t = setTimeout(() => e("timeout"), 5e3);
-          return () => clearTimeout(t);
-        }, [u, i]);
-        return a.useMemo(
-          () => ({
-            track: x,
-            identify: w,
-            page: C,
-            alias: _,
-            getTraitsWithContext: k,
-          }),
-          [x, w, C, _, k],
-        );
-      };
+const getCitationAnalytics = () => null;
 function kN({ citationUuids: e, messageUuid: t }) {
   const [n, s] = a.useState(!1),
     o = ne(),
@@ -47065,7 +46878,7 @@ function kN({ citationUuids: e, messageUuid: t }) {
           return e.title;
       }
     },
-    u = bN(),
+    u = getCitationAnalytics(),
     d = a.useCallback(
       (e) => {
         let n, s;
@@ -47074,7 +46887,7 @@ function kN({ citationUuids: e, messageUuid: t }) {
           : "webpage_metadata" === e.metadata.type
             ? ((n = "web_search"), (s = e.metadata.site_domain))
             : ((n = e.origin_tool_name ?? "unknown"), (s = "")),
-          u.track({
+          trackEvent({
             event_key: "claudeai.conversation.citation_clicked",
             messageUuid: t,
             citationSourceTool: n,
@@ -91272,7 +91085,7 @@ function see({
                                 permissionModeOptions: p,
                                 onChange: (e) => {
                                   (d(e),
-                                    me?.track(
+                                    trackEvent(
                                       "claude_chrome.permission_mode.changed",
                                       {
                                         from: u,
@@ -93367,7 +93180,7 @@ function jee({
   currentModel: u,
 }) {
   const d = t(),
-    { analytics: p } = qe(),
+    { analytics: p } = getAnalyticsContext(),
     h = Vs(),
     m = !(!n || !("id" in n)),
     f = m ? n : null,
@@ -93512,7 +93325,7 @@ function jee({
               (e.specificDate = void 0),
               (e.model = void 0)),
             await k.updatePrompt(f.id, e),
-            p?.track("claude_chrome.chat.shortcut_updated", {
+            trackEvent("claude_chrome.chat.shortcut_updated", {
               sessionId: r || "",
               commandName: y.trim(),
               oldCommandName: f.command || "",
@@ -93538,7 +93351,7 @@ function jee({
                   ? (e.dayOfMonth = Y)
                   : "annually" === q && (e.monthAndDay = `${ee}-${ne}`)),
             await k.savePrompt(e),
-            p?.track("claude_chrome.chat.shortcut_created", {
+            trackEvent("claude_chrome.chat.shortcut_created", {
               sessionId: r || "",
               commandName: y.trim(),
             }),
@@ -93630,7 +93443,7 @@ function jee({
                                         E(!0);
                                         try {
                                           (await k.deletePrompt(f.id),
-                                            p?.track(
+                                            trackEvent(
                                               "claude_chrome.chat.shortcut_deleted",
                                               {
                                                 sessionId: r || "",
@@ -93863,7 +93676,7 @@ function See({
   a.useEffect(() => {
     (n &&
       !u.current &&
-      ((u.current = !0), r?.track("claude_chrome.quick_mode.warning_shown")),
+      ((u.current = !0), trackEvent("claude_chrome.quick_mode.warning_shown")),
       n || (u.current = !1));
   }, [n, r]);
   const d = i.quick_mode,
@@ -93905,7 +93718,7 @@ function See({
             l.jsx(X, {
               variant: "primary",
               onClick: () => {
-                (r?.track("claude_chrome.quick_mode.enabled", {
+                (trackEvent("claude_chrome.quick_mode.enabled", {
                   model: p,
                   model_display_name: f,
                   model_tier: "standard",
@@ -93927,7 +93740,7 @@ function See({
                 l.jsx(X, {
                   variant: "secondary",
                   onClick: () => {
-                    (r?.track("claude_chrome.quick_mode.enabled", {
+                    (trackEvent("claude_chrome.quick_mode.enabled", {
                       model: h,
                       model_display_name: g,
                       model_tier: "fast",
@@ -93957,7 +93770,7 @@ function See({
             l.jsx(X, {
               variant: "primary",
               onClick: () => {
-                (r?.track("claude_chrome.quick_mode.enabled", {
+                (trackEvent("claude_chrome.quick_mode.enabled", {
                   model: v,
                   model_tier: "fallback",
                 }),
@@ -93976,7 +93789,7 @@ function See({
         children: l.jsx(X, {
           variant: "secondary",
           onClick: () => {
-            (r?.track("claude_chrome.quick_mode.warning_dismissed"), s());
+            (trackEvent("claude_chrome.quick_mode.warning_dismissed"), s());
           },
           children: l.jsx(e, { defaultMessage: "Go back", id: "orvpWhO3rI" }),
         }),
@@ -94406,7 +94219,7 @@ const Iee = ({
     a.useEffect(() => {
       j &&
         v(y.QUICK_MODE_TIP_DISMISSED).then((e) => {
-          e || (C(!0), x?.track("claude_chrome.quick_mode.tip_shown"));
+          e || (C(!0), trackEvent("claude_chrome.quick_mode.tip_shown"));
         });
     }, [j, x]);
     const S = () => {
@@ -94464,7 +94277,7 @@ const Iee = ({
                               onClick: (e) => {
                                 (e.stopPropagation(),
                                   S(),
-                                  x?.track(
+                                  trackEvent(
                                     "claude_chrome.quick_mode.tip_dismissed",
                                   ));
                               },
@@ -94483,7 +94296,7 @@ const Iee = ({
                 children: l.jsx("button", {
                   onClick: () => {
                     (_ && S(),
-                      x?.track("claude_chrome.quick_mode.clicked", {
+                      trackEvent("claude_chrome.quick_mode.clicked", {
                         was_active: !!g,
                       }),
                       k());
@@ -94668,13 +94481,13 @@ const Vee = ({
     children: i,
     className: r,
   }) => {
-    const { analytics: c } = qe(),
+    const { analytics: c } = getAnalyticsContext(),
       u = t();
     a.useEffect(() => {
-      s && c?.track("spotlight.shown", { spotlight: e });
+      s && trackEvent("spotlight.shown", { spotlight: e });
     }, [s, e, c]);
     const d = async () => {
-      c?.track("spotlight.dismissed", { spotlight: e });
+      trackEvent("spotlight.dismissed", { spotlight: e });
       try {
         await Dee(n, e, Fee.DISMISSED);
       } catch (t) {}
@@ -94727,7 +94540,7 @@ const Vee = ({
                         ? i({
                             handleDismiss: d,
                             handleAction: async (t) => {
-                              c?.track("spotlight.action_clicked", {
+                              trackEvent("spotlight.action_clicked", {
                                 spotlight: e,
                                 action_name: t,
                               });
@@ -98054,7 +97867,7 @@ function Ute({
     [$, B] = a.useState(null),
     [H, U] = a.useState(null),
     [q, Z] = a.useState(""),
-    { analytics: W } = qe(),
+    { analytics: W } = getAnalyticsContext(),
     [G, K] = a.useState([]),
     J = (() => {
       const e = g("chrome_ext_system_prompt", {}),
@@ -98160,7 +97973,7 @@ function Ute({
       b &&
       fe.current !== s &&
       ((fe.current = s),
-      W?.track("claude_chrome.chat.session_started", {
+      trackEvent("claude_chrome.chat.session_started", {
         model: r.current,
         sessionId: s,
         permissions: b,
@@ -98459,12 +98272,12 @@ function Ute({
                     o.setAttribute("failure_reason", "needs_permission"))
                   : ((p.success = !s.error),
                     o.setAttribute("success", !s.error)),
-                W?.track("claude_chrome.chat.tool_called", p),
+                trackEvent("claude_chrome.chat.tool_called", p),
                 s
               );
             } catch (h) {
               throw (
-                W?.track("claude_chrome.chat.tool_called", {
+                trackEvent("claude_chrome.chat.tool_called", {
                   ...p,
                   success: !1,
                   failureReason: "exception",
@@ -98671,7 +98484,7 @@ function Ute({
               (le.current = null),
               X(),
               (g = n.messagesAfterCompacting),
-              W?.track(`claude_chrome.chat.${e}_compact`, {
+              trackEvent(`claude_chrome.chat.${e}_compact`, {
                 preTokens: n.preCompactTokenCount,
                 postTokens: n.postCompactTokenCount,
                 savedTokens: n.tokensSaved,
@@ -98706,7 +98519,7 @@ function Ute({
             (re.current = setTimeout(() => {
               (p(), (re.current = null));
             }, 3e4)),
-          W?.track("claude_chrome.chat.user_message_sent", {
+          trackEvent("claude_chrome.chat.user_message_sent", {
             model: r.current,
             sessionId: s,
             permissions: b,
@@ -99078,7 +98891,7 @@ function Ute({
                           e && "usage" in e)
                         ) {
                           const t = e.usage;
-                          W?.track("claude_chrome.chat.usage", {
+                          trackEvent("claude_chrome.chat.usage", {
                             usage: t,
                             sessionId: s,
                             permissions: b,
@@ -99133,7 +98946,7 @@ function Ute({
                       try {
                         await Yt.detachDebugger(c);
                       } catch (J) {}
-                      (W?.track(
+                      (trackEvent(
                         "claude_chrome.chat.assistant_response_stopped",
                         {
                           model: r.current,
@@ -99480,7 +99293,7 @@ function ine(e) {
         [k, x] = a.useState(null),
         [w, C] = a.useState(null),
         [S, M] = a.useState(""),
-        { analytics: A } = qe(),
+        { analytics: A } = getAnalyticsContext(),
         N = a.useRef(A);
       N.current = A;
       const L = a.useRef(i);
@@ -99634,7 +99447,7 @@ function ine(e) {
                 e && (s.app = e);
               }
               (n && Object.assign(s, n),
-                N.current?.track("claude_chrome.chat.tool_called", s));
+                N.trackEvent("claude_chrome.chat.tool_called", s));
             };
             if (
               (await cte({
@@ -103285,7 +103098,7 @@ function Mne() {
       chatInput: a.useRef(null),
     }).current,
     $e = f || !1,
-    { analytics: Be } = qe(),
+    { analytics: Be } = getAnalyticsContext(),
     He = p?.organization?.uuid;
   a.useEffect(() => {
     te &&
@@ -103294,7 +103107,7 @@ function Mne() {
         v(y.QUICK_MODE_TIP_DISMISSED),
         v(y.SELECTED_MODEL_QUICK_MODE),
       ]).then(([e, t]) => {
-        Be.track("claude_chrome.quick_mode.sidepanel_state", {
+        trackEvent("claude_chrome.quick_mode.sidepanel_state", {
           tip_previously_dismissed: !!e,
           has_selected_model: !!t,
           selected_model: t || null,
@@ -104202,7 +104015,7 @@ function Mne() {
           e.preventDefault();
           const t = (At.indexOf(i.permissionMode) + 1) % At.length;
           (i.setPermissionMode(At[t]),
-            Be?.track("claude_chrome.permission_mode.changed", {
+            trackEvent("claude_chrome.permission_mode.changed", {
               from: i.permissionMode,
               to: At[t],
               method: "keyboard_shortcut",
@@ -104338,7 +104151,7 @@ function Mne() {
             n = e.slice(1 + t.length).trim(),
             s = await k.getPromptByCommand(t);
           s
-            ? (Be?.track("claude_chrome.chat.system_command_executed", {
+            ? (trackEvent("claude_chrome.chat.system_command_executed", {
                 sessionId: r.sessionId || "",
                 commandName: t,
                 commandType: "shortcut",
@@ -104349,7 +104162,7 @@ function Mne() {
             : (function (e) {
                 return F9().some((t) => t.command === e);
               })(t) &&
-              Be?.track("claude_chrome.chat.system_command_executed", {
+              trackEvent("claude_chrome.chat.system_command_executed", {
                 sessionId: r.sessionId || "",
                 commandName: t,
                 commandType: "system",
@@ -104556,7 +104369,7 @@ function Mne() {
             const e = new Map(O);
             (e.set(M, j), z(e));
           }
-          Be?.track("claude_chrome.chat.feedback", {
+          trackEvent("claude_chrome.chat.feedback", {
             ...e,
             sessionId: r.sessionId,
             permissions: i.permissionMode,
@@ -104737,7 +104550,7 @@ function Mne() {
                     ? () => {
                         if (ne)
                           return (
-                            Be?.track("claude_chrome.quick_mode.disabled"),
+                            trackEvent("claude_chrome.quick_mode.disabled"),
                             void se(!1)
                           );
                         ie(!0);

@@ -1,38 +1,99 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>GIF Export - Codex</title>
     <style>
+      :root {
+        color-scheme: dark;
+        --page-background: #0f1115;
+        --panel-background: rgba(20, 22, 28, 0.94);
+        --panel-border: rgba(255, 255, 255, 0.08);
+        --error-color: #ff9494;
+      }
+
       * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
       }
+
+      html,
       body {
-        background: #1a1a1a;
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
         min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      img {
-        max-width: 100%;
-        max-height: 100vh;
-        object-fit: contain;
-      }
-      .error {
+        display: grid;
+        place-items: center;
+        padding: 24px;
         font-family:
           system-ui,
           -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
           sans-serif;
-        color: #ff8888;
-        padding: 24px;
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(207, 107, 60, 0.22),
+            transparent 34%
+          ),
+          radial-gradient(
+            circle at bottom,
+            rgba(220, 38, 38, 0.12),
+            transparent 40%
+          ),
+          var(--page-background);
+        color: #f3f4f6;
+        overflow: hidden;
+      }
+
+      main {
+        width: 100%;
+        display: grid;
+        place-items: center;
+      }
+
+      #content {
+        width: min(100%, 1600px);
+        display: grid;
+        place-items: center;
+      }
+
+      #content a {
+        display: block;
+        line-height: 0;
+      }
+
+      #content img {
+        display: block;
+        max-width: min(100vw - 48px, 1600px);
+        max-height: calc(100vh - 48px);
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        background: var(--panel-background);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+      }
+
+      .error {
+        max-width: 560px;
+        padding: 24px 28px;
+        border: 1px solid rgba(255, 148, 148, 0.2);
+        border-radius: 16px;
+        background: rgba(37, 16, 16, 0.92);
+        color: var(--error-color);
         text-align: center;
+        line-height: 1.5;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
       }
     </style>
   </head>
   <body>
-    <div id="content"></div>
+    <main>
+      <div id="content" aria-live="polite"></div>
+    </main>
     <script src="gif_viewer.js"></script>
   </body>
 </html>

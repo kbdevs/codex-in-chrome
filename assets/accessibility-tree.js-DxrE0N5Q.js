@@ -1,356 +1,558 @@
 (function () {
-  (window.__claudeElementMap || (window.__claudeElementMap = {}),
-    window.__claudeRefCounter || (window.__claudeRefCounter = 0),
-    (window.__generateAccessibilityTree = function (e, t, r, i) {
-      try {
-        let h = function (e) {
-            var t = e.getAttribute("role");
-            if (t) return t;
-            var r = e.tagName.toLowerCase(),
-              i = e.getAttribute("type");
-            return (
-              {
-                a: "link",
-                button: "button",
-                input:
-                  "submit" === i || "button" === i
-                    ? "button"
-                    : "checkbox" === i
-                      ? "checkbox"
-                      : "radio" === i
-                        ? "radio"
-                        : "file" === i
-                          ? "button"
-                          : "textbox",
-                select: "combobox",
-                textarea: "textbox",
-                h1: "heading",
-                h2: "heading",
-                h3: "heading",
-                h4: "heading",
-                h5: "heading",
-                h6: "heading",
-                img: "image",
-                nav: "navigation",
-                main: "main",
-                header: "banner",
-                footer: "contentinfo",
-                section: "region",
-                article: "article",
-                aside: "complementary",
-                form: "form",
-                table: "table",
-                ul: "list",
-                ol: "list",
-                li: "listitem",
-                label: "label",
-              }[r] || "generic"
-            );
-          },
-          g = function (e) {
-            var t = (e.getAttribute("type") || "").toLowerCase();
-            if ("password" === t || "hidden" === t) return !0;
-            for (
-              var r = (e.getAttribute("autocomplete") || "").toLowerCase(),
-                i = [
-                  "current-password",
-                  "new-password",
-                  "one-time-code",
-                  "cc-number",
-                  "cc-csc",
-                  "cc-exp",
-                  "cc-exp-month",
-                  "cc-exp-year",
-                ],
-                n = 0;
-              n < i.length;
-              n++
-            )
-              if (-1 !== r.indexOf(i[n])) return !0;
-            return !1;
-          },
-          s = function (e) {
-            for (var t = "", r = 0; r < e.childNodes.length; r++)
-              e.childNodes[r].nodeType === Node.TEXT_NODE &&
-                (t += e.childNodes[r].textContent);
-            return t.trim();
-          },
-          m = function (e) {
-            var t = e.tagName.toLowerCase();
-            if ("select" === t) {
-              if (g(e)) {
-                var r = e.getAttribute("aria-label");
-                if (r && r.trim()) return r.trim();
-                var i = e.getAttribute("title");
-                if (i && i.trim()) return i.trim();
-                if (e.id) {
-                  var n = document.querySelector('label[for="' + e.id + '"]');
-                  if (n) {
-                    var a = s(n);
-                    if (a) return a;
-                  }
-                }
-                return "[value redacted]";
-              }
-              var o = e,
-                l =
-                  o.querySelector("option[selected]") ||
-                  o.options[o.selectedIndex];
-              if (l && l.textContent) return l.textContent.trim();
-            }
-            var u = e.getAttribute("aria-label");
-            if (u && u.trim()) return u.trim();
-            var d = e.getAttribute("placeholder");
-            if (d && d.trim()) return d.trim();
-            var c = e.getAttribute("title");
-            if (c && c.trim()) return c.trim();
-            var f = e.getAttribute("alt");
-            if (f && f.trim()) return f.trim();
-            if (e.id) {
-              var h = document.querySelector('label[for="' + e.id + '"]');
-              if (h) {
-                var m = s(h);
-                if (m) return m;
-              }
-            }
-            if ("input" === t) {
-              var p = e,
-                w = e.getAttribute("type") || "",
-                v = e.getAttribute("value");
-              if ("submit" === w && v && v.trim()) return v.trim();
-              if (g(e)) return p.value ? "[value redacted]" : "";
-              if (p.value && p.value.length < 50 && p.value.trim())
-                return p.value.trim();
-            }
-            if ("textarea" === t && g(e))
-              return e.value ? "[value redacted]" : "";
-            if (["button", "a", "summary"].includes(t)) {
-              for (var b = "", _ = 0; _ < e.childNodes.length; _++) {
-                var y = e.childNodes[_];
-                y.nodeType === Node.TEXT_NODE && (b += y.textContent);
-              }
-              if (b.trim()) return b.trim();
-            }
-            if (t.match(/^h[1-6]$/)) {
-              var x = e.textContent;
-              if (x && x.trim()) return x.trim().substring(0, 100);
-            }
-            if ("img" === t) return "";
-            for (var A = "", C = 0; C < e.childNodes.length; C++) {
-              var N = e.childNodes[C];
-              N.nodeType === Node.TEXT_NODE && (A += N.textContent);
-            }
-            if (A && A.trim() && A.trim().length >= 3) {
-              var E = A.trim();
-              return E.length > 100 ? E.substring(0, 100) + "..." : E;
-            }
-            return "";
-          },
-          p = function (e) {
-            var t = window.getComputedStyle(e);
-            return (
-              "none" !== t.display &&
-              "hidden" !== t.visibility &&
-              "0" !== t.opacity &&
-              e.offsetWidth > 0 &&
-              e.offsetHeight > 0
-            );
-          },
-          w = function (e) {
-            var t = e.tagName.toLowerCase();
-            return (
-              [
-                "a",
-                "button",
-                "input",
-                "select",
-                "textarea",
-                "details",
-                "summary",
-              ].includes(t) ||
-              null !== e.getAttribute("onclick") ||
-              null !== e.getAttribute("tabindex") ||
-              "button" === e.getAttribute("role") ||
-              "link" === e.getAttribute("role") ||
-              "true" === e.getAttribute("contenteditable")
-            );
-          },
-          v = function (e) {
-            var t = e.tagName.toLowerCase();
-            return (
-              [
-                "h1",
-                "h2",
-                "h3",
-                "h4",
-                "h5",
-                "h6",
-                "nav",
-                "main",
-                "header",
-                "footer",
-                "section",
-                "article",
-                "aside",
-              ].includes(t) || null !== e.getAttribute("role")
-            );
-          },
-          b = function (e, t) {
-            var r = e.tagName.toLowerCase();
-            if (
-              ["script", "style", "meta", "link", "title", "noscript"].includes(
-                r,
-              )
-            )
-              return !1;
-            if ("all" !== t.filter && "true" === e.getAttribute("aria-hidden"))
-              return !1;
-            if ("all" !== t.filter && !p(e)) return !1;
-            if ("all" !== t.filter && !t.refId) {
-              var i = e.getBoundingClientRect();
-              if (
-                !(
-                  i.top < window.innerHeight &&
-                  i.bottom > 0 &&
-                  i.left < window.innerWidth &&
-                  i.right > 0
-                )
-              )
-                return !1;
-            }
-            if ("interactive" === t.filter) return w(e);
-            if (w(e)) return !0;
-            if (v(e)) return !0;
-            if (m(e).length > 0) return !0;
-            var n = h(e);
-            return null !== n && "generic" !== n && "image" !== n;
-          },
-          _ = function (e, t, r) {
-            if (!(t > a) && e && e.tagName) {
-              var i = b(e, r) || (null !== r.refId && 0 === t);
-              if (i) {
-                var o = h(e),
-                  l = m(e),
-                  u = null;
-                for (var d in window.__claudeElementMap)
-                  if (window.__claudeElementMap[d].deref() === e) {
-                    u = d;
-                    break;
-                  }
-                u ||
-                  ((u = "ref_" + ++window.__claudeRefCounter),
-                  (window.__claudeElementMap[u] = new WeakRef(e)));
-                var c = " ".repeat(t) + o;
-                if (
-                  (l &&
-                    (c +=
-                      ' "' +
-                      (l = l.replace(/\s+/g, " ").substring(0, 100)).replace(
-                        /"/g,
-                        '\\"',
-                      ) +
-                      '"'),
-                  (c += " [" + u + "]"),
-                  e.getAttribute("href") &&
-                    (c += ' href="' + e.getAttribute("href") + '"'),
-                  e.getAttribute("type") &&
-                    (c += ' type="' + e.getAttribute("type") + '"'),
-                  e.getAttribute("placeholder") &&
-                    (c +=
-                      ' placeholder="' + e.getAttribute("placeholder") + '"'),
-                  n.push(c),
-                  "select" === e.tagName.toLowerCase() && !g(e))
-                )
-                  for (var f = e.options, s = 0; s < f.length; s++) {
-                    var p = f[s],
-                      w = " ".repeat(t + 1) + "option",
-                      v = p.textContent ? p.textContent.trim() : "";
-                    (v &&
-                      (w +=
-                        ' "' +
-                        (v = v.replace(/\s+/g, " ").substring(0, 100)).replace(
-                          /"/g,
-                          '\\"',
-                        ) +
-                        '"'),
-                      p.selected && (w += " (selected)"),
-                      p.value &&
-                        p.value !== v &&
-                        (w += ' value="' + p.value.replace(/"/g, '\\"') + '"'),
-                      n.push(w));
-                  }
-              }
-              if (
-                ("select" !== e.tagName.toLowerCase() || !g(e)) &&
-                e.children &&
-                t < a
-              )
-                for (var y = 0; y < e.children.length; y++)
-                  _(e.children[y], i ? t + 1 : t, r);
-            }
-          };
-        var n = [],
-          a = null != t ? t : 15,
-          o = { filter: e || "all", refId: i };
-        if (i) {
-          var l = window.__claudeElementMap[i];
-          if (!l)
-            return {
-              error:
-                "Element with ref_id '" +
-                i +
-                "' not found. It may have been removed from the page. Use read_page without ref_id to get the current page state.",
-              pageContent: "",
-              viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-              },
-            };
-          var u = l.deref();
-          if (!u)
-            return {
-              error:
-                "Element with ref_id '" +
-                i +
-                "' no longer exists. It may have been removed from the page. Use read_page without ref_id to get the current page state.",
-              pageContent: "",
-              viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-              },
-            };
-          _(u, 0, o);
-        } else document.body && _(document.body, 0, o);
-        for (var d in window.__claudeElementMap)
-          window.__claudeElementMap[d].deref() ||
-            delete window.__claudeElementMap[d];
-        var c = n.join("\n");
-        if (null != r && c.length > r) {
-          var f =
-            "Output exceeds " +
-            r +
-            " character limit (" +
-            c.length +
-            " characters). ";
-          return {
-            error: (f += i
-              ? "The specified element has too much content. Try specifying a smaller depth parameter or focus on a more specific child element."
-              : void 0 !== t
-                ? "Try specifying an even smaller depth parameter or use ref_id to focus on a specific element."
-                : "Try specifying a depth parameter (e.g., depth: 5) or use ref_id to focus on a specific element from the page."),
-            pageContent: "",
-            viewport: { width: window.innerWidth, height: window.innerHeight },
-          };
+  const elementRefs =
+    window.__claudeElementMap || (window.__claudeElementMap = Object.create(null));
+
+  if (typeof window.__claudeRefCounter !== "number") {
+    window.__claudeRefCounter = 0;
+  }
+
+  const DEFAULT_FILTER = "all";
+  const DEFAULT_DEPTH = 15;
+  const MAX_LABEL_LENGTH = 100;
+  const REDACTED_VALUE = "[value redacted]";
+
+  const NON_CONTENT_TAGS = new Set([
+    "script",
+    "style",
+    "meta",
+    "link",
+    "title",
+    "noscript",
+  ]);
+
+  const INTERACTIVE_TAGS = new Set([
+    "a",
+    "button",
+    "input",
+    "select",
+    "textarea",
+    "details",
+    "summary",
+  ]);
+
+  const LANDMARK_TAGS = new Set([
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "nav",
+    "main",
+    "header",
+    "footer",
+    "section",
+    "article",
+    "aside",
+  ]);
+
+  const SENSITIVE_AUTOCOMPLETE_TOKENS = [
+    "current-password",
+    "new-password",
+    "one-time-code",
+    "cc-number",
+    "cc-csc",
+    "cc-exp",
+    "cc-exp-month",
+    "cc-exp-year",
+  ];
+
+  function getTagName(element) {
+    return element.tagName.toLowerCase();
+  }
+
+  function trimText(value) {
+    return value.trim();
+  }
+
+  function truncateText(value, maxLength = MAX_LABEL_LENGTH, appendEllipsis = false) {
+    if (value.length <= maxLength) {
+      return value;
+    }
+
+    return appendEllipsis ? value.slice(0, maxLength) + "..." : value.slice(0, maxLength);
+  }
+
+  function collapseWhitespace(value) {
+    return trimText(value).replace(/\s+/g, " ");
+  }
+
+  function escapeQuotedText(value) {
+    return value.replace(/"/g, '\\"');
+  }
+
+  function getDirectTextContent(node) {
+    let textContent = "";
+
+    for (let index = 0; index < node.childNodes.length; index += 1) {
+      const childNode = node.childNodes[index];
+      if (childNode.nodeType === Node.TEXT_NODE) {
+        textContent += childNode.textContent || "";
+      }
+    }
+
+    return trimText(textContent);
+  }
+
+  function findLabelTextForElement(element) {
+    if (!element.id) {
+      return "";
+    }
+
+    const label = document.querySelector('label[for="' + element.id + '"]');
+    return label ? getDirectTextContent(label) : "";
+  }
+
+  function isSensitiveField(element) {
+    const inputType = trimText((element.getAttribute("type") || "").toLowerCase());
+    if (inputType === "password" || inputType === "hidden") {
+      return true;
+    }
+
+    const autocomplete = (element.getAttribute("autocomplete") || "").toLowerCase();
+    for (let index = 0; index < SENSITIVE_AUTOCOMPLETE_TOKENS.length; index += 1) {
+      if (autocomplete.indexOf(SENSITIVE_AUTOCOMPLETE_TOKENS[index]) !== -1) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function getRole(element) {
+    const explicitRole = element.getAttribute("role");
+    if (explicitRole) {
+      return explicitRole;
+    }
+
+    const tagName = getTagName(element);
+    const inputType = element.getAttribute("type");
+
+    return (
+      {
+        a: "link",
+        button: "button",
+        input:
+          inputType === "submit" || inputType === "button"
+            ? "button"
+            : inputType === "checkbox"
+              ? "checkbox"
+              : inputType === "radio"
+                ? "radio"
+                : inputType === "file"
+                  ? "button"
+                  : "textbox",
+        select: "combobox",
+        textarea: "textbox",
+        h1: "heading",
+        h2: "heading",
+        h3: "heading",
+        h4: "heading",
+        h5: "heading",
+        h6: "heading",
+        img: "image",
+        nav: "navigation",
+        main: "main",
+        header: "banner",
+        footer: "contentinfo",
+        section: "region",
+        article: "article",
+        aside: "complementary",
+        form: "form",
+        table: "table",
+        ul: "list",
+        ol: "list",
+        li: "listitem",
+        label: "label",
+      }[tagName] || "generic"
+    );
+  }
+
+  function getAccessibleLabel(element) {
+    const tagName = getTagName(element);
+
+    if (tagName === "select") {
+      if (isSensitiveField(element)) {
+        const ariaLabel = element.getAttribute("aria-label");
+        if (ariaLabel && trimText(ariaLabel)) {
+          return trimText(ariaLabel);
         }
-        return {
-          pageContent: c,
-          viewport: { width: window.innerWidth, height: window.innerHeight },
-        };
-      } catch (h) {
-        throw new Error(
-          "Error generating accessibility tree: " +
-            (h.message || "Unknown error"),
+
+        const title = element.getAttribute("title");
+        if (title && trimText(title)) {
+          return trimText(title);
+        }
+
+        const labelText = findLabelTextForElement(element);
+        if (labelText) {
+          return labelText;
+        }
+
+        return REDACTED_VALUE;
+      }
+
+      const selectedOption =
+        element.querySelector("option[selected]") ||
+        element.options[element.selectedIndex];
+      if (selectedOption && selectedOption.textContent) {
+        return trimText(selectedOption.textContent);
+      }
+    }
+
+    const ariaLabel = element.getAttribute("aria-label");
+    if (ariaLabel && trimText(ariaLabel)) {
+      return trimText(ariaLabel);
+    }
+
+    const placeholder = element.getAttribute("placeholder");
+    if (placeholder && trimText(placeholder)) {
+      return trimText(placeholder);
+    }
+
+    const title = element.getAttribute("title");
+    if (title && trimText(title)) {
+      return trimText(title);
+    }
+
+    const altText = element.getAttribute("alt");
+    if (altText && trimText(altText)) {
+      return trimText(altText);
+    }
+
+    const labelText = findLabelTextForElement(element);
+    if (labelText) {
+      return labelText;
+    }
+
+    if (tagName === "input") {
+      const inputType = element.getAttribute("type") || "";
+      const valueAttribute = element.getAttribute("value");
+
+      if (inputType === "submit" && valueAttribute && trimText(valueAttribute)) {
+        return trimText(valueAttribute);
+      }
+
+      if (isSensitiveField(element)) {
+        return element.value ? REDACTED_VALUE : "";
+      }
+
+      if (element.value && element.value.length < 50 && trimText(element.value)) {
+        return trimText(element.value);
+      }
+    }
+
+    if (tagName === "textarea" && isSensitiveField(element)) {
+      return element.value ? REDACTED_VALUE : "";
+    }
+
+    if (tagName === "button" || tagName === "a" || tagName === "summary") {
+      const directText = getDirectTextContent(element);
+      if (directText) {
+        return directText;
+      }
+    }
+
+    if (/^h[1-6]$/.test(tagName)) {
+      const headingText = element.textContent;
+      if (headingText && trimText(headingText)) {
+        return truncateText(trimText(headingText), MAX_LABEL_LENGTH, false);
+      }
+    }
+
+    if (tagName === "img") {
+      return "";
+    }
+
+    const fallbackText = getDirectTextContent(element);
+    if (fallbackText && fallbackText.length >= 3) {
+      return truncateText(fallbackText, MAX_LABEL_LENGTH, true);
+    }
+
+    return "";
+  }
+
+  function isVisible(element) {
+    const style = window.getComputedStyle(element);
+    return (
+      style.display !== "none" &&
+      style.visibility !== "hidden" &&
+      style.opacity !== "0" &&
+      element.offsetWidth > 0 &&
+      element.offsetHeight > 0
+    );
+  }
+
+  function isInteractiveElement(element) {
+    const tagName = getTagName(element);
+    return (
+      INTERACTIVE_TAGS.has(tagName) ||
+      element.getAttribute("onclick") !== null ||
+      element.getAttribute("tabindex") !== null ||
+      element.getAttribute("role") === "button" ||
+      element.getAttribute("role") === "link" ||
+      element.getAttribute("contenteditable") === "true"
+    );
+  }
+
+  function isLandmarkElement(element) {
+    const tagName = getTagName(element);
+    return LANDMARK_TAGS.has(tagName) || element.getAttribute("role") !== null;
+  }
+
+  function shouldIncludeElement(element, context) {
+    const tagName = getTagName(element);
+
+    if (NON_CONTENT_TAGS.has(tagName)) {
+      return false;
+    }
+
+    if (context.filter !== "all" && element.getAttribute("aria-hidden") === "true") {
+      return false;
+    }
+
+    if (context.filter !== "all" && !isVisible(element)) {
+      return false;
+    }
+
+    if (context.filter !== "all" && !context.refId) {
+      const bounds = element.getBoundingClientRect();
+      if (
+        !(
+          bounds.top < window.innerHeight &&
+          bounds.bottom > 0 &&
+          bounds.left < window.innerWidth &&
+          bounds.right > 0
+        )
+      ) {
+        return false;
+      }
+    }
+
+    if (context.filter === "interactive") {
+      return isInteractiveElement(element);
+    }
+
+    if (isInteractiveElement(element) || isLandmarkElement(element)) {
+      return true;
+    }
+
+    if (getAccessibleLabel(element).length > 0) {
+      return true;
+    }
+
+    const role = getRole(element);
+    return role !== "generic" && role !== "image";
+  }
+
+  function getOrCreateRefId(element) {
+    for (const refId in elementRefs) {
+      if (elementRefs[refId].deref() === element) {
+        return refId;
+      }
+    }
+
+    const refId = "ref_" + ++window.__claudeRefCounter;
+    elementRefs[refId] = new WeakRef(element);
+    return refId;
+  }
+
+  function pruneDeadRefs() {
+    for (const refId in elementRefs) {
+      if (!elementRefs[refId].deref()) {
+        delete elementRefs[refId];
+      }
+    }
+  }
+
+  function formatElementLine(element, depth) {
+    const role = getRole(element);
+    const label = getAccessibleLabel(element);
+    const refId = getOrCreateRefId(element);
+    const tagName = getTagName(element);
+
+    let line = " ".repeat(depth) + role;
+    if (label) {
+      line += ' "' + escapeQuotedText(label) + '"';
+    }
+
+    line += " [" + refId + "]";
+
+    const href = element.getAttribute("href");
+    if (href) {
+      line += ' href="' + escapeQuotedText(href) + '"';
+    }
+
+    const type = element.getAttribute("type");
+    if (type) {
+      line += ' type="' + escapeQuotedText(type) + '"';
+    }
+
+    const placeholder = element.getAttribute("placeholder");
+    if (placeholder) {
+      line += ' placeholder="' + escapeQuotedText(placeholder) + '"';
+    }
+
+    return line;
+  }
+
+  function appendSelectOptionLines(selectElement, depth, lines) {
+    for (let index = 0; index < selectElement.options.length; index += 1) {
+      const option = selectElement.options[index];
+      let line = " ".repeat(depth + 1) + "option";
+
+      const rawText = option.textContent ? trimText(option.textContent) : "";
+      if (rawText) {
+        const displayText = truncateText(collapseWhitespace(rawText), MAX_LABEL_LENGTH, false);
+        line += ' "' + escapeQuotedText(displayText) + '"';
+      }
+
+      if (option.selected) {
+        line += " (selected)";
+      }
+
+      const displayText = rawText
+        ? truncateText(collapseWhitespace(rawText), MAX_LABEL_LENGTH, false)
+        : "";
+      if (option.value && option.value !== displayText) {
+        line += ' value="' + escapeQuotedText(option.value) + '"';
+      }
+
+      lines.push(line);
+    }
+  }
+
+  function collectAccessibilityTree(element, depth, context, maxDepth, lines) {
+    if (!element || !element.tagName || depth > maxDepth) {
+      return;
+    }
+
+    const tagName = getTagName(element);
+    const includeSelf =
+      shouldIncludeElement(element, context) || (context.refId !== null && depth === 0);
+
+    if (includeSelf) {
+      lines.push(formatElementLine(element, depth));
+
+      if (tagName === "select" && !isSensitiveField(element)) {
+        appendSelectOptionLines(element, depth, lines);
+      }
+    }
+
+    if ((tagName !== "select" || isSensitiveField(element)) && element.children && depth < maxDepth) {
+      const nextDepth = includeSelf ? depth + 1 : depth;
+      for (let index = 0; index < element.children.length; index += 1) {
+        collectAccessibilityTree(element.children[index], nextDepth, context, maxDepth, lines);
+      }
+    }
+  }
+
+  function buildViewport() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+
+  function buildEmptyResult(pageContent) {
+    return {
+      pageContent,
+      viewport: buildViewport(),
+    };
+  }
+
+  function buildRefNotFoundResult(refId, reason) {
+    return {
+      error:
+        "Element with ref_id '" +
+        refId +
+        "' " +
+        reason +
+        ". Use read_page without ref_id to get the current page state.",
+      pageContent: "",
+      viewport: buildViewport(),
+    };
+  }
+
+  function buildOutputTooLargeResult(
+    maxChars,
+    pageContentLength,
+    refId,
+    depthWasProvided,
+  ) {
+    let message =
+      "Output exceeds " + maxChars + " character limit (" + pageContentLength + " characters). ";
+
+    if (refId) {
+      message +=
+        "The specified element has too much content. Try specifying a smaller depth parameter or focus on a more specific child element.";
+    } else if (depthWasProvided) {
+      message +=
+        "Try specifying an even smaller depth parameter or use ref_id to focus on a specific element.";
+    } else {
+      message +=
+        "Try specifying a depth parameter (e.g., depth: 5) or use ref_id to focus on a specific element from the page.";
+    }
+
+    return {
+      error: message,
+      pageContent: "",
+      viewport: buildViewport(),
+    };
+  }
+
+  function generateAccessibilityTree(filter, depth, maxChars, refId) {
+    try {
+      const effectiveFilter = filter || DEFAULT_FILTER;
+      const effectiveDepth = depth != null ? depth : DEFAULT_DEPTH;
+      const depthWasProvided = depth !== undefined;
+      const context = {
+        filter: effectiveFilter,
+        refId,
+      };
+
+      const lines = [];
+
+      if (refId) {
+        const refEntry = window.__claudeElementMap[refId];
+        if (!refEntry) {
+          return buildRefNotFoundResult(
+            refId,
+            "not found. It may have been removed from the page",
+          );
+        }
+
+        const referencedElement = refEntry.deref();
+        if (!referencedElement) {
+          return buildRefNotFoundResult(
+            refId,
+            "no longer exists. It may have been removed from the page",
+          );
+        }
+
+        collectAccessibilityTree(referencedElement, 0, context, effectiveDepth, lines);
+      } else if (document.body) {
+        collectAccessibilityTree(document.body, 0, context, effectiveDepth, lines);
+      }
+
+      pruneDeadRefs();
+
+      const pageContent = lines.join("\n");
+      if (maxChars != null && pageContent.length > maxChars) {
+        return buildOutputTooLargeResult(
+          maxChars,
+          pageContent.length,
+          refId,
+          depthWasProvided,
         );
       }
-    }));
+
+      return buildEmptyResult(pageContent);
+    } catch (error) {
+      throw new Error(
+        "Error generating accessibility tree: " + (error.message || "Unknown error"),
+      );
+    }
+  }
+
+  window.__generateAccessibilityTree = generateAccessibilityTree;
 })();

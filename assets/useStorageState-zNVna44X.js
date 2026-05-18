@@ -6381,7 +6381,7 @@ var Qs = function () {
     return ((n && n.fetch) || Ys).apply(void 0, e);
   },
   Js = "1.69.0",
-  ea = "api.segment.io/v1";
+  ea = "";
 function ta(e) {}
 var na,
   ra = (function () {
@@ -7537,295 +7537,34 @@ var Za = (function (e) {
         configurable: !0,
       }),
       (t.prototype.track = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t,
-            n,
-            r,
-            o,
-            i,
-            s,
-            a,
-            u = this;
-          return cs(this, function (c) {
-            return (
-              (t = za(e)),
-              (n = Bs.apply(void 0, e)),
-              (r = n[0]),
-              (o = n[1]),
-              (i = n[2]),
-              (s = n[3]),
-              (a = this.eventFactory.track(r, o, i, this.integrations, t)),
-              [
-                2,
-                this._dispatch(a, s).then(function (e) {
-                  return (
-                    u.emit("track", r, e.event.properties, e.event.options),
-                    e
-                  );
-                }),
-              ]
-            );
-          });
-        });
+        return Promise.resolve(void 0);
       }),
       (t.prototype.page = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t,
-            n,
-            r,
-            o,
-            i,
-            s,
-            a,
-            u,
-            c = this;
-          return cs(this, function (l) {
-            return (
-              (t = za(e)),
-              (n = zs.apply(void 0, e)),
-              (r = n[0]),
-              (o = n[1]),
-              (i = n[2]),
-              (s = n[3]),
-              (a = n[4]),
-              (u = this.eventFactory.page(r, o, i, s, this.integrations, t)),
-              [
-                2,
-                this._dispatch(u, a).then(function (e) {
-                  return (
-                    c.emit("page", r, o, e.event.properties, e.event.options),
-                    e
-                  );
-                }),
-              ]
-            );
-          });
-        });
+        return Promise.resolve(void 0);
       }),
       (t.prototype.identify = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t,
-            n,
-            r,
-            o,
-            i,
-            s,
-            a,
-            u = this;
-          return cs(this, function (c) {
-            return (
-              (t = za(e)),
-              (n = qs(this._user).apply(void 0, e)),
-              (r = n[0]),
-              (o = n[1]),
-              (i = n[2]),
-              (s = n[3]),
-              this._user.identify(r, o),
-              (a = this.eventFactory.identify(
-                this._user.id(),
-                this._user.traits(),
-                i,
-                this.integrations,
-                t,
-              )),
-              [
-                2,
-                this._dispatch(a, s).then(function (e) {
-                  return (
-                    u.emit(
-                      "identify",
-                      e.event.userId,
-                      e.event.traits,
-                      e.event.options,
-                    ),
-                    e
-                  );
-                }),
-              ]
-            );
-          });
-        });
+        return Promise.resolve(void 0);
       }),
       (t.prototype.group = function () {
-        for (var e = this, t = [], n = 0; n < arguments.length; n++)
-          t[n] = arguments[n];
-        var r = za(t);
-        if (0 === t.length) return this._group;
-        var o = qs(this._group).apply(void 0, t),
-          i = o[0],
-          s = o[1],
-          a = o[2],
-          u = o[3];
-        this._group.identify(i, s);
-        var c = this._group.id(),
-          l = this._group.traits(),
-          d = this.eventFactory.group(c, l, a, this.integrations, r);
-        return this._dispatch(d, u).then(function (t) {
-          return (
-            e.emit("group", t.event.groupId, t.event.traits, t.event.options),
-            t
-          );
-        });
+        return Promise.resolve(this._group);
       }),
       (t.prototype.alias = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t,
-            n,
-            r,
-            o,
-            i,
-            s,
-            a,
-            u = this;
-          return cs(this, function (c) {
-            return (
-              (t = za(e)),
-              (n = Hs.apply(void 0, e)),
-              (r = n[0]),
-              (o = n[1]),
-              (i = n[2]),
-              (s = n[3]),
-              (a = this.eventFactory.alias(r, o, i, this.integrations, t)),
-              [
-                2,
-                this._dispatch(a, s).then(function (e) {
-                  return (u.emit("alias", r, o, e.event.options), e);
-                }),
-              ]
-            );
-          });
-        });
+        return Promise.resolve(void 0);
       }),
       (t.prototype.screen = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t,
-            n,
-            r,
-            o,
-            i,
-            s,
-            a,
-            u,
-            c = this;
-          return cs(this, function (l) {
-            return (
-              (t = za(e)),
-              (n = zs.apply(void 0, e)),
-              (r = n[0]),
-              (o = n[1]),
-              (i = n[2]),
-              (s = n[3]),
-              (a = n[4]),
-              (u = this.eventFactory.screen(r, o, i, s, this.integrations, t)),
-              [
-                2,
-                this._dispatch(u, a).then(function (e) {
-                  return (
-                    c.emit("screen", r, o, e.event.properties, e.event.options),
-                    e
-                  );
-                }),
-              ]
-            );
-          });
-        });
+        return Promise.resolve(void 0);
       }),
       (t.prototype.trackClick = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t, n;
-          return cs(this, function (r) {
-            switch (r.label) {
-              case 0:
-                return [
-                  4,
-                  p(
-                    () => import("./auto-track-HG4Yyi0E.js"),
-                    __vite__mapDeps([0, 1, 2, 3, 4]),
-                  ),
-                ];
-              case 1:
-                return (
-                  (t = r.sent()),
-                  [2, (n = t.link).call.apply(n, ls([this], e, !1))]
-                );
-            }
-          });
-        });
+        return this;
       }),
       (t.prototype.trackLink = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t, n;
-          return cs(this, function (r) {
-            switch (r.label) {
-              case 0:
-                return [
-                  4,
-                  p(
-                    () => import("./auto-track-HG4Yyi0E.js"),
-                    __vite__mapDeps([0, 1, 2, 3, 4]),
-                  ),
-                ];
-              case 1:
-                return (
-                  (t = r.sent()),
-                  [2, (n = t.link).call.apply(n, ls([this], e, !1))]
-                );
-            }
-          });
-        });
+        return this;
       }),
       (t.prototype.trackSubmit = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t, n;
-          return cs(this, function (r) {
-            switch (r.label) {
-              case 0:
-                return [
-                  4,
-                  p(
-                    () => import("./auto-track-HG4Yyi0E.js"),
-                    __vite__mapDeps([0, 1, 2, 3, 4]),
-                  ),
-                ];
-              case 1:
-                return (
-                  (t = r.sent()),
-                  [2, (n = t.form).call.apply(n, ls([this], e, !1))]
-                );
-            }
-          });
-        });
+        return this;
       }),
       (t.prototype.trackForm = function () {
-        for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-        return us(this, void 0, void 0, function () {
-          var t, n;
-          return cs(this, function (r) {
-            switch (r.label) {
-              case 0:
-                return [
-                  4,
-                  p(
-                    () => import("./auto-track-HG4Yyi0E.js"),
-                    __vite__mapDeps([0, 1, 2, 3, 4]),
-                  ),
-                ];
-              case 1:
-                return (
-                  (t = r.sent()),
-                  [2, (n = t.form).call.apply(n, ls([this], e, !1))]
-                );
-            }
-          });
-        });
+        return this;
       }),
       (t.prototype.register = function () {
         for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
@@ -7966,25 +7705,8 @@ var Za = (function (e) {
       (t.prototype.setAnonymousId = function (e) {
         return this._user.anonymousId(e);
       }),
-      (t.prototype.queryString = function (e) {
-        return us(this, void 0, void 0, function () {
-          return cs(this, function (t) {
-            switch (t.label) {
-              case 0:
-                return !1 === this.options.useQueryString
-                  ? [2, []]
-                  : [
-                      4,
-                      p(
-                        () => import("./index-D0tRRs6v.js"),
-                        __vite__mapDeps([5, 1, 2, 3, 4]),
-                      ),
-                    ];
-              case 1:
-                return [2, (0, t.sent().queryString)(this, e)];
-            }
-          });
-        });
+      (t.prototype.queryString = function () {
+        return Promise.resolve([]);
       }),
       (t.prototype.use = function (e) {
         return (e(this), this);
@@ -8039,17 +7761,8 @@ var Za = (function (e) {
           });
         });
       }),
-      (t.prototype.pageview = function (e) {
-        return us(this, void 0, void 0, function () {
-          return cs(this, function (t) {
-            switch (t.label) {
-              case 0:
-                return [4, this.page({ path: e })];
-              case 1:
-                return (t.sent(), [2, this]);
-            }
-          });
-        });
+      (t.prototype.pageview = function () {
+        return Promise.resolve(this);
       }),
       Object.defineProperty(t.prototype, "plugins", {
         get: function () {
@@ -28331,44 +28044,7 @@ let CP = null,
 const PP = ({ children: e }) =>
     _() ? t.jsx(t.Fragment, { children: e }) : t.jsx(_P, {}),
   IP = ({ children: n, pageName: r }) => {
-    const { analytics: o } = e.use(
-        (kP ||
-          (kP = (async () => {
-            try {
-              const e = chrome.runtime.getManifest().version,
-                t = await y(),
-                n = w();
-              return (
-                !CP &&
-                  n.segmentWriteKey &&
-                  ((CP = pd.load(
-                    { writeKey: n.segmentWriteKey },
-                    { user: { persist: !1 } },
-                  )),
-                  CP.setAnonymousId(t),
-                  CP.register({
-                    name: "Extension Version Plugin",
-                    type: "before",
-                    version: "1.0.0",
-                    load: () => Promise.resolve(),
-                    isLoaded: () => !0,
-                    track: (t) => (
-                      t.updateEvent("properties.extension_version", e),
-                      t
-                    ),
-                    page: (t) => (
-                      t.updateEvent("properties.extension_version", e),
-                      t
-                    ),
-                  })),
-                { analytics: CP }
-              );
-            } catch (e) {
-              return { analytics: null };
-            }
-          })()),
-        kP),
-      ),
+    const o = null,
       { userProfile: i, isAuthenticated: s, isLoading: a } = AP(),
       u = (function () {
         const [t, n] = e.useState({ forceLoginOrgUUIDs: null, isLoading: !0 });
@@ -28397,32 +28073,7 @@ const PP = ({ children: e }) =>
           t
         );
       })();
-    (e.useEffect(() => {
-      s &&
-        i &&
-        o &&
-        o.identify(i.account.uuid, {
-          email: i.account.email,
-          organizationID: i.organization.uuid,
-          organizationUUID: i.organization.uuid,
-          applicationSlug: "claude-browser-use",
-          isMax: i.account.has_claude_max,
-          isPro: i.account.has_claude_pro,
-          orgType: i.organization.organization_type,
-        });
-    }, [s, i, o]),
-      e.useEffect(() => {
-        o && o.page("Extension", r);
-      }, [o, r]));
-    const c = e.useCallback(async () => {
-        try {
-          if (o) {
-            o.reset();
-            const e = await y();
-            o.setAnonymousId(e);
-          }
-        } catch (e) {}
-      }, [o]),
+    const c = e.useCallback(async () => {}, []),
       l = e.useMemo(() => ({ analytics: o, resetAnalytics: c }), [o, c]);
     return a
       ? t.jsx(_P, {})

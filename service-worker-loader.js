@@ -1,1 +1,1 @@
-import "./assets/service-worker.ts-gaAAsstG.js";
+import "./background/service-worker.js";

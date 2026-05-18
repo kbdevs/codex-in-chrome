@@ -25,6 +25,18 @@ import {
   y as k,
 } from "./PermissionManager-BqJmxUlR.js";
 import { R as T } from "./index-BBLsn8fp.js";
+const TAB_GROUP_COLORS =
+  globalThis.chrome?.tabGroups?.Color ?? {
+    BLUE: "blue",
+    CYAN: "cyan",
+    GREEN: "green",
+    GREY: "grey",
+    ORANGE: "orange",
+    PINK: "pink",
+    PURPLE: "purple",
+    RED: "red",
+    YELLOW: "yellow",
+  };
 class x extends Error {
   constructor(e) {
     (super(
@@ -472,7 +484,7 @@ class q {
               if (
                 (await chrome.tabGroups.update(r, {
                   title: N,
-                  color: chrome.tabGroups.Color.ORANGE,
+                  color: TAB_GROUP_COLORS.ORANGE,
                   collapsed: !1,
                 }),
                 (n.chromeGroupId = r),
@@ -581,7 +593,7 @@ class q {
         if (
           (await chrome.tabGroups.update(o, {
             title: N,
-            color: chrome.tabGroups.Color.ORANGE,
+            color: TAB_GROUP_COLORS.ORANGE,
             collapsed: !1,
           }),
           (t.metadata.chromeGroupId = o),
@@ -607,7 +619,7 @@ class q {
             if (
               (await chrome.tabGroups.update(o, {
                 title: N,
-                color: chrome.tabGroups.Color.ORANGE,
+                color: TAB_GROUP_COLORS.ORANGE,
                 collapsed: !1,
               }),
               (t.metadata.chromeGroupId = o),
@@ -708,7 +720,7 @@ class q {
     if (!o) throw new Error("Failed to create Chrome tab group");
     await chrome.tabGroups.update(o, {
       title: N,
-      color: chrome.tabGroups.Color.ORANGE,
+      color: TAB_GROUP_COLORS.ORANGE,
       collapsed: !1,
     });
     const s = {
@@ -1357,19 +1369,19 @@ class q {
       try {
         const t = await chrome.tabGroups.get(o.chromeGroupId);
         if (t.title !== N && sanitizeCodexGroupTitle(t.title) !== N) return;
-        const e = (await chrome.tabGroups.query({}))
+          const e = (await chrome.tabGroups.query({}))
             .filter((e) => e.id !== o.chromeGroupId)
             .map((e) => e.color),
           a = [
-            chrome.tabGroups.Color.GREY,
-            chrome.tabGroups.Color.BLUE,
-            chrome.tabGroups.Color.RED,
-            chrome.tabGroups.Color.YELLOW,
-            chrome.tabGroups.Color.GREEN,
-            chrome.tabGroups.Color.PINK,
-            chrome.tabGroups.Color.PURPLE,
-            chrome.tabGroups.Color.CYAN,
-            chrome.tabGroups.Color.ORANGE,
+            TAB_GROUP_COLORS.GREY,
+            TAB_GROUP_COLORS.BLUE,
+            TAB_GROUP_COLORS.RED,
+            TAB_GROUP_COLORS.YELLOW,
+            TAB_GROUP_COLORS.GREEN,
+            TAB_GROUP_COLORS.PINK,
+            TAB_GROUP_COLORS.PURPLE,
+            TAB_GROUP_COLORS.CYAN,
+            TAB_GROUP_COLORS.ORANGE,
           ],
           n = a.filter((t) => !e.includes(t));
         let s;
@@ -1379,9 +1391,9 @@ class q {
           (a.forEach((e) => t.set(e, 0)),
             e.forEach((e) => {
               t.set(e, (t.get(e) || 0) + 1);
-            }));
+          }));
           let r = 1 / 0;
-          s = chrome.tabGroups.Color.ORANGE;
+          s = TAB_GROUP_COLORS.ORANGE;
           for (const [e, o] of t.entries()) o < r && ((r = o), (s = e));
         }
         const i = c;
@@ -1502,10 +1514,10 @@ class q {
   async ensureMcpGroupCharacteristics(e) {
     try {
       const t = await chrome.tabGroups.get(e);
-      (t.title === L && t.color === chrome.tabGroups.Color.YELLOW) ||
+      (t.title === L && t.color === TAB_GROUP_COLORS.YELLOW) ||
         (await chrome.tabGroups.update(e, {
           title: L,
-          color: chrome.tabGroups.Color.YELLOW,
+          color: TAB_GROUP_COLORS.YELLOW,
         }));
     } catch (t) {}
   }
@@ -1544,7 +1556,7 @@ class q {
       return (
         await chrome.tabGroups.update(r.chromeGroupId, {
           title: L,
-          color: chrome.tabGroups.Color.YELLOW,
+          color: TAB_GROUP_COLORS.YELLOW,
         }),
         (this.mcpTabGroupId = r.chromeGroupId),
         await this.saveMcpTabGroupId(),
@@ -1558,14 +1570,14 @@ class q {
     }
   }
   static SESSION_GROUP_COLORS = [
-    chrome.tabGroups.Color.BLUE,
-    chrome.tabGroups.Color.CYAN,
-    chrome.tabGroups.Color.GREEN,
-    chrome.tabGroups.Color.ORANGE,
-    chrome.tabGroups.Color.RED,
-    chrome.tabGroups.Color.PINK,
-    chrome.tabGroups.Color.PURPLE,
-    chrome.tabGroups.Color.GREY,
+    TAB_GROUP_COLORS.BLUE,
+    TAB_GROUP_COLORS.CYAN,
+    TAB_GROUP_COLORS.GREEN,
+    TAB_GROUP_COLORS.ORANGE,
+    TAB_GROUP_COLORS.RED,
+    TAB_GROUP_COLORS.PINK,
+    TAB_GROUP_COLORS.PURPLE,
+    TAB_GROUP_COLORS.GREY,
   ];
   async getOrCreateSessionTabContext(e, t) {
     if (void 0 !== e)
@@ -1672,7 +1684,7 @@ class q {
     try {
       const e = await chrome.tabGroups.query({});
       for (const t of e)
-        if (t.color === chrome.tabGroups.Color.YELLOW && t.title?.includes(L)) {
+        if (t.color === TAB_GROUP_COLORS.YELLOW && t.title?.includes(L)) {
           if ((await chrome.tabs.query({ groupId: t.id })).length > 0)
             return t.id;
         }
@@ -11742,7 +11754,6 @@ class In {
                       : JSON.stringify(o.error),
                   )),
             "type" in o || o.error || !l.tabId || (await ue(e, r, l.tabId)),
-            this.context.analytics?.track("claude_chrome.chat.tool_called", u),
             o
           );
         } catch (h) {
@@ -11752,11 +11763,6 @@ class In {
               "result_error",
               h instanceof Error ? h.message : String(h),
             ),
-            this.context.analytics?.track("claude_chrome.chat.tool_called", {
-              ...u,
-              success: !1,
-              failureReason: "exception",
-            }),
             h
           );
         }
