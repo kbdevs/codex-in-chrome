@@ -1703,11 +1703,7 @@ function _() {
       1 & e && e > 1 && e < 11 && (n += "-"));
   return (m++, n);
 }
-const y = {
-    production: { SEGMENT_WRITE_KEY: "H7hVDRIBUrlBySLqJ15oAivgqhomdAKT" },
-    development: { SEGMENT_WRITE_KEY: "hNex10EGp3coubOXQI1BIElYaZcA1o0u" },
-  },
-  v = "hehggadaopoacecdllhhajmbjkdcmajg",
+const v = "hehggadaopoacecdllhhajmbjkdcmajg",
   b = {
     AUTHORIZE_URL: "https://auth.openai.com/oauth/authorize",
     TOKEN_URL: "https://auth.openai.com/oauth/token",
@@ -1736,7 +1732,7 @@ const y = {
       environment: t,
       apiBaseUrl: "https://chatgpt.com/backend-api",
       wsApiBaseUrl: "wss://chatgpt.com/backend-api",
-      segmentWriteKey: y[t].SEGMENT_WRITE_KEY,
+      segmentWriteKey: null,
       oauth: e,
       localBridge: !1,
     };
@@ -3579,7 +3575,7 @@ class zt {
       (this._flushInterval = i),
       (this._auth = ((h = `${o}:`), l.Buffer.from(h).toString("base64"))),
       (this._url = ((t, e) => new URL(e || "", t).href.replace(/\/$/, ""))(
-        t ?? "https://api.segment.io",
+        t ?? null,
         e ?? "/v1/batch",
       )),
       (this._httpRequestTimeout = s ?? 1e4),
@@ -4151,72 +4147,15 @@ const he = async (t, e) => {
       text: () => n.text(),
     };
   },
-  de = async () => {
-    if (ue) return ue;
-    ce ||
-      ((ue = (async () => {
-        try {
-          const t = E();
-          (t.segmentWriteKey,
-            (ce = new oe({
-              writeKey: t.segmentWriteKey,
-              flushAt: 1,
-              flushInterval: 1e4,
-              httpClient: he,
-            })),
-            await pe());
-        } catch (t) {}
-      })()),
-      await ue);
-  },
+  de = async () => ((ue ??= Promise.resolve()), ue),
   pe = async () => {
-    if (ce)
-      try {
-        const t = await (async () => {
-            try {
-              const t = await Ce();
-              if (!t) return null;
-              const e = `${E().apiBaseUrl}/api/oauth/profile`,
-                n = await fetch(e, {
-                  headers: {
-                    Authorization: `Bearer ${t}`,
-                    "Content-Type": "application/json",
-                  },
-                });
-              return n.ok ? await n.json() : null;
-            } catch {
-              return null;
-            }
-          })(),
-          e = await se(),
-          n = chrome.runtime.getManifest().version;
-        t
-          ? ((le = t.account.uuid),
-            ce.identify({
-              userId: le,
-              anonymousId: e,
-              traits: { ...ae(t), extensionVersion: n },
-            }))
-          : (le = null);
-      } catch (t) {}
+    le = null;
   },
-  fe = async (t, e = {}) => {
-    try {
-      if ((ce || (await de()), !ce)) return;
-      const n = await se(),
-        r = chrome.runtime.getManifest().version,
-        i = {
-          anonymousId: n,
-          event: t,
-          properties: { ...e, extension_version: r },
-        };
-      (le && (i.userId = le), ce.track(i));
-    } catch (n) {}
-  },
+  fe = async () => {},
   me = 36e5,
   ge = 31536e3;
-function _e(t, e) {
-  fe("chrome_ext_oauth_refresh", { outcome: t, ...e });
+function _e() {
+  return;
 }
 const ye = (t) =>
     btoa(String.fromCharCode(...t))

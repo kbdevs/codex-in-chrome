@@ -1,80 +1,9 @@
-import { b as n } from "./useStorageState-zNVna44X.js";
-import { i as e } from "./is-plan-event-enabled-CTGFxau4.js";
-import "./index-BBLsn8fp.js";
-import "./index-Bd-JAv43.js";
-import "./PermissionManager-BqJmxUlR.js";
-function t(t, i) {
-  function r(r) {
-    var o = t,
-      a = r.event.event;
-    if (o && a) {
-      var s = o[a];
-      if (!e(o, s))
-        return (
-          r.updateEvent(
-            "integrations",
-            n(n({}, r.event.integrations), { All: !1, "Segment.io": !0 }),
-          ),
-          r
-        );
-      var u = (function (n, e) {
-        var t, i;
-        if (!n || !Object.keys(n)) return {};
-        var r = n.integrations
-            ? Object.keys(n.integrations).filter(function (e) {
-                return !1 === n.integrations[e];
-              })
-            : [],
-          o = [];
-        return (
-          (null !== (t = e.remotePlugins) && void 0 !== t ? t : []).forEach(
-            function (n) {
-              r.forEach(function (e) {
-                n.creationName == e && o.push(n.name);
-              });
-            },
-          ),
-          (null !== (i = e.remotePlugins) && void 0 !== i ? i : []).reduce(
-            function (n, e) {
-              return (
-                e.settings.subscriptions &&
-                  o.includes(e.name) &&
-                  e.settings.subscriptions.forEach(function (t) {
-                    return (n["".concat(e.name, " ").concat(t.partnerAction)] =
-                      !1);
-                  }),
-                n
-              );
-            },
-            {},
-          )
-        );
-      })(s, i);
-      r.updateEvent(
-        "integrations",
-        n(
-          n(n({}, r.event.integrations), null == s ? void 0 : s.integrations),
-          u,
-        ),
-      );
-    }
-    return r;
-  }
-  return {
-    name: "Schema Filter",
-    version: "0.1.0",
-    isLoaded: function () {
-      return !0;
-    },
-    load: function () {
-      return Promise.resolve();
-    },
-    type: "before",
-    page: r,
-    alias: r,
-    track: r,
-    identify: r,
-    group: r,
-  };
+// Segment's schema filter is kept as an inert shim for the same dynamic import
+// path, but it deliberately does nothing.
+function schemaFilter(planTrackRules, analyticsContext) {
+  void planTrackRules;
+  void analyticsContext;
+  return Promise.resolve();
 }
-export { t as schemaFilter };
+
+export { schemaFilter as t };

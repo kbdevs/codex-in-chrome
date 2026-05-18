@@ -1,2427 +1,2607 @@
-import { u as e, M as t, R as a } from "./index-Bd-JAv43.js";
-import { r as s, j as n, R as r } from "./index-BBLsn8fp.js";
+import { r as React, j as jsxRuntime } from "./index-BBLsn8fp.js";
+import { R as ReactDOM } from "./index-Bd-JAv43.js";
 import {
-  V as i,
-  W as o,
-  X as l,
-  Y as d,
-  Z as c,
-  $ as m,
-  a0 as h,
-  a1 as u,
-  a2 as p,
-  a3 as x,
-  a4 as f,
-  a5 as g,
-  a6 as b,
-  a7 as y,
-  a8 as v,
-  a9 as j,
-  aa as w,
-  ab as k,
-  ac as M,
-  ad as N,
-  ae as C,
-  af as A,
-  ag as S,
-  ah as E,
-  ai as D,
-  aj as L,
-  ak as H,
-} from "./useStorageState-zNVna44X.js";
-import {
-  S as T,
-  P as F,
-  e as Z,
-  j as O,
-  r as I,
-  b as z,
-  i as R,
-  k as _,
+  P as PermissionManager,
+  b as startOAuthFlow,
 } from "./PermissionManager-BqJmxUlR.js";
-const P = new Map([
-    [
-      "bold",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M76,64A12,12,0,0,1,88,52H216a12,12,0,0,1,0,24H88A12,12,0,0,1,76,64Zm140,52H88a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Zm0,64H88a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24ZM44,112a16,16,0,1,0,16,16A16,16,0,0,0,44,112Zm0-64A16,16,0,1,0,60,64,16,16,0,0,0,44,48Zm0,128a16,16,0,1,0,16,16A16,16,0,0,0,44,176Z",
-        }),
-      ),
-    ],
-    [
-      "duotone",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", { d: "M216,64V192H88V64Z", opacity: "0.2" }),
-        s.createElement("path", {
-          d: "M80,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H88A8,8,0,0,1,80,64Zm136,56H88a8,8,0,1,0,0,16H216a8,8,0,0,0,0-16Zm0,64H88a8,8,0,1,0,0,16H216a8,8,0,0,0,0-16ZM44,52A12,12,0,1,0,56,64,12,12,0,0,0,44,52Zm0,64a12,12,0,1,0,12,12A12,12,0,0,0,44,116Zm0,64a12,12,0,1,0,12,12A12,12,0,0,0,44,180Z",
-        }),
-      ),
-    ],
-    [
-      "fill",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM68,188a12,12,0,1,1,12-12A12,12,0,0,1,68,188Zm0-48a12,12,0,1,1,12-12A12,12,0,0,1,68,140Zm0-48A12,12,0,1,1,80,80,12,12,0,0,1,68,92Zm124,92H104a8,8,0,0,1,0-16h88a8,8,0,0,1,0,16Zm0-48H104a8,8,0,0,1,0-16h88a8,8,0,0,1,0,16Zm0-48H104a8,8,0,0,1,0-16h88a8,8,0,0,1,0,16Z",
-        }),
-      ),
-    ],
-    [
-      "light",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M82,64a6,6,0,0,1,6-6H216a6,6,0,0,1,0,12H88A6,6,0,0,1,82,64Zm134,58H88a6,6,0,0,0,0,12H216a6,6,0,0,0,0-12Zm0,64H88a6,6,0,0,0,0,12H216a6,6,0,0,0,0-12ZM44,54A10,10,0,1,0,54,64,10,10,0,0,0,44,54Zm0,128a10,10,0,1,0,10,10A10,10,0,0,0,44,182Zm0-64a10,10,0,1,0,10,10A10,10,0,0,0,44,118Z",
-        }),
-      ),
-    ],
-    [
-      "regular",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M80,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H88A8,8,0,0,1,80,64Zm136,56H88a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Zm0,64H88a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16ZM44,52A12,12,0,1,0,56,64,12,12,0,0,0,44,52Zm0,64a12,12,0,1,0,12,12A12,12,0,0,0,44,116Zm0,64a12,12,0,1,0,12,12A12,12,0,0,0,44,180Z",
-        }),
-      ),
-    ],
-    [
-      "thin",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M84,64a4,4,0,0,1,4-4H216a4,4,0,0,1,0,8H88A4,4,0,0,1,84,64Zm132,60H88a4,4,0,0,0,0,8H216a4,4,0,0,0,0-8Zm0,64H88a4,4,0,0,0,0,8H216a4,4,0,0,0,0-8ZM44,120a8,8,0,1,0,8,8A8,8,0,0,0,44,120Zm0-64a8,8,0,1,0,8,8A8,8,0,0,0,44,56Zm0,128a8,8,0,1,0,8,8A8,8,0,0,0,44,184Z",
-        }),
-      ),
-    ],
-  ]),
-  V = new Map([
-    [
-      "bold",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z",
-        }),
-      ),
-    ],
-    [
-      "duotone",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z",
-          opacity: "0.2",
-        }),
-        s.createElement("path", {
-          d: "M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z",
-        }),
-      ),
-    ],
-    [
-      "fill",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM184,136H136v48a8,8,0,0,1-16,0V136H72a8,8,0,0,1,0-16h48V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z",
-        }),
-      ),
-    ],
-    [
-      "light",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z",
-        }),
-      ),
-    ],
-    [
-      "regular",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z",
-        }),
-      ),
-    ],
-    [
-      "thin",
-      s.createElement(
-        s.Fragment,
-        null,
-        s.createElement("path", {
-          d: "M220,128a4,4,0,0,1-4,4H132v84a4,4,0,0,1-8,0V132H40a4,4,0,0,1,0-8h84V40a4,4,0,0,1,8,0v84h84A4,4,0,0,1,220,128Z",
-        }),
-      ),
-    ],
-  ]),
-  B = s.forwardRef((e, t) => s.createElement(i, { ref: t, ...e, weights: P }));
-B.displayName = "ListBulletsIcon";
-const W = B,
-  U = s.forwardRef((e, t) => s.createElement(i, { ref: t, ...e, weights: V }));
-U.displayName = "PlusIcon";
-const Y = U,
-  $ = o("keyboard", [
-    ["path", { d: "M10 8h.01", key: "1r9ogq" }],
-    ["path", { d: "M12 12h.01", key: "1mp3jc" }],
-    ["path", { d: "M14 8h.01", key: "1primd" }],
-    ["path", { d: "M16 12h.01", key: "1l6xoz" }],
-    ["path", { d: "M18 8h.01", key: "emo2bl" }],
-    ["path", { d: "M6 8h.01", key: "x9i8wu" }],
-    ["path", { d: "M7 16h10", key: "wp8him" }],
-    ["path", { d: "M8 12h.01", key: "czm47f" }],
-    [
-      "rect",
-      { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" },
-    ],
-  ]),
-  G = o("log-out", [
-    ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-    ["path", { d: "M21 12H9", key: "dn1m92" }],
-    ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }],
-  ]),
-  q = o("user", [
-    ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
-    ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }],
-  ]),
-  J = ({ isOpen: a, returnTabId: r, onClose: i }) => {
-    const o = e(),
-      [c, m] = s.useState("unknown"),
-      [h, u] = s.useState(!1),
-      [p, x] = s.useState(null),
-      [f, g] = s.useState(!1),
-      b = s.useCallback(() => {
-        (g(!0),
-          r
-            ? chrome.tabs.update(r, { active: !0 }, () => {
-                chrome.tabs.getCurrent((e) => {
-                  e?.id && chrome.tabs.remove(e.id);
-                });
-              })
-            : chrome.tabs.getCurrent((e) => {
-                e?.id && chrome.tabs.remove(e.id);
-              }));
-      }, [r]),
-      y = s.useCallback(async () => {
-        try {
-          const e = await navigator.permissions.query({ name: "microphone" });
-          (m(e.state),
-            e.addEventListener("change", () => {
-              const t = e.state;
-              (m(t), "granted" === t && b());
-            }));
-        } catch (e) {
-          m("unknown");
-        }
-      }, [b]);
-    s.useEffect(() => {
-      a && y();
-    }, [a, y]);
-    const v = () => {
-      i();
-    };
-    return a
-      ? n.jsx("div", {
-          className:
-            "fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-200 " +
-            (f ? "opacity-0" : "opacity-100"),
-          children: n.jsxs("div", {
-            className:
-              "bg-bg-000 rounded-2xl shadow-xl max-w-md w-full mx-4 transform transition-all duration-200 " +
-              (f ? "scale-95 opacity-0" : "scale-100 opacity-100"),
-            children: [
-              n.jsxs("div", {
-                className: "flex items-center justify-between px-6 pt-6",
-                children: [
-                  n.jsx("div", { className: "w-8" }),
-                  " ",
-                  n.jsx("button", {
-                    onClick: v,
-                    className:
-                      "p-2 rounded-lg hover:bg-bg-200 transition-colors",
-                    "aria-label": o.formatMessage({
-                      defaultMessage: "Close",
-                      id: "rbrahOGMC3",
-                    }),
-                    children: n.jsx(l, {
-                      size: 16,
-                      className: "text-text-300",
-                    }),
-                  }),
-                ],
-              }),
-              n.jsxs("div", {
-                className: "px-6 pb-6 pt-2 text-center",
-                children: [
-                  n.jsx("div", {
-                    className:
-                      "w-16 h-16 mx-auto mb-4 rounded-full bg-brand-100/10 flex items-center justify-center",
-                    children: n.jsx(d, {
-                      size: 32,
-                      weight: "fill",
-                      className: "text-brand-100",
-                    }),
-                  }),
-                  n.jsx("h2", {
-                    className: "font-xl-bold text-text-100 mb-2",
-                    children: n.jsx(t, {
-                      defaultMessage: "Enable microphone access",
-                      id: "StB9n+uYO4",
-                    }),
-                  }),
-                  n.jsx("p", {
-                    className: "text-text-300 font-base mb-6",
-                    children: n.jsx(t, {
-                      defaultMessage:
-                        "Codex needs microphone access to hear your voice narration while you demonstrate workflows. When prompted, select <strong>Allow while visiting the site</strong> to enable voice narration.",
-                      id: "C8CF1Igl7Q",
-                      values: {
-                        strong: (e) =>
-                          n.jsx("span", {
-                            className: "font-semibold text-text-200",
-                            children: e,
-                          }),
-                      },
-                    }),
-                  }),
-                  "granted" === c
-                    ? n.jsxs("div", {
-                        className:
-                          "mb-6 p-4 bg-success-100/10 border border-success-100/20 rounded-xl",
-                        children: [
-                          n.jsxs("div", {
-                            className:
-                              "flex items-center justify-center gap-2 text-success-100",
-                            children: [
-                              n.jsx("svg", {
-                                className: "w-5 h-5",
-                                fill: "none",
-                                strokeLinecap: "round",
-                                strokeLinejoin: "round",
-                                strokeWidth: "2",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor",
-                                children: n.jsx("path", {
-                                  d: "M5 13l4 4L19 7",
-                                }),
-                              }),
-                              n.jsx("span", {
-                                className: "font-large",
-                                children: n.jsx(t, {
-                                  defaultMessage: "Microphone access granted",
-                                  id: "Ymx8APRi1X",
-                                }),
-                              }),
-                            ],
-                          }),
-                          n.jsx("p", {
-                            className: "text-text-300 font-base-sm mt-2",
-                            children: n.jsx(t, {
-                              defaultMessage: "Returning to your workflow...",
-                              id: "BHzoQdwFnu",
-                            }),
-                          }),
-                        ],
-                      })
-                    : "denied" === c
-                      ? n.jsx("div", {
-                          className:
-                            "mb-6 p-4 bg-danger-000/10 border border-danger-000/20 rounded-xl",
-                          children: n.jsx("p", {
-                            className: "font-base text-danger-000",
-                            children: n.jsx(t, {
-                              defaultMessage:
-                                "Microphone access was denied. You can either try again or <link>open Chrome settings</link> to enable microphone access.",
-                              id: "e2DtORRpyx",
-                              values: {
-                                link: (e) =>
-                                  n.jsx("button", {
-                                    onClick: () => {
-                                      const e = `chrome://settings/content/siteDetails?site=chrome-extension%3A%2F%2F${chrome.runtime.id}%2F`;
-                                      chrome.tabs.create({ url: e });
-                                    },
-                                    className: "underline hover:no-underline",
-                                    children: e,
-                                  }),
-                              },
-                            }),
-                          }),
-                        })
-                      : null,
-                  p &&
-                    n.jsx("div", {
-                      className:
-                        "mb-6 p-4 bg-danger-000/10 border border-danger-000/20 rounded-xl",
-                      children: n.jsx("p", {
-                        className: "font-base text-danger-000",
-                        children: p,
-                      }),
-                    }),
-                  "granted" !== c &&
-                    "denied" !== c &&
-                    n.jsxs("button", {
-                      onClick: async () => {
-                        (u(!0), x(null));
-                        try {
-                          (
-                            await navigator.mediaDevices.getUserMedia({
-                              audio: !0,
-                            })
-                          )
-                            .getTracks()
-                            .forEach((e) => e.stop());
-                          "granted" ===
-                          (
-                            await navigator.permissions.query({
-                              name: "microphone",
-                            })
-                          ).state
-                            ? b()
-                            : (u(!1),
-                              x(
-                                'You selected "Allow this time" which doesn\'t persist. Please click the button again and select "Allow while visiting the site" to enable voice narration.',
-                              ));
-                        } catch (e) {
-                          (u(!1),
-                            e instanceof DOMException
-                              ? "NotAllowedError" === e.name
-                                ? await y()
-                                : "NotFoundError" === e.name
-                                  ? x(
-                                      "No microphone found. Please connect a microphone and try again.",
-                                    )
-                                  : x(`Error: ${e.message}`)
-                              : e instanceof Error
-                                ? x(`Error: ${e.message}`)
-                                : x("An unknown error occurred"));
-                        }
-                      },
-                      disabled: h,
-                      className:
-                        "w-full px-6 py-3 bg-brand-100 text-oncolor-100 rounded-xl hover:bg-brand-100/90 transition-all font-large disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2",
-                      children: [
-                        n.jsx(d, { size: 20, weight: "fill" }),
-                        h
-                          ? n.jsx(t, {
-                              defaultMessage: "Requesting access...",
-                              id: "kDYzre2KOj",
-                            })
-                          : n.jsx(t, {
-                              defaultMessage: "Allow microphone access",
-                              id: "83itGujdwB",
-                            }),
-                      ],
-                    }),
-                  n.jsx("button", {
-                    onClick: v,
-                    className:
-                      "mt-4 text-text-300 hover:text-text-200 font-base-sm transition-colors",
-                    children: n.jsx(t, {
-                      defaultMessage: "Skip for now",
-                      id: "WYzHAIKZxl",
-                    }),
-                  }),
-                ],
-              }),
-            ],
-          }),
-        })
-      : null;
-  },
-  K = () => {
-    const [e, a] = s.useState(),
-      [r, i] = s.useState(!1);
-    (s.useEffect(() => {
-      const e = () => {
-        chrome.commands.getAll((e) => {
-          const t = e.find((e) => "toggle-side-panel" === e.name);
-          a(t?.shortcut);
-        });
-      };
-      e();
-      const t = () => {
-        "visible" === document.visibilityState && e();
-      };
-      return (
-        document.addEventListener("visibilitychange", t),
-        () => document.removeEventListener("visibilitychange", t)
-      );
-    }, []),
-      s.useEffect(() => {
-        let e = !0;
-        const t = () =>
-            chrome.storage.local
-              .get("codex_hide_high_risk_banner")
-              .then((t) => {
-                e && i(!0 === t.codex_hide_high_risk_banner);
-              }),
-          n = (e, t) => {
-            "local" === t &&
-              "codex_hide_high_risk_banner" in e &&
-              i(!0 === e.codex_hide_high_risk_banner.newValue);
-          };
-        return (
-          t(),
-          chrome.storage.onChanged.addListener(n),
-          () => {
-            ((e = !1), chrome.storage.onChanged.removeListener(n));
-          }
-        );
-      }, []));
-    const o = async (e) => {
-      (i(e),
-        await chrome.storage.local.set({ codex_hide_high_risk_banner: e }));
-    };
-    return n.jsxs("div", {
-      className: "space-y-6",
-      children: [
-        n.jsxs("div", {
-          className:
-            "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8",
-          children: [
-            n.jsx("h3", {
-              className: "text-text-100 font-xl-bold",
-              children: n.jsx(t, {
-                defaultMessage: "Keyboard shortcut",
-                id: "rHyMT1rizz",
-              }),
-            }),
-            n.jsx("p", {
-              className: "text-text-300 font-base mt-2 mb-6",
-              children: n.jsx(t, {
-                defaultMessage:
-                  "Configure the keyboard shortcut used to open Codex in Chrome.",
-                id: "CcjsWsUTac",
-              }),
-            }),
-            n.jsxs("div", {
-              className: "flex items-center justify-between py-4",
-              children: [
-                n.jsxs("div", {
-                  className: "flex-1",
-                  children: [
-                    n.jsx("div", {
-                      className: "font-large text-text-100",
-                      children: n.jsx(t, {
-                        defaultMessage: "Open side panel",
-                        id: "MihpzFiE1j",
-                      }),
-                    }),
-                    n.jsx("div", {
-                      className: "text-text-400 font-base-sm mt-1",
-                      children: e
-                        ? n.jsx(t, {
-                            defaultMessage: "Current shortcut: {shortcut}",
-                            id: "2x8xsy/VJk",
-                            values: {
-                              shortcut: n.jsx("kbd", {
-                                className:
-                                  "px-1.5 py-0.5 bg-bg-300 border border-border-300 rounded text-text-200 font-mono text-xs",
-                                children: e,
-                              }),
-                            },
-                          })
-                        : n.jsx(t, {
-                            defaultMessage: "No shortcut configured",
-                            id: "7/3PxH3ltB",
-                          }),
-                    }),
-                  ],
-                }),
-                n.jsxs("button", {
-                  onClick: () => {
-                    chrome.tabs.create({
-                      url: "chrome://extensions/shortcuts",
-                    });
-                  },
-                  className:
-                    "flex items-center gap-2 px-4 py-2 text-text-200 hover:bg-bg-200 hover:text-text-100 border border-border-300 rounded-lg transition-all font-base",
-                  children: [
-                    n.jsx($, { className: "w-4 h-4" }),
-                    n.jsx(t, { defaultMessage: "Configure", id: "9t1iivhk67" }),
-                  ],
-                }),
-              ],
-            }),
-          ],
-        }),
-        n.jsxs("div", {
-          className:
-            "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8",
-          children: [
-            n.jsx("h3", {
-              className: "text-text-100 font-xl-bold",
-              children: n.jsx(t, {
-                defaultMessage: "Safety banner",
-                id: "edxVGuNsR+",
-              }),
-            }),
-            n.jsx("p", {
-              className: "text-text-300 font-base mt-2 mb-6",
-              children: n.jsx(t, {
-                defaultMessage:
-                  "Hide the high-risk reminder shown when Codex can act without asking.",
-                id: "7Vn7+vdb69",
-              }),
-            }),
-            n.jsxs("div", {
-              className: "flex items-center justify-between py-4",
-              children: [
-                n.jsxs("div", {
-                  className: "flex-1",
-                  children: [
-                    n.jsx("div", {
-                      className: "font-large text-text-100",
-                      children: n.jsx(t, {
-                        defaultMessage: "Hide high-risk banner",
-                        id: "2Mm3OEouLY",
-                      }),
-                    }),
-                    n.jsx("div", {
-                      className: "text-text-400 font-base-sm mt-1",
-                      children: n.jsx(t, {
-                        defaultMessage:
-                          "This only hides the banner. It does not change permission behavior.",
-                        id: "lGnzHAlbuK",
-                      }),
-                    }),
-                  ],
-                }),
-                n.jsxs("label", {
-                  className:
-                    "relative inline-flex items-center cursor-pointer ml-4",
-                  children: [
-                    n.jsx("input", {
-                      type: "checkbox",
-                      className: "sr-only peer",
-                      checked: r,
-                      onChange: (e) => o(e.target.checked),
-                    }),
-                    n.jsx("div", {
-                      className:
-                        "w-11 h-6 bg-bg-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-accent-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-border-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-100",
-                    }),
-                  ],
-                }),
-              ],
-            }),
-          ],
-        }),
-      ],
-    });
-  },
-  Q = ({ children: e, className: t, narrow: a }) =>
-    n.jsx("main", {
-      className: c(
-        "mx-auto mt-4 w-full flex-1 px-4 md:pl-8 lg:mt-6",
-        a ? "max-w-4xl" : "max-w-7xl",
-        t,
-      ),
-      children: e,
-    }),
-  X = ({
-    children: e,
-    className: t,
-    contentClassName: a,
-    sticky: s,
-    fixed: r,
-    mdTitle: i,
-    large: o,
-    narrow: l,
-  }) => {
-    const d = !e && !i,
-      m = o;
-    return n.jsx("header", {
-      className: c(
-        "flex w-full bg-bg-100",
-        s && "sticky top-0 z-header",
-        r && "fixed top-0 z-header",
-        "h-12",
-        m && ["mx-auto md:h-24 md:items-end", l ? "max-w-4xl" : "max-w-7xl"],
-        t,
-      ),
-      "aria-hidden": d,
-      children: n.jsx("div", {
-        className: c(
-          "flex w-full items-center justify-between gap-4",
-          "pl-11 lg:pl-8",
-          a,
-          m ? "px-4 md:pl-8" : "pr-3",
-        ),
-        children: i
-          ? n.jsxs(n.Fragment, {
-              children: [
-                n.jsx("h1", {
-                  className: c(
-                    "text-text-200 flex items-center gap-2 max-md:hidden min-w-0",
-                    "font-heading",
-                    m ? "text-2xl" : "text-lg",
-                  ),
-                  children: n.jsx("span", {
-                    className: "truncate",
-                    children: i,
-                  }),
-                }),
-                n.jsx("div", {}),
-                e,
-              ],
-            })
-          : e,
-      }),
-    });
-  },
-  ee = ({ analytics: a }) => {
-    const r = e(),
-      [i, o] = s.useState("unknown"),
-      [l, d] = s.useState(!1),
-      [c, m] = s.useState(null),
-      h = s.useCallback(async () => {
-        try {
-          const e = await navigator.permissions.query({ name: "microphone" });
-          (o(e.state),
-            e.addEventListener("change", () => {
-              o(e.state);
-            }));
-        } catch (e) {
-          o("unknown");
-        }
-      }, []);
-    s.useEffect(() => {
-      h();
-    }, [h]);
-    const u = () => {
-      chrome.tabs.create({
-        url: `chrome://settings/content/siteDetails?site=chrome-extension://${chrome.runtime.id}`,
-      });
-    };
-    return n.jsxs("div", {
-      className:
-        "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8",
-      children: [
-        n.jsx("h3", {
-          className: "text-text-100 font-xl-bold",
-          children: n.jsx(t, {
-            defaultMessage: "Microphone",
-            id: "cW6887Dc/X",
-          }),
-        }),
-        n.jsx("p", {
-          className: "text-text-300 font-base mt-2 mb-6",
-          children: n.jsx(t, {
-            defaultMessage:
-              "Enable microphone access to use your browser's speech-to-text functionality for voice narration during workflow recording",
-            id: "2n9PvXg1wT",
-          }),
-        }),
-        n.jsxs("div", {
-          className: "py-4",
-          children: [
-            ("prompt" === i || "unknown" === i) &&
-              n.jsxs("div", {
-                children: [
-                  n.jsx("button", {
-                    onClick: async () => {
-                      (d(!0), m(null));
-                      try {
-                        ((
-                          await navigator.mediaDevices.getUserMedia({
-                            audio: !0,
-                          })
-                        )
-                          .getTracks()
-                          .forEach((e) => e.stop()),
-                          await h(),
-                          a?.track(
-                            "claude_chrome.settings.microphone_enabled",
-                            { timestamp: Date.now() },
-                          ));
-                      } catch (e) {
-                        (e instanceof DOMException
-                          ? "NotAllowedError" === e.name
-                            ? m(
-                                r.formatMessage({
-                                  defaultMessage:
-                                    "Permission denied. You can change this in your browser settings.",
-                                  id: "ErBqL1OKdE",
-                                }),
-                              )
-                            : "NotFoundError" === e.name
-                              ? m(
-                                  r.formatMessage({
-                                    defaultMessage:
-                                      "No microphone found. Please connect a microphone and try again.",
-                                    id: "KAhM8UkR3A",
-                                  }),
-                                )
-                              : m(
-                                  r.formatMessage(
-                                    {
-                                      defaultMessage: "Error: {errorMessage}",
-                                      id: "Q+J7H4sPgD",
-                                    },
-                                    { errorMessage: e.message },
-                                  ),
-                                )
-                          : e instanceof Error
-                            ? m(
-                                r.formatMessage(
-                                  {
-                                    defaultMessage: "Error: {errorMessage}",
-                                    id: "Q+J7H4sPgD",
-                                  },
-                                  { errorMessage: e.message },
-                                ),
-                              )
-                            : m(
-                                r.formatMessage({
-                                  defaultMessage: "An unknown error occurred",
-                                  id: "3VG8rbxa4v",
-                                }),
-                              ),
-                          await h());
-                      } finally {
-                        d(!1);
-                      }
-                    },
-                    disabled: l,
-                    className:
-                      "px-6 py-2.5 bg-brand-100 text-oncolor-100 rounded-lg hover:bg-brand-100/90 transition-all font-base disabled:opacity-50 disabled:cursor-not-allowed",
-                    children: l
-                      ? n.jsx(t, {
-                          defaultMessage: "Requesting...",
-                          id: "Gma+ACm5J+",
-                        })
-                      : n.jsx(t, {
-                          defaultMessage: "Allow Microphone Access",
-                          id: "JfUPjhqwuq",
-                        }),
-                  }),
-                  c &&
-                    n.jsx("div", {
-                      className:
-                        "mt-3 px-4 py-3 bg-danger-000/10 border border-danger-000/20 rounded-lg",
-                      children: n.jsx("p", {
-                        className: "font-base text-danger-000",
-                        children: c,
-                      }),
-                    }),
-                ],
-              }),
-            "granted" === i &&
-              n.jsxs("div", {
-                className: "flex items-start gap-3",
-                children: [
-                  n.jsx("div", {
-                    className:
-                      "flex-shrink-0 w-5 h-5 rounded-full bg-success-100 flex items-center justify-center mt-0.5",
-                    children: n.jsx("svg", {
-                      className: "w-3 h-3 text-oncolor-100",
-                      fill: "none",
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      strokeWidth: "2",
-                      viewBox: "0 0 24 24",
-                      stroke: "currentColor",
-                      children: n.jsx("path", { d: "M5 13l4 4L19 7" }),
-                    }),
-                  }),
-                  n.jsxs("div", {
-                    children: [
-                      n.jsx("div", {
-                        className: "font-large text-text-100",
-                        children: n.jsx(t, {
-                          defaultMessage: "Microphone access granted",
-                          id: "Ymx8APRi1X",
-                        }),
-                      }),
-                      n.jsx("div", {
-                        className: "text-text-400 font-base-sm mt-1",
-                        children: n.jsx(t, {
-                          defaultMessage:
-                            "You can now use voice narration when recording workflows. To disable, go to {chromeSettingsLink}.",
-                          id: "NSJdoMrS0C",
-                          values: {
-                            chromeSettingsLink: n.jsx("button", {
-                              onClick: u,
-                              className:
-                                "text-brand-100 hover:underline cursor-pointer",
-                              children: n.jsx(t, {
-                                defaultMessage: "Chrome settings",
-                                id: "jebWZltnsn",
-                              }),
-                            }),
-                          },
-                        }),
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-            "denied" === i &&
-              n.jsxs("div", {
-                className: "flex items-start gap-3",
-                children: [
-                  n.jsx("div", {
-                    className:
-                      "flex-shrink-0 w-5 h-5 rounded-full bg-danger-200 flex items-center justify-center mt-0.5",
-                    children: n.jsx("svg", {
-                      className: "w-3 h-3 text-danger-000",
-                      fill: "none",
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      strokeWidth: "2",
-                      viewBox: "0 0 24 24",
-                      stroke: "currentColor",
-                      children: n.jsx("path", { d: "M6 18L18 6M6 6l12 12" }),
-                    }),
-                  }),
-                  n.jsxs("div", {
-                    children: [
-                      n.jsx("div", {
-                        className: "font-large text-text-100",
-                        children: n.jsx(t, {
-                          defaultMessage: "Microphone access blocked",
-                          id: "13YOiAKDfM",
-                        }),
-                      }),
-                      n.jsx("div", {
-                        className: "text-text-400 font-base-sm mt-1",
-                        children: n.jsx(t, {
-                          defaultMessage:
-                            "Microphone access has been denied. To enable, change Microphone to 'Allow' in {chromeSettingsLink}.",
-                          id: "5SGbHZD5HC",
-                          values: {
-                            chromeSettingsLink: n.jsx("button", {
-                              onClick: u,
-                              className:
-                                "text-brand-100 hover:underline cursor-pointer",
-                              children: n.jsx(t, {
-                                defaultMessage: "Chrome settings",
-                                id: "jebWZltnsn",
-                              }),
-                            }),
-                          },
-                        }),
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-          ],
-        }),
-      ],
-    });
-  },
-  te = () => {
-    const a = e(),
-      [r, i] = s.useState(),
-      [o, l] = s.useState(!0),
-      [d, c] = m(T.NOTIFICATIONS_ENABLED, void 0),
-      { analytics: u } = h(),
-      p = s.useMemo(() => new F(() => !1), []),
-      x = s.useCallback(async () => {
-        l(!0);
-        try {
-          await p.loadPermissions();
-          const e = p.getPermissionsByScope();
-          i({
-            netloc: e.netloc.filter((e) => !e.toolUseId),
-            domain_transition: e.domain_transition.filter((e) => !e.toolUseId),
-          });
-        } catch (e) {
-        } finally {
-          l(!1);
-        }
-      }, [p]);
-    s.useEffect(() => {
-      x();
-    }, [x]);
-    const f = async (e) => {
-        (await p.revokePermission(e), x());
-      },
-      g = (e) =>
-        "domain_transition" === e.scope.type
-          ? `${e.scope.fromDomain} → ${e.scope.toDomain}`
-          : e.scope.netloc ||
-            a.formatMessage({
-              defaultMessage: "Unknown domain",
-              id: "FMvJL9TokP",
-            });
-    return o
-      ? n.jsx("div", {
-          className: "p-6 text-text-200",
-          children: n.jsx(t, {
-            defaultMessage: "Loading permissions...",
-            id: "481hO7jC9z",
-          }),
-        })
-      : n.jsx("div", {
-          className: "permissions-tab",
-          children: n.jsxs("div", {
-            className: "space-y-6",
-            children: [
-              n.jsxs("div", {
-                className:
-                  "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8",
-                children: [
-                  n.jsx("h3", {
-                    className: "text-text-100 font-xl-bold",
-                    children: n.jsx(t, {
-                      defaultMessage: "Notifications",
-                      id: "NAidKbB0vi",
-                    }),
-                  }),
-                  n.jsx("p", {
-                    className: "text-text-300 font-base mt-2 mb-6",
-                    children: n.jsx(t, {
-                      defaultMessage:
-                        "Get notified when tasks complete or need your input",
-                      id: "YxhKVgP/H4",
-                    }),
-                  }),
-                  n.jsxs("div", {
-                    className: "flex items-center justify-between py-4",
-                    children: [
-                      n.jsxs("div", {
-                        className: "flex-1",
-                        children: [
-                          n.jsx("div", {
-                            className: "font-large text-text-100",
-                            children: n.jsx(t, {
-                              defaultMessage: "Task completion notifications",
-                              id: "u18BzaOjgu",
-                            }),
-                          }),
-                          n.jsx("div", {
-                            className: "text-text-400 font-base-sm mt-1",
-                            children:
-                              "enabled" === d
-                                ? n.jsx(t, {
-                                    defaultMessage:
-                                      "You'll receive notifications when tasks finish",
-                                    id: "fhFmwPnm6J",
-                                  })
-                                : "disabled" === d
-                                  ? n.jsx(t, {
-                                      defaultMessage:
-                                        "Notifications are turned off",
-                                      id: "GzejKCwLFI",
-                                    })
-                                  : n.jsx(t, {
-                                      defaultMessage:
-                                        "You haven't set your notification preference yet",
-                                      id: "Dh7mYgVZea",
-                                    }),
-                          }),
-                        ],
-                      }),
-                      n.jsxs("label", {
-                        className:
-                          "relative inline-flex items-center cursor-pointer ml-4",
-                        children: [
-                          n.jsx("input", {
-                            type: "checkbox",
-                            className: "sr-only peer",
-                            checked: "enabled" === d,
-                            onChange: (e) =>
-                              (async (e) => {
-                                const t = e ? "enabled" : "disabled";
-                                await c(t);
-                              })(e.target.checked),
-                          }),
-                          n.jsx("div", {
-                            className:
-                              "w-11 h-6 bg-bg-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-accent-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-border-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-100",
-                          }),
-                        ],
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-              n.jsx(ee, { analytics: u }),
-              n.jsxs("div", {
-                className:
-                  "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-2 md:px-8 md:pt-8 md:pb-3",
-                children: [
-                  n.jsx("h3", {
-                    className: "text-text-100 font-xl-bold",
-                    children: n.jsx(t, {
-                      defaultMessage: "Your approved sites",
-                      id: "NFf/0A3zf+",
-                    }),
-                  }),
-                  n.jsx("p", {
-                    className: "text-text-300 font-base mt-2 mb-6",
-                    children: n.jsx(t, {
-                      defaultMessage:
-                        "You have allowed Codex to take all actions (browse, click, type) on these sites.",
-                      id: "7W74V502ms",
-                    }),
-                  }),
-                  r?.netloc && r.netloc.length > 0
-                    ? n.jsx(ae, {
-                        permissions: r.netloc,
-                        onRevoke: f,
-                        formatScope: g,
-                      })
-                    : n.jsx("div", {
-                        className: "text-text-400 font-base-sm pb-5",
-                        children: n.jsx(t, {
-                          defaultMessage: "No sites have been approved yet",
-                          id: "B2ROp8L071",
-                        }),
-                      }),
-                ],
-              }),
-              r?.domain_transition &&
-                r.domain_transition.length > 0 &&
-                n.jsxs("div", {
-                  className:
-                    "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-2 md:px-8 md:pt-8 md:pb-3",
-                  children: [
-                    n.jsx("h3", {
-                      className: "text-text-100 font-xl-bold",
-                      children: n.jsx(t, {
-                        defaultMessage: "Domain Transitions",
-                        id: "uYztQwXf/+",
-                      }),
-                    }),
-                    n.jsx("p", {
-                      className: "text-text-300 font-base mt-2 mb-6",
-                      children: n.jsx(t, {
-                        defaultMessage:
-                          "Permissions for navigating between different domains.",
-                        id: "fxDu88cBut",
-                      }),
-                    }),
-                    n.jsx(se, {
-                      permissions: r.domain_transition,
-                      onRevoke: f,
-                      formatScope: g,
-                    }),
-                  ],
-                }),
-              !1,
-              null,
-            ],
-          }),
-        });
-  },
-  ae = ({ permissions: e, onRevoke: a, formatScope: s }) =>
-    n.jsx("div", {
-      children: e.map((i, o) =>
-        n.jsxs(
-          r.Fragment,
-          {
-            children: [
-              n.jsxs("div", {
-                className: "py-4 flex items-center justify-between",
-                children: [
-                  n.jsxs("div", {
-                    className: "flex-1",
-                    children: [
-                      n.jsx("div", {
-                        className: "font-large text-text-100",
-                        children: s(i),
-                      }),
-                      i.lastUsed &&
-                        n.jsx("div", {
-                          className: "text-xs text-text-400 mt-1",
-                          children: n.jsx(t, {
-                            defaultMessage: "Last used: {date}",
-                            id: "VbVJvDFrU4",
-                            values: {
-                              date: new Date(i.lastUsed).toLocaleString(),
-                            },
-                          }),
-                        }),
-                    ],
-                  }),
-                  n.jsx("button", {
-                    onClick: () => a(i.id),
-                    className:
-                      "ml-4 px-4 py-2 text-danger-000 hover:bg-danger-000/10 rounded-lg transition-all font-base",
-                    children: n.jsx(t, {
-                      defaultMessage: "Revoke",
-                      id: "tnRDuUFRQw",
-                    }),
-                  }),
-                ],
-              }),
-              o < e.length - 1 &&
-                n.jsx("div", { className: "border-b border-border-400" }),
-            ],
-          },
-          i.id,
-        ),
-      ),
-    }),
-  se = ({ permissions: e, onRevoke: a, formatScope: s }) =>
-    n.jsx("div", {
-      children: e.map((i, o) =>
-        n.jsxs(
-          r.Fragment,
-          {
-            children: [
-              n.jsxs("div", {
-                className: "py-4 flex items-center justify-between",
-                children: [
-                  n.jsxs("div", {
-                    className: "flex-1",
-                    children: [
-                      n.jsx("div", {
-                        className: "font-large text-text-100",
-                        children: s(i),
-                      }),
-                      i.lastUsed &&
-                        n.jsx("div", {
-                          className: "text-xs text-text-400 mt-1",
-                          children: n.jsx(t, {
-                            defaultMessage: "Last used: {date}",
-                            id: "VbVJvDFrU4",
-                            values: {
-                              date: new Date(i.lastUsed).toLocaleString(),
-                            },
-                          }),
-                        }),
-                    ],
-                  }),
-                  n.jsx("button", {
-                    onClick: () => a(i.id),
-                    className:
-                      "ml-4 px-4 py-2 text-danger-000 hover:bg-danger-000/10 rounded-lg transition-all font-base",
-                    children: n.jsx(t, {
-                      defaultMessage: "Revoke",
-                      id: "tnRDuUFRQw",
-                    }),
-                  }),
-                ],
-              }),
-              o < e.length - 1 &&
-                n.jsx("div", { className: "border-b border-border-400" }),
-            ],
-          },
-          i.id,
-        ),
-      ),
-    }),
-  ne = ({ children: e, isActive: t, onClick: a }) =>
-    n.jsx("button", {
-      onClick: a,
-      className: c(
-        "block w-full text-left whitespace-nowrap transition-all ease-in-out active:scale-95 cursor-pointer",
-        "font-base rounded-lg px-3 py-3",
-        t
-          ? "bg-bg-300 font-medium text-text-000"
-          : "text-text-200 hover:bg-bg-200 hover:text-text-100",
-      ),
-      children: e,
-    });
-/**
- * @license lucide-react v0.525.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */ function re({ toast: e, onClose: t }) {
-  const [a, r] = s.useState(!1);
-  s.useEffect(() => {
-    const e = setTimeout(() => {
-      i();
-    }, 3e3);
-    return () => clearTimeout(e);
-  }, [e.id]);
-  const i = () => {
-    (r(!0),
-      setTimeout(() => {
-        t(e.id);
-      }, 200));
+
+const { Fragment, jsx, jsxs } = jsxRuntime;
+const {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} = React;
+
+const ALLOWED_TABS = ["permissions", "prompts", "options"];
+const ACCESS_TOKEN_KEY = "accessToken";
+const NOTIFICATIONS_ENABLED_KEY = "notificationsEnabled";
+const HIDE_HIGH_RISK_BANNER_KEY = "codex_hide_high_risk_banner";
+const SAVED_PROMPTS_KEY = "savedPrompts";
+const MODEL_CONFIG = {
+  default: "gpt-5.5",
+  options: [
+    { model: "gpt-5.5", name: "GPT-5.5" },
+    { model: "gpt-5.4", name: "GPT-5.4" },
+    { model: "gpt-5.4-mini", name: "GPT-5.4 Mini" },
+    { model: "gpt-5.3-codex", name: "GPT-5.3 Codex" },
+    { model: "gpt-5.3-codex-spark", name: "GPT-5.3 Codex Spark" },
+    { model: "gpt-5.2", name: "GPT-5.2" },
+  ],
+};
+
+const WEEKDAY_LABELS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const MONTH_LABELS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const PROMPT_REPEAT_OPTIONS = [
+  { value: "once", label: "Once" },
+  { value: "daily", label: "Daily" },
+  { value: "weekly", label: "Weekly" },
+  { value: "monthly", label: "Monthly" },
+  { value: "annually", label: "Annually" },
+];
+
+const INPUT_CLASS =
+  "w-full rounded-lg border border-border-300 bg-bg-000 px-3 py-2 text-sm text-text-100 outline-none transition-colors placeholder:text-text-400 focus:border-border-200 focus:ring-2 focus:ring-accent-100/20";
+const TEXTAREA_CLASS =
+  "w-full rounded-lg border border-border-300 bg-bg-000 px-3 py-2 text-sm text-text-100 outline-none transition-colors placeholder:text-text-400 focus:border-border-200 focus:ring-2 focus:ring-accent-100/20";
+const SELECT_CLASS = `${INPUT_CLASS} pr-8`;
+const PANEL_CLASS =
+  "bg-bg-100 border border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8";
+const PRIMARY_BUTTON_CLASS =
+  "inline-flex items-center justify-center gap-2 rounded-lg bg-brand-100 px-4 py-2.5 font-base text-oncolor-100 transition-colors hover:bg-brand-100/90 disabled:cursor-not-allowed disabled:opacity-50";
+const SECONDARY_BUTTON_CLASS =
+  "inline-flex items-center justify-center gap-2 rounded-lg border border-border-300 px-4 py-2 font-base text-text-200 transition-colors hover:bg-bg-200 hover:text-text-100";
+const DANGER_BUTTON_CLASS =
+  "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-base text-danger-000 transition-colors hover:bg-danger-000/10";
+const NAV_BUTTON_CLASS =
+  "block w-full whitespace-nowrap rounded-lg px-3 py-3 text-left font-base transition-all ease-in-out active:scale-95";
+const TOGGLE_TRACK_CLASS =
+  "relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full transition-colors after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-border-300 after:bg-white after:transition-all";
+const chromeStorageArea = globalThis.chrome?.storage?.local ?? null,
+  chromeStorageEvents = globalThis.chrome?.storage?.onChanged ?? null,
+  FALLBACK_STORAGE_PREFIX = "__codex_options__:";
+
+function cx(...parts) {
+  return parts.flat(Infinity).filter(Boolean).join(" ");
+}
+
+function notify(message, type = "success") {
+  window.showToast?.(message, type);
+}
+
+function formatOrdinal(day) {
+  if (day === 1 || day === 21 || day === 31) return "st";
+  if (day === 2 || day === 22) return "nd";
+  if (day === 3 || day === 23) return "rd";
+  return "th";
+}
+
+function formatModelName(model) {
+  const exactMatch = MODEL_CONFIG.options.find((entry) => entry.model === model);
+  if (exactMatch) return exactMatch.name;
+  if (model === "gpt-5.5") return "GPT-5.5";
+  if (model === "gpt-5.4") return "GPT-5.4";
+  if (model === "gpt-5.4-mini") return "GPT-5.4 Mini";
+  if (model === "gpt-5.3-codex-spark") return "GPT-5.3 Codex Spark";
+  if (model === "gpt-5.3-codex") return "GPT-5.3 Codex";
+  if (model === "gpt-5.2") return "GPT-5.2";
+
+  const gptMatch = model.match(/^gpt-(\d+(?:\.\d+)?(?:-[a-z]+)?)/i);
+  if (gptMatch) return `GPT-${gptMatch[1]}`;
+
+  const claudeMatch = model.match(/claude-(sonnet|opus|haiku)-(\d+(?:\.\d+)?)/i);
+  if (claudeMatch) {
+    const family = claudeMatch[1].charAt(0).toUpperCase() + claudeMatch[1].slice(1);
+    return `${family} ${claudeMatch[2]}`;
+  }
+
+  return model;
+}
+
+function getModelOptions(currentModel) {
+  const options = [...MODEL_CONFIG.options];
+  if (currentModel && !options.some((entry) => entry.model === currentModel)) {
+    options.unshift({ model: currentModel, name: formatModelName(currentModel) });
+  }
+  return options;
+}
+
+function parseHashState() {
+  const hash = window.location.hash.replace(/^#/, "");
+  const [rawTab = "permissions", query = ""] = hash.split("?");
+  const tab = ALLOWED_TABS.includes(rawTab) ? rawTab : "permissions";
+  const params = new URLSearchParams(query);
+  const requestMicrophone = params.get("requestMicrophone") === "true";
+  const returnTabIdText = params.get("returnTabId");
+  const returnTabId = returnTabIdText ? Number.parseInt(returnTabIdText, 10) : undefined;
+  return {
+    tab,
+    requestMicrophone,
+    returnTabId: Number.isFinite(returnTabId) ? returnTabId : undefined,
   };
-  return n.jsxs("div", {
-    className: c(
-      "flex items-center gap-2 px-4 py-3 rounded-xl shadow-lg",
-      "bg-bg-000 border-[0.5px] border-border-300",
-      "min-w-[300px] transition-all duration-200 ease-out",
-      a
-        ? ["opacity-0 translate-x-full"]
-        : ["animate-toast-slide-in", "opacity-100 translate-x-0"],
-    ),
-    style: { animation: a ? void 0 : "toast-slide-in 0.3s ease-out" },
-    children: [
-      "success" === e.type &&
-        n.jsx(u, { size: 16, className: "text-accent-100 flex-shrink-0" }),
-      n.jsx("p", {
-        className: "text-text-200 font-base flex-1",
-        children: e.message,
-      }),
-      n.jsx("button", {
-        onClick: i,
-        className:
-          "p-1 hover:bg-bg-100 rounded transition-colors flex-shrink-0",
-        children: n.jsx(p, { size: 14, className: "text-text-300" }),
-      }),
-    ],
+}
+
+function isPromptScheduled(prompt) {
+  return Boolean(prompt.repeatType && prompt.repeatType !== "none");
+}
+
+function getYesterdayDateForInput() {
+  return new Date(Date.now() - 86400000).toISOString().split("T")[0];
+}
+
+async function readStorageValue(key) {
+  if (chromeStorageArea) {
+    const result = await chromeStorageArea.get(key);
+    return result[key];
+  }
+
+  try {
+    const serializedValue = window.localStorage.getItem(`${FALLBACK_STORAGE_PREFIX}${key}`);
+    return serializedValue === null ? undefined : JSON.parse(serializedValue);
+  } catch {
+    return undefined;
+  }
+}
+
+async function writeStorageValue(key, value) {
+  if (chromeStorageArea) {
+    if (value === undefined) {
+      await chromeStorageArea.remove(key);
+      return;
+    }
+
+    await chromeStorageArea.set({ [key]: value });
+    return;
+  }
+
+  const fallbackKey = `${FALLBACK_STORAGE_PREFIX}${key}`;
+  if (value === undefined) {
+    window.localStorage.removeItem(fallbackKey);
+    return;
+  }
+
+  window.localStorage.setItem(fallbackKey, JSON.stringify(value));
+}
+
+function subscribeToStorageChanges(key, onChange) {
+  if (chromeStorageEvents) {
+    const handleStorageChange = (changes, areaName) => {
+      if (areaName !== "local" || !(key in changes)) return;
+      onChange(changes[key].newValue);
+    };
+
+    chromeStorageEvents.addListener(handleStorageChange);
+    return () => chromeStorageEvents.removeListener(handleStorageChange);
+  }
+
+  const fallbackKey = `${FALLBACK_STORAGE_PREFIX}${key}`;
+  const handleWindowStorage = (event) => {
+    if (event.storageArea !== window.localStorage || event.key !== fallbackKey) return;
+    onChange(event.newValue === null ? undefined : JSON.parse(event.newValue));
+  };
+
+  window.addEventListener("storage", handleWindowStorage);
+  return () => window.removeEventListener("storage", handleWindowStorage);
+}
+
+function useChromeStorageValue(key, defaultValue) {
+  const [value, setValue] = useState(defaultValue);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+
+    const load = async () => {
+      try {
+        const storedValue = await readStorageValue(key);
+        if (!alive) return;
+        setValue(storedValue === undefined ? defaultValue : storedValue);
+      } catch {
+        if (!alive) return;
+        setValue(defaultValue);
+      } finally {
+        if (alive) setIsLoaded(true);
+      }
+    };
+
+    load();
+    const unsubscribe = subscribeToStorageChanges(key, (nextValue) => {
+      if (!alive) return;
+      setValue(nextValue === undefined ? defaultValue : nextValue);
+    });
+
+    return () => {
+      alive = false;
+      unsubscribe();
+    };
+  }, [defaultValue, key]);
+
+  const updateValue = useCallback(
+    async (nextValue) => {
+      const resolvedValue =
+        typeof nextValue === "function" ? nextValue(value) : nextValue;
+      setValue(resolvedValue);
+      await writeStorageValue(key, resolvedValue);
+    },
+    [key, value],
+  );
+
+  return [value, updateValue, isLoaded];
+}
+
+function usePromptList() {
+  const [prompts, setPrompts] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const applyPromptList = useCallback((nextList) => {
+    const sorted = [...nextList].sort(
+      (left, right) => Number(right.createdAt || 0) - Number(left.createdAt || 0),
+    );
+    setPrompts(sorted);
+  }, []);
+
+  const loadPrompts = useCallback(async () => {
+    try {
+      const storedPrompts = await readStorageValue(SAVED_PROMPTS_KEY);
+      applyPromptList(Array.isArray(storedPrompts) ? storedPrompts : []);
+    } catch {
+      applyPromptList([]);
+    } finally {
+      setIsLoaded(true);
+    }
+  }, [applyPromptList]);
+
+  useEffect(() => {
+    let alive = true;
+
+    loadPrompts();
+    const unsubscribe = subscribeToStorageChanges(SAVED_PROMPTS_KEY, (nextList) => {
+      if (!alive) return;
+      applyPromptList(Array.isArray(nextList) ? nextList : []);
+    });
+
+    return () => {
+      alive = false;
+      unsubscribe();
+    };
+  }, [applyPromptList, loadPrompts]);
+
+  return { prompts, isLoaded, refreshPrompts: loadPrompts };
+}
+
+function useAuthState() {
+  const [accessToken, , isLoaded] = useChromeStorageValue(ACCESS_TOKEN_KEY, null);
+
+  return {
+    accessToken,
+    isAuthenticated: Boolean(accessToken),
+    isLoaded,
+  };
+}
+
+function useCommandShortcut(commandName) {
+  const [shortcut, setShortcut] = useState("");
+
+  const refreshShortcut = useCallback(() => {
+    chrome.commands.getAll((commands) => {
+      const command = commands.find((entry) => entry.name === commandName);
+      setShortcut(command?.shortcut || "");
+    });
+  }, [commandName]);
+
+  useEffect(() => {
+    refreshShortcut();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refreshShortcut();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [refreshShortcut]);
+
+  return shortcut;
+}
+
+function useMicrophonePermission(isActive, onGranted) {
+  const [state, setState] = useState("unknown");
+  const permissionStatusRef = useRef(null);
+  const onGrantedRef = useRef(onGranted);
+
+  useEffect(() => {
+    onGrantedRef.current = onGranted;
+  }, [onGranted]);
+
+  const refreshPermission = useCallback(async () => {
+    try {
+      const status = await navigator.permissions.query({ name: "microphone" });
+      permissionStatusRef.current = status;
+      setState(status.state);
+      return status.state;
+    } catch {
+      setState("unknown");
+      return "unknown";
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isActive) return undefined;
+
+    let cancelled = false;
+    let cleanup = () => {};
+
+    const handlePermissionChange = () => {
+      const nextState = permissionStatusRef.current?.state || "unknown";
+      setState(nextState);
+      if (nextState === "granted") {
+        onGrantedRef.current?.();
+      }
+    };
+
+    const initialize = async () => {
+      try {
+        const status = await navigator.permissions.query({ name: "microphone" });
+        if (cancelled) return;
+        permissionStatusRef.current = status;
+        setState(status.state);
+        status.addEventListener("change", handlePermissionChange);
+        cleanup = () => status.removeEventListener("change", handlePermissionChange);
+      } catch {
+        if (!cancelled) setState("unknown");
+      }
+    };
+
+    initialize();
+
+    return () => {
+      cancelled = true;
+      cleanup();
+      permissionStatusRef.current = null;
+    };
+  }, [isActive]);
+
+  return [state, refreshPermission];
+}
+
+async function queryCurrentTabOrigin() {
+  return new Promise((resolve) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const url = tabs[0]?.url;
+      if (!url) {
+        resolve("");
+        return;
+      }
+
+      try {
+        const origin = new URL(url).origin;
+        resolve(origin.startsWith("http") ? origin : "");
+      } catch {
+        resolve("");
+      }
+    });
   });
 }
-function ie() {
-  const [e, t] = s.useState([]),
-    a = (e, a = "success") => {
-      const s = Date.now().toString();
-      t((t) => [...t, { id: s, message: e, type: a }]);
-    },
-    r = (e) => {
-      t((t) => t.filter((t) => t.id !== e));
-    };
-  return (
-    s.useEffect(
-      () => (
-        (window.showToast = a),
-        () => {
-          delete window.showToast;
+
+async function requestMicrophoneAccess() {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  stream.getTracks().forEach((track) => track.stop());
+}
+
+async function savePromptToStorage(prompt) {
+  const prompts = await loadPromptsFromStorage();
+
+  if (prompt.command && prompts.some((entry) => entry.command === prompt.command)) {
+    throw new Error(`/${prompt.command} is already in use`);
+  }
+
+  const savedPrompt = {
+    ...prompt,
+    id: `prompt_${Date.now()}`,
+    createdAt: prompt.createdAt || Date.now(),
+    usageCount: prompt.usageCount || 0,
+  };
+
+  prompts.push(savedPrompt);
+  await chrome.storage.local.set({ [SAVED_PROMPTS_KEY]: prompts });
+  await schedulePromptAlarm(savedPrompt);
+  return savedPrompt;
+}
+
+async function updatePromptInStorage(promptId, changes) {
+  const prompts = await loadPromptsFromStorage();
+  const index = prompts.findIndex((entry) => entry.id === promptId);
+  if (index === -1) return undefined;
+
+  if (changes.command && changes.command !== prompts[index].command) {
+    const duplicate = prompts.find((entry) => entry.command === changes.command);
+    if (duplicate) {
+      throw new Error(`/${changes.command} is already in use`);
+    }
+  }
+
+  prompts[index] = { ...prompts[index], ...changes };
+  await chrome.storage.local.set({ [SAVED_PROMPTS_KEY]: prompts });
+  await schedulePromptAlarm(prompts[index]);
+  return prompts[index];
+}
+
+async function deletePromptFromStorage(promptId) {
+  const prompts = await loadPromptsFromStorage();
+  const targetPrompt = prompts.find((entry) => entry.id === promptId);
+  const nextPrompts = prompts.filter((entry) => entry.id !== promptId);
+
+  if (nextPrompts.length === prompts.length) {
+    return false;
+  }
+
+  if (targetPrompt) {
+    await chrome.alarms.clear(promptId);
+  }
+
+  await chrome.storage.local.set({ [SAVED_PROMPTS_KEY]: nextPrompts });
+  return true;
+}
+
+async function loadPromptsFromStorage() {
+  const storedPrompts = await readStorageValue(SAVED_PROMPTS_KEY);
+  return Array.isArray(storedPrompts) ? storedPrompts : [];
+}
+
+async function schedulePromptAlarm(prompt) {
+  await chrome.alarms.clear(prompt.id);
+
+  if (!isPromptScheduled(prompt) || !prompt.specificTime) {
+    return;
+  }
+
+  const now = new Date();
+  const [hours, minutes] = prompt.specificTime.split(":").map(Number);
+
+  switch (prompt.repeatType) {
+    case "once": {
+      if (!prompt.specificDate) return;
+      const [year, month, day] = prompt.specificDate.split("-").map(Number);
+      const scheduledDate = new Date(year, month - 1, day, hours, minutes, 0, 0);
+      if (scheduledDate > now) {
+        await chrome.alarms.create(prompt.id, { when: scheduledDate.getTime() });
+      }
+      break;
+    }
+    case "daily": {
+      const scheduledDate = new Date();
+      scheduledDate.setHours(hours, minutes, 0, 0);
+      if (scheduledDate <= now) {
+        scheduledDate.setDate(scheduledDate.getDate() + 1);
+      }
+      await chrome.alarms.create(prompt.id, {
+        when: scheduledDate.getTime(),
+        periodInMinutes: 1440,
+      });
+      break;
+    }
+    case "weekly": {
+      if (prompt.dayOfWeek === undefined) return;
+      let daysUntil = (prompt.dayOfWeek - now.getDay() + 7) % 7;
+      if (daysUntil === 0) {
+        const scheduledToday = new Date();
+        scheduledToday.setHours(hours, minutes, 0, 0);
+        if (scheduledToday <= now) {
+          daysUntil = 7;
         }
-      ),
-      [],
-    ),
-    0 === e.length
-      ? null
-      : n.jsx("div", {
-          className: "fixed top-4 right-4 z-50 flex flex-col gap-2",
-          children: e.map((e) => n.jsx(re, { toast: e, onClose: r }, e.id)),
-        })
+      }
+
+      const scheduledDate = new Date();
+      scheduledDate.setDate(now.getDate() + daysUntil);
+      scheduledDate.setHours(hours, minutes, 0, 0);
+      await chrome.alarms.create(prompt.id, {
+        when: scheduledDate.getTime(),
+        periodInMinutes: 10080,
+      });
+      break;
+    }
+    case "monthly": {
+      if (!prompt.dayOfMonth) return;
+      const scheduledDate = new Date();
+      scheduledDate.setDate(prompt.dayOfMonth);
+      scheduledDate.setHours(hours, minutes, 0, 0);
+      if (scheduledDate <= now) {
+        scheduledDate.setMonth(scheduledDate.getMonth() + 1);
+      }
+      await chrome.alarms.create(prompt.id, { when: scheduledDate.getTime() });
+      break;
+    }
+    case "annually": {
+      if (!prompt.monthAndDay) return;
+      const [month, day] = prompt.monthAndDay.split("-").map(Number);
+      const scheduledDate = new Date();
+      scheduledDate.setMonth(month - 1);
+      scheduledDate.setDate(day);
+      scheduledDate.setHours(hours, minutes, 0, 0);
+      if (scheduledDate <= now) {
+        scheduledDate.setFullYear(scheduledDate.getFullYear() + 1);
+      }
+      await chrome.alarms.create(prompt.id, { when: scheduledDate.getTime() });
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+function formatPromptSchedule(prompt) {
+  if (!isPromptScheduled(prompt)) {
+    return "";
+  }
+
+  const timeText = prompt.specificTime
+    ? new Date(`2000-01-01T${prompt.specificTime}`).toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })
+    : "";
+  const suffix = timeText ? ` at ${timeText}` : "";
+
+  switch (prompt.repeatType) {
+    case "once":
+      if (prompt.specificDate) {
+        const [year, month, day] = prompt.specificDate.split("-").map(Number);
+        return `${MONTH_LABELS[month - 1]} ${day}, ${year}${suffix}`;
+      }
+      return `Once${suffix}`;
+    case "daily":
+      return `Daily${suffix}`;
+    case "weekly":
+      return `Weekly on ${WEEKDAY_LABELS[prompt.dayOfWeek || 0]}${suffix}`;
+    case "monthly":
+      return `Monthly on day ${prompt.dayOfMonth || 1}${suffix}`;
+    case "annually":
+      if (prompt.monthAndDay) {
+        const [month, day] = prompt.monthAndDay.split("-").map(Number);
+        return `Annually on ${MONTH_LABELS[month - 1]} ${day}${suffix}`;
+      }
+      return `Annually${suffix}`;
+    default:
+      return "";
+  }
+}
+
+function formatPermissionScope(permission) {
+  if (permission.scope.type === "domain_transition") {
+    return `${permission.scope.fromDomain} → ${permission.scope.toDomain}`;
+  }
+
+  return (
+    permission.scope.netloc ||
+    "Unknown domain"
   );
 }
-function oe({
-  showAddForm: a,
-  setShowAddForm: r,
-  editingPrompt: i,
-  setEditingPrompt: o,
-  isInModal: l = !1,
-  initialTab: d = "my-shortcuts",
-} = {}) {
-  const c = e(),
-    [m, h] = s.useState([]),
-    [u, p] = s.useState(null),
-    [g, b] = s.useState(!1),
-    [y, v] = s.useState(
-      (() => {
-        if (l || "my-shortcuts" !== d) return d;
-        const e = window.location.hash,
-          t = e.indexOf("?");
-        if (-1 !== t) {
-          return "browse" === new URLSearchParams(e.substring(t)).get("tab")
-            ? "browse"
-            : "my-shortcuts";
-        }
-        return "my-shortcuts";
-      })(),
-    ),
-    j = void 0 !== i ? i : u,
-    w = o || p,
-    k = void 0 !== a ? a : g,
-    M = r || b,
-    { showToast: N } = {
-      showToast: (e, t = "success") => {
-        const a = window;
-        a.showToast && a.showToast(e, t);
-      },
-    },
-    C = async () => {
-      const e = await Z.getAllPrompts();
-      h(e.sort((e, t) => t.createdAt - e.createdAt));
-    },
-    A = m.filter((e) => e.repeatType && "none" !== e.repeatType),
-    S = m.filter((e) => !e.repeatType || "none" === e.repeatType),
-    E = (e) => {
-      if (!e.repeatType || "none" === e.repeatType) return "";
-      const t = e.specificTime
-          ? new Date(`2000-01-01T${e.specificTime}`).toLocaleTimeString(
-              "en-US",
-              { hour: "numeric", minute: "2-digit", hour12: !0 },
-            )
-          : "",
-        a = [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ],
-        s = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-        n = t ? ` at ${t}` : "";
-      switch (e.repeatType) {
-        case "once":
-          if (e.specificDate) {
-            const [t, a, r] = e.specificDate.split("-").map(Number);
-            return `${s[a - 1]} ${r}, ${t}${n}`;
-          }
-          return `Once${n}`;
-        case "daily":
-          return `Daily${n}`;
-        case "weekly":
-          return `Weekly on ${a[e.dayOfWeek || 0]}${n}`;
-        case "monthly":
-          return `Monthly on day ${e.dayOfMonth || 1}${n}`;
-        case "annually":
-          if (e.monthAndDay) {
-            const [t, a] = e.monthAndDay.split("-").map(Number);
-            return `Annually on ${s[t - 1]} ${a}${n}`;
-          }
-          return `Annually${n}`;
-        default:
-          return "";
+
+function IconBase({ children, className, ...props }) {
+  return jsx("svg", {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    className,
+    ...props,
+    children,
+  });
+}
+
+function CheckCircleIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("circle", { cx: "12", cy: "12", r: "9" }),
+        jsx("path", { d: "m8 12 2.5 2.5L16 9" }),
+      ],
+    }),
+  });
+}
+
+function XCircleIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("circle", { cx: "12", cy: "12", r: "9" }),
+        jsx("path", { d: "m9 9 6 6" }),
+        jsx("path", { d: "m15 9-6 6" }),
+      ],
+    }),
+  });
+}
+
+function MicIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("path", { d: "M9 10a3 3 0 0 1 6 0v3a3 3 0 0 1-6 0z" }),
+        jsx("path", { d: "M5 11v2a7 7 0 0 0 14 0v-2" }),
+        jsx("path", { d: "M12 18v4" }),
+      ],
+    }),
+  });
+}
+
+function LogoutIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("path", { d: "m16 17 5-5-5-5" }),
+        jsx("path", { d: "M21 12H9" }),
+        jsx("path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }),
+      ],
+    }),
+  });
+}
+
+function UserIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("circle", { cx: "12", cy: "8", r: "4" }),
+        jsx("path", { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }),
+      ],
+    }),
+  });
+}
+
+function KeyboardIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("rect", { x: "3", y: "5", width: "18", height: "14", rx: "2" }),
+        jsx("path", { d: "M7 9h.01" }),
+        jsx("path", { d: "M10 9h.01" }),
+        jsx("path", { d: "M14 9h.01" }),
+        jsx("path", { d: "M17 9h.01" }),
+        jsx("path", { d: "M7 13h10" }),
+      ],
+    }),
+  });
+}
+
+function ClockIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("circle", { cx: "12", cy: "12", r: "9" }),
+        jsx("path", { d: "M12 7v5l3 2" }),
+      ],
+    }),
+  });
+}
+
+function AlertIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("path", { d: "M12 9v4" }),
+        jsx("path", { d: "M12 17h.01" }),
+        jsx("path", { d: "M10.3 4.7 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.7a2 2 0 0 0-3.4 0z" }),
+      ],
+    }),
+  });
+}
+
+function MenuIcon(props) {
+  return jsx(IconBase, {
+    ...props,
+    children: jsxs(Fragment, {
+      children: [
+        jsx("path", { d: "M5 7h14" }),
+        jsx("path", { d: "M5 12h14" }),
+        jsx("path", { d: "M5 17h14" }),
+      ],
+    }),
+  });
+}
+
+function Modal({ open, onClose, title, children, childrenClassName, sizeClassName = "max-w-2xl" }) {
+  if (!open) return null;
+
+  return jsx("div", {
+    className:
+      "fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-200",
+    onClick: (event) => {
+      if (event.target === event.currentTarget) {
+        onClose();
       }
-    };
-  s.useEffect(() => {
-    C();
-    (async () => {
-      const e = await O(T.PENDING_SCHEDULED_TASK);
-      if (e) {
-        const t = new Date().toISOString().split("T")[0],
-          a = e.specificDate;
-        (w({
-          ...e,
-          command: e.command || "",
-          prompt: e.prompt || "",
-          createdAt: e.createdAt || Date.now(),
-          usageCount: e.usageCount || 0,
-          specificDate: a && a >= t ? a : void 0,
-        }),
-          M(!0),
-          await I(T.PENDING_SCHEDULED_TASK));
-      }
-    })();
-  }, [w, M]);
-  const D = async (e) => {
-    confirm(
-      c.formatMessage({
-        defaultMessage: "Are you sure you want to delete this prompt?",
-        id: "eJFbw2HgHp",
-      }),
-    ) &&
-      (await Z.deletePrompt(e),
-      j?.id === e && (w(null), M(!1)),
-      C(),
-      N(
-        c.formatMessage({
-          defaultMessage: "Shortcut deleted",
-          id: "RRFjL3H23m",
-        }),
-      ));
-  };
-  return n.jsxs(n.Fragment, {
-    children: [
-      n.jsx(ie, {}),
-      n.jsxs("div", {
-        className: "space-y-6",
+    },
+    children: jsx("div", {
+      className: cx(
+        "bg-bg-000 mx-4 w-full rounded-2xl shadow-xl transition-all duration-200",
+        sizeClassName,
+      ),
+      children: jsxs("div", {
+        className: cx("px-6 pb-6 pt-6", childrenClassName),
         children: [
-          n.jsxs("div", {
-            className: l
-              ? "px-6 pt-6 pb-6"
-              : "bg-bg-100 border-[0.5px] border-border-300 rounded-xl px-6 pt-6 pb-6 md:px-8 md:pt-8 md:pb-8",
+          jsxs("div", {
+            className: "mb-4 flex items-start justify-between gap-4",
             children: [
-              !l &&
-                n.jsxs("div", {
-                  className: "flex items-start justify-between mb-2",
-                  children: [
-                    n.jsxs("div", {
-                      children: [
-                        n.jsx("h3", {
-                          className: "text-text-100 font-xl-bold",
-                          children: n.jsx(t, {
-                            defaultMessage: "Shortcuts",
-                            id: "7FAwwkYilD",
-                          }),
-                        }),
-                        n.jsx("p", {
-                          className: "text-text-300 font-base mt-1",
-                          children: n.jsx(t, {
-                            defaultMessage:
-                              "Type / in the chat to use shortcuts or run them on schedule",
-                            id: "YEk9i6AJuT",
-                          }),
-                        }),
-                      ],
-                    }),
-                    n.jsx(x, {
-                      onClick: () => {
-                        (w(null), M(!0));
-                      },
-                      prepend: n.jsx(Y, { size: 16 }),
-                      size: "sm",
-                      className: "ml-2",
-                      children: n.jsx(t, {
-                        defaultMessage: "Create shortcut",
-                        id: "AzO4h7b149",
-                      }),
-                    }),
-                  ],
-                }),
-              l &&
-                n.jsx("p", {
-                  className: "text-text-300 font-base mb-6",
-                  children: n.jsx(t, {
-                    defaultMessage:
-                      "Type / to use shortcuts or run them on a schedule",
-                    id: "lQnSmhAWv8",
-                  }),
-                }),
-              !1,
-              n.jsxs("div", {
-                className: "space-y-8 mt-6",
-                children: [
-                  A.length > 0 &&
-                    n.jsxs("div", {
-                      children: [
-                        n.jsxs("div", {
-                          className: "flex items-center gap-2 mb-4",
-                          children: [
-                            n.jsx(f, { size: 16, className: "text-text-300" }),
-                            n.jsx("h4", {
-                              className: "text-text-200 font-base-bold",
-                              children: n.jsx(t, {
-                                defaultMessage: "Scheduled",
-                                id: "cXAlMRerxW",
-                              }),
-                            }),
-                          ],
-                        }),
-                        n.jsx("div", {
-                          className:
-                            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-                          children: A.map((e) =>
-                            n.jsx(
-                              le,
-                              {
-                                prompt: e,
-                                scheduleText: E(e),
-                                onEdit: () => {
-                                  (w(e), M(!0));
-                                },
-                                onDelete: () => D(e.id),
-                              },
-                              e.id,
-                            ),
-                          ),
-                        }),
-                      ],
-                    }),
-                  S.length > 0 &&
-                    n.jsxs("div", {
-                      children: [
-                        A.length > 0 &&
-                          n.jsxs("div", {
-                            className: "flex items-center gap-2 mb-4",
-                            children: [
-                              n.jsx(W, {
-                                size: 18,
-                                weight: "light",
-                                className: "text-text-300",
-                              }),
-                              n.jsx("h4", {
-                                className: "text-text-200 font-base-bold",
-                                children: n.jsx(t, {
-                                  defaultMessage: "Other",
-                                  id: "/VnDMl81rh",
-                                }),
-                              }),
-                            ],
-                          }),
-                        n.jsx("div", {
-                          className:
-                            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-                          children: S.map((e) =>
-                            n.jsx(
-                              le,
-                              {
-                                prompt: e,
-                                onEdit: () => {
-                                  (w(e), M(!0));
-                                },
-                                onDelete: () => D(e.id),
-                              },
-                              e.id,
-                            ),
-                          ),
-                        }),
-                      ],
-                    }),
-                  0 === m.length &&
-                    n.jsxs("div", {
-                      className: "bg-bg-200 rounded-xl p-12 text-center",
-                      children: [
-                        n.jsxs("picture", {
-                          children: [
-                            n.jsx("source", {
-                              srcSet:
-                                "data:image/svg+xml,%3csvg%20width='80'%20height='69'%20viewBox='0%200%2080%2069'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20filter='url(%23filter0_d_5136_3558)'%3e%3cpath%20d='M5%2019C5%2013.3995%205%2010.5992%206.08993%208.46009C7.04867%206.57847%208.57847%205.04867%2010.4601%204.08993C12.5992%203%2015.3995%203%2021%203H59.0648C64.6654%203%2067.4656%203%2069.6047%204.08993C71.4864%205.04867%2073.0162%206.57847%2073.9749%208.46009C75.0648%2010.5992%2075.0648%2013.3995%2075.0648%2019V46C75.0648%2051.6005%2075.0648%2054.4008%2073.9749%2056.5399C73.0162%2058.4215%2071.4864%2059.9513%2069.6047%2060.9101C67.4656%2062%2064.6654%2062%2059.0648%2062H21C15.3995%2062%2012.5992%2062%2010.4601%2060.9101C8.57847%2059.9513%207.04867%2058.4215%206.08993%2056.5399C5%2054.4008%205%2051.6005%205%2046V19Z'%20fill='%2330302E'%20shape-rendering='crispEdges'/%3e%3cpath%20d='M59.0645%202.75C61.8606%202.75%2063.9733%202.74945%2065.6533%202.88672C67.3361%203.02421%2068.6072%203.30141%2069.7178%203.86719C71.6464%204.84987%2073.2146%206.41806%2074.1973%208.34668C74.7632%209.45736%2075.0402%2010.7291%2075.1777%2012.4121C75.315%2014.0921%2075.3145%2016.2041%2075.3145%2019V46C75.3145%2048.7959%2075.315%2050.9079%2075.1777%2052.5879C75.0402%2054.2709%2074.7632%2055.5426%2074.1973%2056.6533C73.2146%2058.5819%2071.6464%2060.1501%2069.7178%2061.1328C68.6072%2061.6986%2067.3361%2061.9758%2065.6533%2062.1133C63.9733%2062.2505%2061.8606%2062.25%2059.0645%2062.25H21C18.2041%2062.25%2016.0921%2062.2505%2014.4121%2062.1133C12.7292%2061.9758%2011.4573%2061.6987%2010.3467%2061.1328C8.41802%2060.1501%206.84989%2058.582%205.86719%2056.6533C5.30129%2055.5427%205.02422%2054.2708%204.88672%2052.5879C4.74949%2050.9079%204.75%2048.7959%204.75%2046V19C4.75%2016.2041%204.74949%2014.0921%204.88672%2012.4121C5.02422%2010.7292%205.30129%209.45734%205.86719%208.34668C6.84989%206.41802%208.41802%204.84989%2010.3467%203.86719C11.4573%203.30129%2012.7292%203.02422%2014.4121%202.88672C16.0921%202.74949%2018.2041%202.75%2021%202.75H59.0645Z'%20stroke='%23DEDCD1'%20stroke-opacity='0.3'%20stroke-width='0.5'%20shape-rendering='crispEdges'/%3e%3cpath%20d='M14.4844%2019.2899L16.6109%2012.6917L17.5147%2012.7101L15.3882%2019.3083L14.4844%2019.2899Z'%20fill='%23C2C0B6'/%3e%3crect%20x='22.9209'%20y='15'%20width='32.0373'%20height='2'%20rx='1'%20fill='%23DEDCD1'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2030.2899L16.6109%2023.6917L17.5147%2023.7101L15.3882%2030.3083L14.4844%2030.2899Z'%20fill='%23C2C0B6'/%3e%3crect%20x='22.9209'%20y='26'%20width='44.1435'%20height='2'%20rx='1'%20fill='%23DEDCD1'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2041.2899L16.6109%2034.6917L17.5147%2034.7101L15.3882%2041.3083L14.4844%2041.2899Z'%20fill='%23C2C0B6'/%3e%3crect%20x='22.9209'%20y='37'%20width='38.9607'%20height='2'%20rx='1'%20fill='%23DEDCD1'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2052.2899L16.6109%2045.6917L17.5147%2045.7101L15.3882%2052.3083L14.4844%2052.2899Z'%20fill='%23C2C0B6'/%3e%3crect%20x='22.9209'%20y='48'%20width='34.6778'%20height='2'%20rx='1'%20fill='%23DEDCD1'%20fill-opacity='0.15'/%3e%3c/g%3e%3cdefs%3e%3cfilter%20id='filter0_d_5136_3558'%20x='0.5'%20y='0.5'%20width='79.0645'%20height='68'%20filterUnits='userSpaceOnUse'%20color-interpolation-filters='sRGB'%3e%3cfeFlood%20flood-opacity='0'%20result='BackgroundImageFix'/%3e%3cfeColorMatrix%20in='SourceAlpha'%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200'%20result='hardAlpha'/%3e%3cfeOffset%20dy='2'/%3e%3cfeGaussianBlur%20stdDeviation='2'/%3e%3cfeComposite%20in2='hardAlpha'%20operator='out'/%3e%3cfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.05%200'/%3e%3cfeBlend%20mode='normal'%20in2='BackgroundImageFix'%20result='effect1_dropShadow_5136_3558'/%3e%3cfeBlend%20mode='normal'%20in='SourceGraphic'%20in2='effect1_dropShadow_5136_3558'%20result='shape'/%3e%3c/filter%3e%3c/defs%3e%3c/svg%3e",
-                              media: "(prefers-color-scheme: dark)",
-                            }),
-                            n.jsx("img", {
-                              src: "data:image/svg+xml,%3csvg%20width='80'%20height='69'%20viewBox='0%200%2080%2069'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20filter='url(%23filter0_d_5136_3446)'%3e%3cpath%20d='M5%2019C5%2013.3995%205%2010.5992%206.08993%208.46009C7.04867%206.57847%208.57847%205.04867%2010.4601%204.08993C12.5992%203%2015.3995%203%2021%203H59.0648C64.6654%203%2067.4656%203%2069.6047%204.08993C71.4864%205.04867%2073.0162%206.57847%2073.9749%208.46009C75.0648%2010.5992%2075.0648%2013.3995%2075.0648%2019V46C75.0648%2051.6005%2075.0648%2054.4008%2073.9749%2056.5399C73.0162%2058.4215%2071.4864%2059.9513%2069.6047%2060.9101C67.4656%2062%2064.6654%2062%2059.0648%2062H21C15.3995%2062%2012.5992%2062%2010.4601%2060.9101C8.57847%2059.9513%207.04867%2058.4215%206.08993%2056.5399C5%2054.4008%205%2051.6005%205%2046V19Z'%20fill='white'%20shape-rendering='crispEdges'/%3e%3cpath%20d='M59.0645%202.75C61.8606%202.75%2063.9733%202.74945%2065.6533%202.88672C67.3361%203.02421%2068.6072%203.30141%2069.7178%203.86719C71.6464%204.84987%2073.2146%206.41806%2074.1973%208.34668C74.7632%209.45736%2075.0402%2010.7291%2075.1777%2012.4121C75.315%2014.0921%2075.3145%2016.2041%2075.3145%2019V46C75.3145%2048.7959%2075.315%2050.9079%2075.1777%2052.5879C75.0402%2054.2709%2074.7632%2055.5426%2074.1973%2056.6533C73.2146%2058.5819%2071.6464%2060.1501%2069.7178%2061.1328C68.6072%2061.6986%2067.3361%2061.9758%2065.6533%2062.1133C63.9733%2062.2505%2061.8606%2062.25%2059.0645%2062.25H21C18.2041%2062.25%2016.0921%2062.2505%2014.4121%2062.1133C12.7292%2061.9758%2011.4573%2061.6987%2010.3467%2061.1328C8.41802%2060.1501%206.84989%2058.582%205.86719%2056.6533C5.30129%2055.5427%205.02422%2054.2708%204.88672%2052.5879C4.74949%2050.9079%204.75%2048.7959%204.75%2046V19C4.75%2016.2041%204.74949%2014.0921%204.88672%2012.4121C5.02422%2010.7292%205.30129%209.45734%205.86719%208.34668C6.84989%206.41802%208.41802%204.84989%2010.3467%203.86719C11.4573%203.30129%2012.7292%203.02422%2014.4121%202.88672C16.0921%202.74949%2018.2041%202.75%2021%202.75H59.0645Z'%20stroke='%231F1E1D'%20stroke-opacity='0.3'%20stroke-width='0.5'%20shape-rendering='crispEdges'/%3e%3cpath%20d='M14.4844%2019.2899L16.6109%2012.6917L17.5147%2012.7101L15.3882%2019.3083L14.4844%2019.2899Z'%20fill='%233D3D3A'/%3e%3crect%20x='22.9209'%20y='15'%20width='32.0373'%20height='2'%20rx='1'%20fill='%231F1E1D'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2030.2899L16.6109%2023.6917L17.5147%2023.7101L15.3882%2030.3083L14.4844%2030.2899Z'%20fill='%233D3D3A'/%3e%3crect%20x='22.9209'%20y='26'%20width='44.1435'%20height='2'%20rx='1'%20fill='%231F1E1D'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2041.2899L16.6109%2034.6917L17.5147%2034.7101L15.3882%2041.3083L14.4844%2041.2899Z'%20fill='%233D3D3A'/%3e%3crect%20x='22.9209'%20y='37'%20width='38.9607'%20height='2'%20rx='1'%20fill='%231F1E1D'%20fill-opacity='0.15'/%3e%3cpath%20d='M14.4844%2052.2899L16.6109%2045.6917L17.5147%2045.7101L15.3882%2052.3083L14.4844%2052.2899Z'%20fill='%233D3D3A'/%3e%3crect%20x='22.9209'%20y='48'%20width='34.6778'%20height='2'%20rx='1'%20fill='%231F1E1D'%20fill-opacity='0.15'/%3e%3c/g%3e%3cdefs%3e%3cfilter%20id='filter0_d_5136_3446'%20x='0.5'%20y='0.5'%20width='79.0645'%20height='68'%20filterUnits='userSpaceOnUse'%20color-interpolation-filters='sRGB'%3e%3cfeFlood%20flood-opacity='0'%20result='BackgroundImageFix'/%3e%3cfeColorMatrix%20in='SourceAlpha'%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200'%20result='hardAlpha'/%3e%3cfeOffset%20dy='2'/%3e%3cfeGaussianBlur%20stdDeviation='2'/%3e%3cfeComposite%20in2='hardAlpha'%20operator='out'/%3e%3cfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.05%200'/%3e%3cfeBlend%20mode='normal'%20in2='BackgroundImageFix'%20result='effect1_dropShadow_5136_3446'/%3e%3cfeBlend%20mode='normal'%20in='SourceGraphic'%20in2='effect1_dropShadow_5136_3446'%20result='shape'/%3e%3c/filter%3e%3c/defs%3e%3c/svg%3e",
-                              alt: c.formatMessage({
-                                defaultMessage: "Tasks illustration",
-                                id: "heKLO07Qz/",
-                              }),
-                              className: "w-24 h-24 mx-auto mb-1",
-                            }),
-                          ],
-                        }),
-                        n.jsx("p", {
-                          className: "text-text-300 max-w-[200px] mx-auto",
-                          children: n.jsx(t, {
-                            defaultMessage:
-                              "Create your first shortcut to get started",
-                            id: "8Y2q4SsIpY",
-                          }),
-                        }),
-                      ],
-                    }),
-                  !1,
-                ],
+              jsx("h2", {
+                className: "font-xl-bold text-text-100",
+                children: title,
+              }),
+              jsx("button", {
+                type: "button",
+                onClick: onClose,
+                className: "rounded-lg p-2 text-text-300 transition-colors hover:bg-bg-200",
+                "aria-label": "Close",
+                children: jsx(XCircleIcon, { className: "h-4 w-4" }),
               }),
             ],
           }),
-          k &&
-            n.jsx(de, {
-              prompt: j,
-              onClose: () => {
-                (M(!1), w(null));
-              },
-              onSave: (e) => {
-                (C(),
-                  M(!1),
-                  w(null),
-                  N(
-                    e
-                      ? c.formatMessage({
-                          defaultMessage: "Shortcut updated",
-                          id: "IV5WU06zbs",
-                        })
-                      : c.formatMessage({
-                          defaultMessage: "Shortcut added",
-                          id: "wn15NDyLWm",
-                        }),
-                  ));
-              },
-            }),
+          children,
         ],
       }),
-    ],
+    }),
   });
 }
-function le({ prompt: e, scheduleText: a, onEdit: s, onDelete: r }) {
-  return n.jsxs("div", {
-    onClick: s,
-    className:
-      "relative group bg-bg-000 border-[0.5px] border-border-300 rounded-2xl p-4 hover:border-border-200 transition-all shadow-[0_2px_4px_0_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_0_rgba(0,0,0,0.08)] w-full cursor-pointer",
+
+function Field({ label, error, helperText, children, className }) {
+  return jsxs("div", {
+    className,
     children: [
-      n.jsxs("div", {
-        className: "flex items-start justify-between gap-2 mb-2",
-        children: [
-          n.jsx("div", {
-            className: "flex-1 min-w-0 text-left",
-            children:
-              e.command &&
-              n.jsxs("div", {
-                className:
-                  "font-large-bold text-text-200 relative overflow-hidden",
-                children: [
-                  n.jsxs("div", {
-                    className: "whitespace-nowrap",
-                    children: [
-                      n.jsx("span", {
-                        className: "text-text-500/50 font-mono",
-                        children: n.jsx(t, {
-                          defaultMessage: "/",
-                          id: "XIbwNE7SSU",
-                        }),
-                      }),
-                      n.jsx("span", {
-                        className: "ml-0.5",
-                        children: e.command,
-                      }),
-                    ],
-                  }),
-                  n.jsx("div", {
-                    className:
-                      "absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-bg-000 to-transparent pointer-events-none",
-                  }),
-                ],
-              }),
-          }),
-          n.jsx("div", {
-            onClick: (e) => e.stopPropagation(),
-            children: n.jsxs(g, {
-              unstyledTrigger: !0,
-              trigger: n.jsx("button", {
-                className:
-                  "hide-focus-ring p-1 hover:bg-bg-200 rounded transition-colors relative z-10 opacity-0 group-hover:opacity-100",
-                children: n.jsx(j, { size: 16, className: "text-text-300" }),
-              }),
-              children: [
-                n.jsx(b, {
-                  icon: n.jsx(y, { size: 14 }),
-                  onSelect: () => {
-                    s();
-                  },
-                  children: n.jsx(t, {
-                    defaultMessage: "Edit",
-                    id: "wEQDC6Wv3/",
-                  }),
-                }),
-                n.jsx(b, {
-                  icon: n.jsx(v, { size: 14 }),
-                  danger: !0,
-                  onSelect: () => {
-                    r();
-                  },
-                  children: n.jsx(t, {
-                    defaultMessage: "Delete",
-                    id: "K3r6DQW7h+",
-                  }),
-                }),
-              ],
-            }),
-          }),
-        ],
+      jsx("label", {
+        className: "mb-1 block font-base text-text-200",
+        children: label,
       }),
-      n.jsx("div", {
-        className: "bg-bg-100 rounded-lg p-3 w-full text-left",
-        children: n.jsx("div", {
-          className:
-            "text-sm text-text-300 h-24 overflow-y-auto whitespace-pre-wrap",
-          children: e.prompt,
-        }),
-      }),
-      a &&
-        n.jsx("div", {
-          className: "mt-3",
-          children: n.jsx("div", {
-            className: "text-text-300",
-            children: n.jsx("span", { className: "text-xs", children: a }),
-          }),
-        }),
+      children,
+      error
+        ? jsx("p", {
+            className: "mt-1 text-sm text-danger-000",
+            children: error,
+          })
+        : helperText
+          ? jsx("p", {
+              className: "mt-1 text-sm text-text-400",
+              children: helperText,
+            })
+          : null,
     ],
   });
 }
-function de({ prompt: a, onClose: r, onSave: i }) {
-  const o = e(),
-    [l, d] = s.useState(a?.command || ""),
-    [c, m] = s.useState(a?.prompt || ""),
-    [h, u] = s.useState(""),
-    [p, f] = s.useState(""),
-    [g, b] = s.useState(!1),
-    y = !a?.id,
-    v = s.useRef(null),
-    [j, E] = s.useState(Boolean(a?.repeatType && "none" !== a.repeatType)),
-    [D, L] = s.useState(
-      a?.repeatType && "none" !== a.repeatType ? a.repeatType : "once",
+
+function ToggleSwitch({ checked, onChange, disabled }) {
+  return jsx("label", {
+    className: "relative inline-flex cursor-pointer items-center",
+    children: jsxs(Fragment, {
+      children: [
+        jsx("input", {
+          type: "checkbox",
+          className: "sr-only peer",
+          checked,
+          disabled,
+          onChange,
+        }),
+        jsx("div", {
+          className: cx(
+            TOGGLE_TRACK_CLASS,
+            "bg-bg-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-accent-100 peer-checked:bg-accent-100",
+            "after:content-[''] after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all peer-checked:after:translate-x-full",
+          ),
+        }),
+      ],
+    }),
+  });
+}
+
+function Spinner() {
+  return jsx("div", {
+    className: "h-8 w-8 animate-spin rounded-full border-b-2 border-text-100",
+  });
+}
+
+function PageLoadingState({ label = "Loading..." }) {
+  return jsx("div", {
+    className: "flex min-h-[360px] items-center justify-center",
+    children: jsxs("div", {
+      className: "flex flex-col items-center gap-4 text-text-200",
+      children: [
+        jsx(Spinner, {}),
+        jsx("div", { className: "font-base", children: label }),
+      ],
+    }),
+  });
+}
+
+function Toast({ toast, onClose }) {
+  const [isLeaving, setIsLeaving] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setIsLeaving(true);
+      window.setTimeout(() => {
+        onClose(toast.id);
+      }, 200);
+    }, 3000);
+
+    return () => window.clearTimeout(timer);
+  }, [onClose, toast.id]);
+
+  return jsxs("div", {
+    className: cx(
+      "flex min-w-[300px] items-center gap-2 rounded-xl border-[0.5px] border-border-300 bg-bg-000 px-4 py-3 shadow-lg transition-all duration-200 ease-out",
+      isLeaving ? "translate-x-full opacity-0" : "translate-x-0 opacity-100",
     ),
-    [H, T] = s.useState(a?.specificTime || "09:00"),
-    [F, O] = s.useState(a?.dayOfWeek ?? 0),
-    [I, z] = s.useState(a?.dayOfMonth || 1),
-    [R, _] = s.useState(
-      (a?.monthAndDay && parseInt(a.monthAndDay.split("-")[0])) || 1,
-    ),
-    [P, V] = s.useState(
-      (a?.monthAndDay && parseInt(a.monthAndDay.split("-")[1])) || 1,
-    ),
-    [B, W] = s.useState(a?.specificDate || ""),
-    [U, Y] = s.useState(a?.url || ""),
-    $ = w(),
-    [G, q] = s.useState(a?.model || $.default || "gpt-5.5");
-  (s.useEffect(() => {
-    (setTimeout(() => {
-      v.current?.focus();
-    }, 100),
-      (a && !y) ||
-        chrome.tabs.query({ active: !0, currentWindow: !0 }, (e) => {
-          if (e[0]?.url)
-            try {
-              const t = new URL(e[0].url).origin;
-              t.startsWith("http") && Y(t);
-            } catch {}
-        }));
-  }, [a, y]),
-    s.useEffect(() => {
-      const e = (e) => {
-        if ("Enter" === e.key) {
-          const t = document.activeElement;
-          "INPUT" === t?.tagName ||
-            "TEXTAREA" === t?.tagName ||
-            (e.preventDefault(), J());
-        }
-      };
-      return (
-        document.addEventListener("keydown", e),
-        () => document.removeEventListener("keydown", e)
-      );
-    }, [l, c]));
-  const J = async () => {
-    if ((b(!0), f(""), l.trim() && c.trim())) {
-      if (j && U.trim()) {
-        const e = U.trim();
-        if (!e.startsWith("http://") && !e.startsWith("https://"))
-          return void f(
-            o.formatMessage({
-              defaultMessage: "URL must start with http:// or https://",
-              id: "PMPIVxGCgO",
-            }),
-          );
-        try {
-          new URL(e);
-        } catch {
-          return void f(
-            o.formatMessage({
-              defaultMessage: "Invalid URL format",
-              id: "Zx2+7F8Kf5",
-            }),
-          );
-        }
+    children: [
+      toast.type === "success"
+        ? jsx(CheckCircleIcon, { className: "h-4 w-4 flex-shrink-0 text-accent-100" })
+        : jsx(AlertIcon, { className: "h-4 w-4 flex-shrink-0 text-danger-000" }),
+      jsx("p", {
+        className: "flex-1 font-base text-text-200",
+        children: toast.message,
+      }),
+      jsx("button", {
+        type: "button",
+        onClick: () => {
+          setIsLeaving(true);
+          window.setTimeout(() => onClose(toast.id), 200);
+        },
+        className: "flex-shrink-0 rounded p-1 transition-colors hover:bg-bg-100",
+        children: jsx(XCircleIcon, { className: "h-4 w-4 text-text-300" }),
+      }),
+    ],
+  });
+}
+
+function ToastViewport() {
+  const [toasts, setToasts] = useState([]);
+
+  const addToast = useCallback((message, type = "success") => {
+    const id = Date.now().toString();
+    setToasts((current) => [...current, { id, message, type }]);
+  }, []);
+
+  const removeToast = useCallback((id) => {
+    setToasts((current) => current.filter((toast) => toast.id !== id));
+  }, []);
+
+  useEffect(() => {
+    window.showToast = addToast;
+    return () => {
+      delete window.showToast;
+    };
+  }, [addToast]);
+
+  if (toasts.length === 0) return null;
+
+  return jsx("div", {
+    className: "fixed right-4 top-4 z-50 flex flex-col gap-2",
+    children: toasts.map((toast) => jsx(Toast, { toast, onClose: removeToast }, toast.id)),
+  });
+}
+
+function LoginScreen({ onLogin, isLoggingIn }) {
+  return jsx("div", {
+    className: "flex min-h-[420px] items-center justify-center px-4",
+    children: jsx("div", {
+      className:
+        "w-full max-w-md rounded-2xl border border-border-300 bg-bg-100 px-8 py-10 text-center shadow-sm",
+      children: jsxs("div", {
+        className: "flex flex-col items-center",
+        children: [
+          jsx("div", {
+            className:
+              "mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-brand-100/10 text-brand-100",
+            children: jsx(UserIcon, { className: "h-8 w-8" }),
+          }),
+          jsx("h2", {
+            className: "font-xl-bold text-text-100",
+            children: "Log in to use Codex in Chrome",
+          }),
+          jsx("p", {
+            className: "mt-3 max-w-sm font-base text-text-300",
+            children: "Sign in to view settings, manage shortcuts, and use the extension.",
+          }),
+          jsx("button", {
+            type: "button",
+            onClick: onLogin,
+            disabled: isLoggingIn,
+            className: cx(PRIMARY_BUTTON_CLASS, "mt-6 min-w-32"),
+            children: isLoggingIn ? "Logging in..." : "Log in",
+          }),
+        ],
+      }),
+    }),
+  });
+}
+
+function SectionCard({ title, description, children, className }) {
+  return jsxs("section", {
+    className: cx(PANEL_CLASS, className),
+    children: [
+      jsx("h3", {
+        className: "font-xl-bold text-text-100",
+        children: title,
+      }),
+      description
+        ? jsx("p", {
+            className: "mt-2 mb-6 font-base text-text-300",
+            children: description,
+          })
+        : null,
+      children,
+    ],
+  });
+}
+
+function ShortcutSection() {
+  const shortcut = useCommandShortcut("toggle-side-panel");
+
+  return jsx(SectionCard, {
+    title: "Keyboard shortcut",
+    description: "Configure the keyboard shortcut used to open Codex in Chrome.",
+    children: jsxs("div", {
+      className: "flex items-center justify-between gap-4 py-4",
+      children: [
+        jsx("div", {
+          className: "flex-1",
+          children: jsxs(Fragment, {
+            children: [
+              jsx("div", {
+                className: "font-large text-text-100",
+                children: "Open side panel",
+              }),
+              jsx("div", {
+                className: "mt-1 text-text-400 font-base-sm",
+                children: shortcut
+                  ? jsxs(Fragment, {
+                      children: [
+                        "Current shortcut: ",
+                        jsx("kbd", {
+                          className:
+                            "rounded border border-border-300 bg-bg-300 px-1.5 py-0.5 font-mono text-xs text-text-200",
+                          children: shortcut,
+                        }),
+                      ],
+                    })
+                  : "No shortcut configured",
+              }),
+            ],
+          }),
+        }),
+        jsx("button", {
+          type: "button",
+          onClick: () => chrome.tabs.create({ url: "chrome://extensions/shortcuts" }),
+          className: SECONDARY_BUTTON_CLASS,
+          children: jsxs(Fragment, {
+            children: ["+", " Configure"],
+          }),
+        }),
+      ],
+    }),
+  });
+}
+
+function SafetyBannerSection() {
+  const [hideHighRiskBanner, setHideHighRiskBanner] = useChromeStorageValue(
+    HIDE_HIGH_RISK_BANNER_KEY,
+    false,
+  );
+
+  return jsx(SectionCard, {
+    title: "Safety banner",
+    description: "Hide the high-risk reminder shown when Codex can act without asking.",
+    children: jsxs("div", {
+      className: "flex items-center justify-between gap-4 py-4",
+      children: [
+        jsx("div", {
+          className: "flex-1",
+          children: jsxs(Fragment, {
+            children: [
+              jsx("div", {
+                className: "font-large text-text-100",
+                children: "Hide high-risk banner",
+              }),
+              jsx("div", {
+                className: "mt-1 text-text-400 font-base-sm",
+                children:
+                  "This only hides the banner. It does not change permission behavior.",
+              }),
+            ],
+          }),
+        }),
+        jsx(ToggleSwitch, {
+          checked: Boolean(hideHighRiskBanner),
+          onChange: (event) => setHideHighRiskBanner(event.target.checked),
+        }),
+      ],
+    }),
+  });
+}
+
+function NotificationsSection() {
+  const [notificationsEnabled, setNotificationsEnabled] = useChromeStorageValue(
+    NOTIFICATIONS_ENABLED_KEY,
+    undefined,
+  );
+
+  const checked = notificationsEnabled === "enabled";
+  const statusText =
+    notificationsEnabled === "enabled"
+      ? "You'll receive notifications when tasks finish"
+      : notificationsEnabled === "disabled"
+        ? "Notifications are turned off"
+        : "You haven't set your notification preference yet";
+
+  return jsx(SectionCard, {
+    title: "Notifications",
+    description: "Get notified when tasks complete or need your input.",
+    children: jsxs("div", {
+      className: "flex items-center justify-between gap-4 py-4",
+      children: [
+        jsx("div", {
+          className: "flex-1",
+          children: jsxs(Fragment, {
+            children: [
+              jsx("div", {
+                className: "font-large text-text-100",
+                children: "Task completion notifications",
+              }),
+              jsx("div", {
+                className: "mt-1 text-text-400 font-base-sm",
+                children: statusText,
+              }),
+            ],
+          }),
+        }),
+        jsx(ToggleSwitch, {
+          checked,
+          onChange: (event) =>
+            setNotificationsEnabled(event.target.checked ? "enabled" : "disabled"),
+        }),
+      ],
+    }),
+  });
+}
+
+function MicrophoneSection() {
+  const [permissionState, refreshPermission] = useMicrophonePermission(true);
+  const [isRequesting, setIsRequesting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const openChromeSettings = () => {
+    chrome.tabs.create({
+      url: `chrome://settings/content/siteDetails?site=chrome-extension%3A%2F%2F${chrome.runtime.id}%2F`,
+    });
+  };
+
+  const handleRequestAccess = async () => {
+    setIsRequesting(true);
+    setErrorMessage("");
+
+    try {
+      await requestMicrophoneAccess();
+      const nextState = await refreshPermission();
+      if (nextState !== "granted") {
+        setErrorMessage(
+          'You selected "Allow this time" which does not persist. Please click the button again and select "Allow while visiting the site" to enable voice narration.',
+        );
       }
-      try {
-        if (a && !y) {
-          const e = {
-            prompt: c.trim(),
-            command: l.trim(),
-            url: U.trim() || void 0,
-          };
-          (j
-            ? ((e.repeatType = D),
-              (e.specificTime = H),
-              (e.model = G),
-              "once" === D && (e.specificDate = B),
-              "weekly" === D && (e.dayOfWeek = F),
-              "monthly" === D && (e.dayOfMonth = I),
-              "annually" === D &&
-                (e.monthAndDay = `${R.toString().padStart(2, "0")}-${P.toString().padStart(2, "0")}`))
-            : ((e.repeatType = void 0),
-              (e.specificTime = void 0),
-              (e.specificDate = void 0),
-              (e.dayOfWeek = void 0),
-              (e.dayOfMonth = void 0),
-              (e.monthAndDay = void 0),
-              (e.model = void 0)),
-            await Z.updatePrompt(a.id, e));
+    } catch (error) {
+      if (error instanceof DOMException) {
+        if (error.name === "NotAllowedError") {
+          await refreshPermission();
+        } else if (error.name === "NotFoundError") {
+          setErrorMessage("No microphone found. Please connect a microphone and try again.");
         } else {
-          const e = {
-            prompt: c.trim(),
-            command: l.trim(),
-            url: U.trim() || void 0,
-            createdAt: Date.now(),
-            usageCount: 0,
-          };
-          (j &&
-            ((e.repeatType = D),
-            (e.specificTime = H),
-            (e.model = G),
-            "once" === D && (e.specificDate = B),
-            "weekly" === D && (e.dayOfWeek = F),
-            "monthly" === D && (e.dayOfMonth = I),
-            "annually" === D &&
-              (e.monthAndDay = `${R.toString().padStart(2, "0")}-${P.toString().padStart(2, "0")}`)),
-            await Z.savePrompt(e));
+          setErrorMessage(`Error: ${error.message}`);
         }
-        i(!(!a || y));
-      } catch (e) {
-        u(e instanceof Error ? e.message : "Failed to save");
+      } else if (error instanceof Error) {
+        setErrorMessage(`Error: ${error.message}`);
+      } else {
+        setErrorMessage("An unknown error occurred");
       }
+    } finally {
+      setIsRequesting(false);
     }
   };
-  return n.jsxs(k, {
-    isOpen: !0,
-    onClose: r,
-    title:
-      a && !y
-        ? o.formatMessage({ defaultMessage: "Edit shortcut", id: "R592aOW18A" })
-        : o.formatMessage({
-            defaultMessage: "Create shortcut",
-            id: "AzO4h7b149",
-          }),
-    modalSize: "lg",
-    hasCloseButton: !0,
-    overlayClassName:
-      "[background-color:hsl(var(--always-black)/0.5)!important]",
-    children: [
-      n.jsxs("div", {
-        className: "space-y-4 mt-4",
-        children: [
-          n.jsxs("div", {
-            children: [
-              n.jsx("span", {
-                className: "font-base text-text-200 block mb-1",
-                children: n.jsx(t, {
-                  defaultMessage: "Name",
-                  id: "HAlOn1ZsuY",
-                }),
-              }),
-              n.jsx(M, {
-                ref: v,
-                type: "text",
-                value: l,
-                onChange: (e) => {
-                  const t = e.target.value
-                    .replace(/\s/g, "-")
-                    .replace(/[^a-zA-Z0-9-_]/g, "");
-                  (d(t), h && u(""));
-                },
-                prepend: n.jsx("span", {
-                  className: "text-text-300",
-                  children: n.jsx(t, { defaultMessage: "/", id: "XIbwNE7SSU" }),
-                }),
-                placeholder: o.formatMessage({
-                  defaultMessage: "task-name",
-                  id: "zfW5u5DbnY",
-                }),
-                className: "w-full text-sm",
-                error: (g && !l.trim()) || h?.includes("already in use"),
-              }),
-              ((g && !l.trim()) || h?.includes("already in use")) &&
-                n.jsx(N, {
-                  className: "mt-1",
-                  children:
-                    g && !l.trim()
-                      ? n.jsx(t, {
-                          defaultMessage: "Name is required",
-                          id: "Gvxoji2HqE",
-                        })
-                      : h,
-                }),
-            ],
-          }),
-          n.jsxs("div", {
-            children: [
-              n.jsx("span", {
-                className: "font-base text-text-200 block mb-1",
-                children: n.jsx(t, {
-                  defaultMessage: "Prompt",
-                  id: "iWKE8shLIt",
-                }),
-              }),
-              n.jsx(C, {
-                required: !0,
-                value: c,
-                onChange: (e) => m(e.target.value),
-                className:
-                  "min-h-32 max-h-64 overflow-y-auto font-large text-sm",
-                placeholder: o.formatMessage({
-                  defaultMessage: "Enter your prompt text...",
-                  id: "xvBEtpDq86",
-                }),
-                error:
-                  g && !c.trim()
-                    ? o.formatMessage({
-                        defaultMessage: "Prompt is required",
-                        id: "E8uSl+czLg",
-                      })
-                    : void 0,
-              }),
-            ],
-          }),
-          n.jsx(A, {
-            scheduleEnabled: j,
-            setScheduleEnabled: E,
-            repeatType: D,
-            setRepeatType: L,
-            specificDate: B,
-            setSpecificDate: W,
-            dayOfWeek: F,
-            setDayOfWeek: O,
-            dayOfMonth: I,
-            setDayOfMonth: z,
-            month: R,
-            setMonth: _,
-            day: P,
-            setDay: V,
-            specificTime: H,
-            setSpecificTime: T,
-            monthLabels: [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July",
-              "August",
-              "September",
-              "October",
-              "November",
-              "December",
-            ],
-            daysOfWeekLabels: [
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-            ],
-            url: U,
-            setUrl: (e) => {
-              (Y(e), p && f(""));
-            },
-            urlError: g ? p : void 0,
-            compact: !1,
-            model: G,
-            setModel: q,
-            modelConfig: $,
-          }),
-          h &&
-            !h.includes("already in use") &&
-            n.jsx("div", { className: "text-danger-000 text-sm", children: h }),
-        ],
-      }),
-      n.jsxs(S, {
-        children: [
-          n.jsx(x, {
-            onClick: r,
-            variant: "secondary",
-            children: n.jsx(t, { defaultMessage: "Cancel", id: "47FYwba+bI" }),
-          }),
-          n.jsx(x, {
-            onClick: J,
-            children:
-              a && !y
-                ? n.jsx(t, { defaultMessage: "Save changes", id: "X0ha1a+WYV" })
-                : n.jsx(t, {
-                    defaultMessage: "Create shortcut",
-                    id: "AzO4h7b149",
-                  }),
-          }),
-        ],
-      }),
-    ],
-  });
-}
-function ce() {
-  const { userProfile: e, isAuthenticated: a } = E(),
-    { resetAnalytics: r } = h(),
-    i = !1,
-    [o, l] = s.useState(""),
-    [d, c] = s.useState("permissions"),
-    [m, u] = s.useState(!1),
-    [p, x] = s.useState();
-  (s.useEffect(() => {
-    l("");
-  }, []),
-    s.useEffect(() => {
-      const e = () => {
-          const e = window.location.hash.slice(1),
-            [t, a] = e.split("?"),
-            s = ["permissions", "prompts", "options", "internal"].includes(t)
-              ? t
-              : "permissions";
-          let n,
-            r = !1;
-          if (a) {
-            const e = new URLSearchParams(a);
-            r = "true" === e.get("requestMicrophone");
-            const t = e.get("returnTabId");
-            t && (n = parseInt(t, 10));
-          }
-          return { tab: s, requestMicrophone: r, returnTabId: n };
-        },
-        t = () => {
-          const { tab: t, requestMicrophone: a, returnTabId: s } = e();
-          (c(t), a && (u(!0), x(s)));
-        },
-        { tab: a, requestMicrophone: s, returnTabId: n } = e();
-      return (
-        c(a),
-        s && (u(!0), x(n)),
-        window.addEventListener("hashchange", t),
-        () => {
-          window.removeEventListener("hashchange", t);
-        }
-      );
-    }, []));
-  const f = (e) => {
-    (c(e), (window.location.hash = e));
-  };
-  return n.jsxs("div", {
-    "data-theme": "claude",
-    children: [
-      n.jsxs(X, {
-        large: !0,
-        mdTitle:
-          a || o
-            ? n.jsx("div", {
-                className: "flex flex-col pl-3",
-                children: n.jsx("span", {
-                  children: n.jsx(t, {
-                    defaultMessage: "Codex in Chrome settings",
-                    id: "eDHTgRaIJG",
-                  }),
-                }),
-              })
-            : void 0,
-        sticky: !0,
-        children: [
-          !a &&
-            o &&
-            n.jsxs("div", {
-              className: "flex items-center gap-3",
+
+  return jsx(SectionCard, {
+    title: "Microphone",
+    description:
+      "Enable microphone access to use your browser's speech-to-text functionality for voice narration during workflow recording.",
+    children: jsxs("div", {
+      className: "space-y-4",
+      children: [
+        permissionState === "granted"
+          ? jsxs("div", {
+              className: "flex items-start gap-3 rounded-xl border border-success-100/20 bg-success-100/10 p-4",
               children: [
-                n.jsxs("div", {
+                jsx("div", {
                   className:
-                    "flex items-center gap-2 px-3 py-2 bg-bg-000 border border-border-200 rounded-lg",
-                  children: [
-                    n.jsx(q, { className: "w-4 h-4 text-text-300" }),
-                    n.jsx("span", {
-                      className: "font-base-sm text-text-200",
-                      children: n.jsx(t, {
-                        defaultMessage: "OAuth Mode",
-                        id: "5oZeuus9Dz",
-                      }),
-                    }),
-                  ],
+                    "mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-success-100",
+                  children: jsx(CheckCircleIcon, { className: "h-3 w-3 text-oncolor-100" }),
                 }),
-                n.jsx("button", {
-                  onClick: async () => {
-                    try {
-                      await z();
-                    } catch (e) {}
-                  },
-                  className:
-                    "px-3 py-2 bg-brand-100 text-oncolor-100 rounded-lg font-base-sm hover:bg-brand-200 transition-colors",
-                  children: n.jsx(t, {
-                    defaultMessage: "Login",
-                    id: "AyGauyc55S",
+                jsx("div", {
+                  children: jsxs(Fragment, {
+                    children: [
+                      jsx("div", {
+                        className: "font-large text-text-100",
+                        children: "Microphone access granted",
+                      }),
+                      jsx("div", {
+                        className: "mt-1 text-text-400 font-base-sm",
+                        children: jsxs(Fragment, {
+                          children: [
+                            "You can now use voice narration when recording workflows. To disable, go to ",
+                            jsx("button", {
+                              type: "button",
+                              onClick: openChromeSettings,
+                              className: "cursor-pointer text-brand-100 hover:underline",
+                              children: "Chrome settings",
+                            }),
+                            ".",
+                          ],
+                        }),
+                      }),
+                    ],
                   }),
                 }),
               ],
-            }),
-        ],
-      }),
-      n.jsxs(Q, {
-        children: [
-          n.jsx("div", {
-            className: "mb-4 md:hidden pl-3",
-            children: n.jsx("h1", {
-              className: "font-heading text-text-200 flex items-center gap-1.5",
-              children: n.jsx(t, {
-                defaultMessage: "Settings",
-                id: "D3idYvSLF9",
-              }),
-            }),
-          }),
-          a || o
-            ? n.jsxs("div", {
-                className:
-                  "grid md:grid-cols-[220px_minmax(0px,_1fr)] gap-x-8 w-full max-w-6xl my-4 md:my-8",
-                children: [
-                  n.jsxs("nav", {
-                    className:
-                      "w-full overflow-x-auto -m-2 p-2 self-start md:sticky md:top-4 relative z-10 mb-4 md:mb-0",
+            })
+          : null,
+
+        permissionState === "denied"
+          ? jsxs("div", {
+              className: "flex items-start gap-3 rounded-xl border border-danger-000/20 bg-danger-000/10 p-4",
+              children: [
+                jsx("div", {
+                  className:
+                    "mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-danger-200",
+                  children: jsx(XCircleIcon, { className: "h-3 w-3 text-danger-000" }),
+                }),
+                jsx("div", {
+                  children: jsxs(Fragment, {
                     children: [
-                      n.jsxs("ul", {
-                        className: "flex gap-1 md:flex-col mb-0",
-                        children: [
-                          n.jsx("li", {
-                            children: n.jsx(ne, {
-                              href: "/settings/permissions",
-                              isActive: "permissions" === d,
-                              onClick: () => f("permissions"),
-                              children: n.jsx(t, {
-                                defaultMessage: "Permissions",
-                                id: "SFuk1vRI4X",
-                              }),
-                            }),
-                          }),
-                          n.jsx("li", {
-                            children: n.jsx(ne, {
-                              href: "/settings/prompts",
-                              isActive: "prompts" === d,
-                              onClick: () => f("prompts"),
-                              children: n.jsx(t, {
-                                defaultMessage: "Shortcuts",
-                                id: "7FAwwkYilD",
-                              }),
-                            }),
-                          }),
-                          n.jsx("li", {
-                            children: n.jsx(ne, {
-                              href: "/settings/options",
-                              isActive: "options" === d,
-                              onClick: () => f("options"),
-                              children: n.jsx(t, {
-                                defaultMessage: "Options",
-                                id: "NDV5MqT9ww",
-                              }),
-                            }),
-                          }),
-                          i,
-                        ],
+                      jsx("div", {
+                        className: "font-large text-text-100",
+                        children: "Microphone access blocked",
                       }),
-                      a &&
-                        n.jsx(n.Fragment, {
-                          children: n.jsx("div", {
-                            className:
-                              "mt-4 pt-4 border-t-[0.5px] border-border-300",
-                            children: n.jsxs("button", {
-                              onClick: async () => {
-                                try {
-                                  (await chrome.runtime.sendMessage({
-                                    type: "logout",
-                                  }),
-                                    await r(),
-                                    window.location.reload());
-                                } catch (e) {
-                                  alert("Failed to logout. Please try again.");
-                                }
-                              },
-                              className:
-                                "w-full flex items-center gap-2 px-3 py-3 text-danger-000 hover:bg-danger-000/10 rounded-lg transition-all font-base",
-                              children: [
-                                n.jsx(G, { className: "w-4 h-4" }),
-                                n.jsx(t, {
-                                  defaultMessage: "Log out",
-                                  id: "PlBReUqqzW",
-                                }),
-                              ],
+                      jsx("div", {
+                        className: "mt-1 text-text-400 font-base-sm",
+                        children: jsxs(Fragment, {
+                          children: [
+                            "Microphone access has been denied. To enable, change Microphone to 'Allow' in ",
+                            jsx("button", {
+                              type: "button",
+                              onClick: openChromeSettings,
+                              className: "cursor-pointer text-brand-100 hover:underline",
+                              children: "Chrome settings",
                             }),
-                          }),
+                            ".",
+                          ],
                         }),
+                      }),
                     ],
                   }),
-                  n.jsxs("div", {
-                    children: [
-                      "permissions" === d && n.jsx(te, {}),
-                      "prompts" === d && n.jsx(oe, {}),
-                      "options" === d && n.jsx(K, {}),
-                      "internal" === d && i,
-                    ],
-                  }),
-                ],
-              })
-            : n.jsx("div", {
-                className:
-                  "flex flex-col items-center justify-center min-h-[400px]",
-                children: n.jsx(D, {}),
+                }),
+              ],
+            })
+          : null,
+
+        (permissionState === "prompt" || permissionState === "unknown") &&
+          jsxs("div", {
+            children: [
+              jsx("button", {
+                type: "button",
+                onClick: handleRequestAccess,
+                disabled: isRequesting,
+                className: PRIMARY_BUTTON_CLASS,
+                children: isRequesting ? "Requesting..." : "Allow Microphone Access",
               }),
+              errorMessage
+                ? jsx("div", {
+                    className:
+                      "mt-3 rounded-lg border border-danger-000/20 bg-danger-000/10 px-4 py-3 text-danger-000",
+                    children: errorMessage,
+                  })
+                : null,
+            ],
+          }),
+
+        errorMessage && permissionState !== "prompt" && permissionState !== "unknown"
+          ? jsx("div", {
+              className:
+                "rounded-lg border border-danger-000/20 bg-danger-000/10 px-4 py-3 text-danger-000",
+              children: errorMessage,
+            })
+          : null,
+      ],
+    }),
+  });
+}
+
+function ApprovedPermissionList({ permissions, onRevoke, formatScope }) {
+  return jsx("div", {
+    children: permissions.map((permission, index) =>
+      jsxs(Fragment, {
+        children: [
+          jsxs("div", {
+            className: "flex items-center justify-between gap-4 py-4",
+            children: [
+              jsx("div", {
+                className: "flex-1",
+                children: jsxs(Fragment, {
+                  children: [
+                    jsx("div", {
+                      className: "font-large text-text-100",
+                      children: formatScope(permission),
+                    }),
+                    permission.lastUsed
+                      ? jsx("div", {
+                          className: "mt-1 text-xs text-text-400",
+                          children: `Last used: ${new Date(permission.lastUsed).toLocaleString()}`,
+                        })
+                      : null,
+                  ],
+                }),
+              }),
+              jsx("button", {
+                type: "button",
+                onClick: () => onRevoke(permission.id),
+                className: DANGER_BUTTON_CLASS,
+                children: "Revoke",
+              }),
+            ],
+          }),
+          index < permissions.length - 1
+            ? jsx("div", { className: "border-b border-border-400" })
+            : null,
         ],
+      }, permission.id),
+    ),
+  });
+}
+
+function PermissionsTab() {
+  const permissionManager = useMemo(
+    () => new PermissionManager(() => false),
+    [],
+  );
+  const [permissionsByScope, setPermissionsByScope] = useState({
+    netloc: [],
+    domain_transition: [],
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  const loadPermissions = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      await permissionManager.loadPermissions();
+      const nextPermissions = permissionManager.getPermissionsByScope();
+      setPermissionsByScope({
+        netloc: nextPermissions.netloc.filter((permission) => !permission.toolUseId),
+        domain_transition: nextPermissions.domain_transition.filter(
+          (permission) => !permission.toolUseId,
+        ),
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [permissionManager]);
+
+  useEffect(() => {
+    loadPermissions();
+  }, [loadPermissions]);
+
+  const handleRevoke = async (permissionId) => {
+    await permissionManager.revokePermission(permissionId);
+    await loadPermissions();
+  };
+
+  if (isLoading) {
+    return jsx("div", {
+      className: "p-6 text-text-200",
+      children: "Loading permissions...",
+    });
+  }
+
+  return jsxs("div", {
+    className: "space-y-6",
+    children: [
+      jsx(NotificationsSection, {}),
+      jsx(MicrophoneSection, {}),
+      jsx(SectionCard, {
+        title: "Your approved sites",
+        description:
+          "You have allowed Codex to take all actions (browse, click, type) on these sites.",
+        children:
+          permissionsByScope.netloc.length > 0
+            ? jsx(ApprovedPermissionList, {
+                permissions: permissionsByScope.netloc,
+                onRevoke: handleRevoke,
+                formatScope: formatPermissionScope,
+              })
+            : jsx("div", {
+                className: "pb-5 text-text-400 font-base-sm",
+                children: "No sites have been approved yet",
+              }),
       }),
-      n.jsx(J, { isOpen: m, returnTabId: p, onClose: () => u(!1) }),
+      permissionsByScope.domain_transition.length > 0
+        ? jsx(SectionCard, {
+            title: "Domain transitions",
+            description: "Permissions for navigating between different domains.",
+            children: jsx(ApprovedPermissionList, {
+              permissions: permissionsByScope.domain_transition,
+              onRevoke: handleRevoke,
+              formatScope: formatPermissionScope,
+            }),
+          })
+        : null,
     ],
   });
 }
-([
-  {
-    category: "general",
-    label: "General",
-    prompts: [
-      {
-        prompt:
-          "Summarize this page and extract the key insights, main arguments, and important data points.",
-        command: "summarize",
-      },
-      {
-        prompt:
-          "Research this topic by visiting multiple authoritative websites and gathering key information. Open each source in a new tab, read through the content, and summarize the main findings from each source.",
-        command: "research",
-      },
-      {
-        prompt:
-          "Compare prices and features for this product across at least 5 different websites. Create a comparison table showing: price, shipping costs, delivery time, return policy, and any special features or bundles. Highlight the best overall value and explain why.",
-        command: "compare-prices",
-      },
-      {
-        prompt:
-          "Fill out this form or application with the information I provide. Before submitting, show me a screenshot of the completed form for review. If there are multiple steps, take a screenshot at each step so I can verify the information is correct.",
-        command: "fill-form",
-      },
-      {
-        prompt:
-          "Extract all the important data from this page (tables, lists, contact info, prices, etc.) and organize it in a clear, structured format that I can easily copy.",
-        command: "extract",
-      },
-      {
-        prompt:
-          "Find and click through all the links on this page to discover what's available. Create a summary of what each major section or link leads to.",
-        command: "explore",
-      },
+
+function PromptCard({ prompt, scheduleText, onEdit, onDelete, menuOpen, setMenuOpen }) {
+  return jsxs("div", {
+    className:
+      "group relative w-full cursor-pointer rounded-2xl border border-border-300 bg-bg-000 p-4 shadow-[0_2px_4px_0_rgba(0,0,0,0.04)] transition-all hover:border-border-200 hover:shadow-[0_4px_20px_0_rgba(0,0,0,0.08)]",
+    onClick: onEdit,
+    children: [
+      jsxs("div", {
+        className: "mb-2 flex items-start justify-between gap-2",
+        children: [
+          jsx("div", {
+            className: "min-w-0 flex-1 text-left",
+            children: prompt.command
+              ? jsxs("div", {
+                  className: "relative overflow-hidden font-large-bold text-text-200",
+                  children: [
+                    jsxs("div", {
+                      className: "whitespace-nowrap",
+                      children: [
+                        jsx("span", {
+                          className: "font-mono text-text-500/50",
+                          children: "/",
+                        }),
+                        jsx("span", {
+                          className: "ml-0.5",
+                          children: prompt.command,
+                        }),
+                      ],
+                    }),
+                    jsx("div", {
+                      className:
+                        "pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-bg-000 to-transparent",
+                    }),
+                  ],
+                })
+              : null,
+          }),
+          jsx("div", {
+            className: "relative",
+            "data-prompt-menu-root": "true",
+            onClick: (event) => event.stopPropagation(),
+            children: jsxs(Fragment, {
+              children: [
+                jsx("button", {
+                  type: "button",
+                  onClick: () => setMenuOpen(menuOpen ? null : prompt.id),
+                  className:
+                    "relative z-10 rounded p-1 opacity-0 transition-colors hover:bg-bg-200 group-hover:opacity-100",
+                  children: jsx(MenuIcon, { className: "h-4 w-4 text-text-300" }),
+                }),
+                menuOpen
+                  ? jsx("div", {
+                      className:
+                        "absolute right-0 top-8 z-20 min-w-32 rounded-xl border border-border-300 bg-bg-000 p-1 shadow-lg",
+                      children: jsxs(Fragment, {
+                        children: [
+                          jsx("button", {
+                            type: "button",
+                            onClick: () => {
+                              setMenuOpen(null);
+                              onEdit();
+                            },
+                            className:
+                              "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-text-200 transition-colors hover:bg-bg-200",
+                            children: "Edit",
+                          }),
+                          jsx("button", {
+                            type: "button",
+                            onClick: () => {
+                              setMenuOpen(null);
+                              onDelete();
+                            },
+                            className:
+                              "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-danger-000 transition-colors hover:bg-danger-000/10",
+                            children: "Delete",
+                          }),
+                        ],
+                      }),
+                    })
+                  : null,
+              ],
+            }),
+          }),
+        ],
+      }),
+      jsx("div", {
+        className: "w-full rounded-lg bg-bg-100 p-3 text-left",
+        children: jsx("div", {
+          className: "h-24 overflow-y-auto whitespace-pre-wrap text-sm text-text-300",
+          children: prompt.prompt,
+        }),
+      }),
+      scheduleText
+        ? jsx("div", {
+            className: "mt-3 text-text-300",
+            children: jsx("span", {
+              className: "text-xs",
+              children: scheduleText,
+            }),
+          })
+        : null,
     ],
-  },
-  {
-    category: "email",
-    label: "Email",
-    prompts: [
-      {
-        prompt:
-          "Go through my recent emails and help me unsubscribe from promotional/marketing emails. \n\nFocus on: retail promotions, marketing newsletters, sales emails, and automated promotional content. DO NOT unsubscribe from: transactional emails (receipts, shipping notifications), account security emails, or emails that appear to be personal/conversational. \n\nStart with emails from the last 2 weeks. Before unsubscribing from anything, give me a full list of the different emails you plan to unsubscribe from so I can confirm you're identifying the right types of emails. When you do this, make sure to ask me if there's any of those emails you should not unsubscribe from.\n\nFor each promotional email you find: (1) Look for and click the native \"unsubscribe\" button from google (top of the email, next to sender email address); (2) Keep a running list of what you've unsubscribed from.",
-        command: "unsubscribe",
-      },
-      {
-        prompt:
-          "Go through my email inbox and archive all emails where: (A) I don't need to take any actions; AND (B) where the email does not appear to be from an actual human (personal tone, specific to me, conversational).\n\nIf an email only meets one of those two criteria, don't archive it.\n\nEmails to archive covers things like general notifications, calendar invitations / acceptances, promotions etc.\n\nRemember – the archive button is the one that is second on the left. It has a down arrow sign within a folder. Make sure that you are not clicking the 'labels' button (second from the right, rectangular type of button that points right), and don't press \"move to\" as well (third from the right, folder icon with right arrow). DO NOT MARK AS SPAM (which is third button from left, the exclamation mark (\"report spam\" button).\n\nBefore you click to archive the first time, take a screenshot when you hover on the \"archive\" button to confirm that you are taking the action intended.\n\nAfter you click to archive, make sure to take a screenshot before taking any further actions so that you don't get lost.\n\nAlso archive any google automatic reminder emails for following up on emails I've sent in the past that haven't gotten a response.",
-        command: "archive",
-      },
-      {
-        prompt:
-          "Go through my inbox and draft thoughtful responses to emails that require my attention. For each email that needs a response: \n\n1) Read the full context and any previous thread messages within that same email chain; (2) Draft a response that maintains my professional tone while being warm and helpful; (3) Save as a draft but DO NOT send. Once you've written the draft, Click on the \"back\" button in the top bar, which is the far left button and directly on left of the archive button, which takes you back to inbox and automatically saves the draft. Focus on emails from the last 3 days.\n\nOnly click into emails that you think need a response when looking at the sender and subject line – don't click into automated notifications, calendar invites etc.\n\nFor an email that needs a response, make sure you click in and expand each of the previous emails within the chain. You can see the collapsed preview state in the middle / top side of the email chain, with the number of how many previous emails are in the thread. Make sure to click into each one to get all the context, don't skip out on this.\n\nAfter you've drafted the email, click on the \"back to inbox\" button (left pointing arrow) that is the far left button on the top bar (the button is on the left of the archive button). This will take you back to inbox, and you can then go onto the next email.",
-        command: "draft-responses",
-      },
-      {
-        prompt:
-          "Extract action items and deadlines from all unread emails and create a prioritized task list.",
-        command: "actions",
-      },
-      {
-        prompt:
-          "Go through my sent emails from the last week and identify any that haven't received a response. Create a list of who I'm waiting to hear back from and what about.",
-        command: "follow-ups",
-      },
-      {
-        prompt:
-          "Review my email drafts folder and help me finish or send any drafts that have been sitting there. Show me each draft and ask what action to take.",
-        command: "review-drafts",
-      },
+  });
+}
+
+function PromptScheduleControls({
+  scheduleEnabled,
+  setScheduleEnabled,
+  repeatType,
+  setRepeatType,
+  specificDate,
+  setSpecificDate,
+  dayOfWeek,
+  setDayOfWeek,
+  dayOfMonth,
+  setDayOfMonth,
+  month,
+  setMonth,
+  day,
+  setDay,
+  specificTime,
+  setSpecificTime,
+  url,
+  setUrl,
+  urlError,
+  model,
+  setModel,
+}) {
+  const modelOptions = useMemo(() => getModelOptions(model), [model]);
+
+  return jsxs("div", {
+    className: "space-y-3",
+    children: [
+      jsx(Field, {
+        label: "Start from",
+        error: urlError,
+        children: jsx("input", {
+          type: "text",
+          value: url,
+          onChange: (event) => setUrl(event.target.value),
+          placeholder: "https://example.com",
+          className: INPUT_CLASS,
+        }),
+      }),
+      jsxs("label", {
+        className: "mt-4 flex cursor-pointer items-center justify-between",
+        children: [
+          jsx("span", {
+            className: "font-base text-text-200",
+            children: "Schedule",
+          }),
+          jsx(ToggleSwitch, {
+            checked: scheduleEnabled,
+            onChange: (event) => setScheduleEnabled(event.target.checked),
+          }),
+        ],
+      }),
+      scheduleEnabled
+        ? jsxs("div", {
+            className: "space-y-3",
+            children: [
+              jsx(Field, {
+                label: "Repeat",
+                children: jsx("select", {
+                  value: repeatType,
+                  onChange: (event) => setRepeatType(event.target.value),
+                  className: SELECT_CLASS,
+                  children: PROMPT_REPEAT_OPTIONS.map((option) =>
+                    jsx(
+                      "option",
+                      { value: option.value, children: option.label },
+                      option.value,
+                    ),
+                  ),
+                }),
+              }),
+              repeatType === "once"
+                ? jsxs("div", {
+                    className: "grid gap-2 md:grid-cols-2",
+                    children: [
+                      jsx(Field, {
+                        label: "Date",
+                        children: jsx("input", {
+                          type: "date",
+                          value: specificDate,
+                          min: getYesterdayDateForInput(),
+                          onChange: (event) => setSpecificDate(event.target.value),
+                          className: INPUT_CLASS,
+                        }),
+                      }),
+                      jsx(Field, {
+                        label: "Time",
+                        children: jsx("input", {
+                          type: "time",
+                          value: specificTime,
+                          onChange: (event) => setSpecificTime(event.target.value),
+                          className: INPUT_CLASS,
+                        }),
+                      }),
+                    ],
+                  })
+                : null,
+              repeatType === "daily"
+                ? jsx(Field, {
+                    label: "Time",
+                    children: jsx("input", {
+                      type: "time",
+                      value: specificTime,
+                      onChange: (event) => setSpecificTime(event.target.value),
+                      className: INPUT_CLASS,
+                    }),
+                  })
+                : null,
+              repeatType === "weekly"
+                ? jsxs("div", {
+                    className: "grid gap-2 md:grid-cols-2",
+                    children: [
+                      jsx(Field, {
+                        label: "Day of week",
+                        children: jsx("select", {
+                          value: String(dayOfWeek),
+                          onChange: (event) => setDayOfWeek(Number(event.target.value)),
+                          className: SELECT_CLASS,
+                          children: WEEKDAY_LABELS.map((label, index) =>
+                            jsx(
+                              "option",
+                              { value: String(index), children: label },
+                              label,
+                            ),
+                          ),
+                        }),
+                      }),
+                      jsx(Field, {
+                        label: "Time",
+                        children: jsx("input", {
+                          type: "time",
+                          value: specificTime,
+                          onChange: (event) => setSpecificTime(event.target.value),
+                          className: INPUT_CLASS,
+                        }),
+                      }),
+                    ],
+                  })
+                : null,
+              repeatType === "monthly"
+                ? jsxs("div", {
+                    className: "grid gap-2 md:grid-cols-2",
+                    children: [
+                      jsx(Field, {
+                        label: "Day of month",
+                        children: jsx("select", {
+                          value: String(dayOfMonth),
+                          onChange: (event) =>
+                            setDayOfMonth(Number(event.target.value)),
+                          className: SELECT_CLASS,
+                          children: Array.from({ length: 31 }, (_, index) => {
+                            const value = index + 1;
+                            return jsx(
+                              "option",
+                              {
+                                value: String(value),
+                                children: `${value}${formatOrdinal(value)}`,
+                              },
+                              value,
+                            );
+                          }),
+                        }),
+                      }),
+                      jsx(Field, {
+                        label: "Time",
+                        children: jsx("input", {
+                          type: "time",
+                          value: specificTime,
+                          onChange: (event) => setSpecificTime(event.target.value),
+                          className: INPUT_CLASS,
+                        }),
+                      }),
+                    ],
+                  })
+                : null,
+              repeatType === "annually"
+                ? jsxs("div", {
+                    className: "grid gap-2 md:grid-cols-3",
+                    children: [
+                      jsx(Field, {
+                        label: "Month",
+                        children: jsx("select", {
+                          value: String(month),
+                          onChange: (event) => setMonth(Number(event.target.value)),
+                          className: SELECT_CLASS,
+                          children: MONTH_LABELS.map((label, index) =>
+                            jsx(
+                              "option",
+                              { value: String(index + 1), children: label },
+                              label,
+                            ),
+                          ),
+                        }),
+                      }),
+                      jsx(Field, {
+                        label: "Day",
+                        children: jsx("select", {
+                          value: String(day),
+                          onChange: (event) => setDay(Number(event.target.value)),
+                          className: SELECT_CLASS,
+                          children: Array.from({ length: 31 }, (_, index) => {
+                            const value = index + 1;
+                            return jsx(
+                              "option",
+                              {
+                                value: String(value),
+                                children: `${value}${formatOrdinal(value)}`,
+                              },
+                              value,
+                            );
+                          }),
+                        }),
+                      }),
+                      jsx(Field, {
+                        label: "Time",
+                        children: jsx("input", {
+                          type: "time",
+                          value: specificTime,
+                          onChange: (event) => setSpecificTime(event.target.value),
+                          className: INPUT_CLASS,
+                        }),
+                      }),
+                    ],
+                  })
+                : null,
+            ],
+          })
+        : null,
+      jsx(Field, {
+        label: "Model",
+        children: jsx("select", {
+          value: model,
+          onChange: (event) => setModel(event.target.value),
+          className: SELECT_CLASS,
+          children: modelOptions.map((option) =>
+            jsx(
+              "option",
+              {
+                value: option.model,
+                children: option.name,
+              },
+              option.model,
+            ),
+          ),
+        }),
+      }),
     ],
-  },
-  {
-    category: "docs",
-    label: "Docs",
-    prompts: [
-      {
-        prompt:
-          "Create a comprehensive document from my outline, researching and writing each section with proper formatting.",
-        command: "create-doc",
-      },
-      {
-        prompt:
-          "Review this document for clarity, grammar, structure, and factual accuracy, then implement improvements.",
-        command: "review",
-      },
-      {
-        prompt:
-          "Generate an executive summary and key takeaways from this long document.",
-        command: "summarize-doc",
-      },
-      {
-        prompt:
-          "Convert this document to different formats while preserving all formatting, images, and data.",
-        command: "convert",
-      },
-      {
-        prompt:
-          "Merge multiple documents into one cohesive file, removing duplicates and organizing content logically.",
-        command: "merge",
-      },
-      {
-        prompt:
-          "Create a presentation from this document with slides, speaker notes, and visual elements.",
-        command: "present",
-      },
-    ],
-  },
-  {
-    category: "calendar",
-    label: "Calendar",
-    prompts: [
-      {
-        prompt:
-          "Find the optimal meeting time for all participants across different time zones and schedule it.",
-        command: "schedule",
-      },
-      {
-        prompt:
-          "Analyze my calendar patterns and suggest ways to optimize for productivity and work-life balance.",
-        command: "optimize",
-      },
-      {
-        prompt:
-          "Resolve all scheduling conflicts by proposing alternative times and notifying affected parties.",
-        command: "conflicts",
-      },
-      {
-        prompt:
-          "Block focus time for deep work based on my priorities and energy patterns throughout the day.",
-        command: "focus",
-      },
-      {
-        prompt:
-          "Plan a multi-day event with sessions, breaks, and logistics, sending invites to all participants.",
-        command: "event",
-      },
-      {
-        prompt:
-          "Create recurring meetings with smart scheduling that avoids holidays and conflicts.",
-        command: "recurring",
-      },
-    ],
-  },
-  {
-    category: "linkedin",
-    label: "LinkedIn",
-    prompts: [
-      {
-        prompt:
-          "Write an engaging LinkedIn post about this topic that will resonate with my professional network.",
-        command: "post",
-      },
-      {
-        prompt:
-          "Optimize my entire LinkedIn profile with keywords, compelling descriptions, and strategic positioning.",
-        command: "profile",
-      },
-      {
-        prompt:
-          "Identify and connect with relevant professionals in my industry with personalized messages.",
-        command: "network",
-      },
-      {
-        prompt:
-          "Search for jobs matching my skills, apply with tailored resumes, and track application status.",
-        command: "jobs",
-      },
-      {
-        prompt:
-          "Research this company's culture, recent news, and key employees to prepare for outreach or interviews.",
-        command: "company",
-      },
-      {
-        prompt:
-          "Analyze my LinkedIn analytics and suggest content strategies to increase engagement and reach.",
-        command: "analytics",
-      },
-    ],
-  },
-].flatMap((e) => e.prompts),
-  R(),
-  _(),
-  L(),
-  a.createRoot(document.getElementById("root")).render(
-    n.jsx(r.StrictMode, {
-      children: n.jsx(H, { pageName: "Options", children: n.jsx(ce, {}) }),
+  });
+}
+
+function PromptEditorModal({ prompt, onClose, onSave }) {
+  const isEditing = Boolean(prompt?.id);
+  const commandInputRef = useRef(null);
+  const [command, setCommand] = useState(prompt?.command || "");
+  const [promptText, setPromptText] = useState(prompt?.prompt || "");
+  const [commandError, setCommandError] = useState("");
+  const [promptError, setPromptError] = useState("");
+  const [urlError, setUrlError] = useState("");
+  const [formError, setFormError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [scheduleEnabled, setScheduleEnabled] = useState(
+    Boolean(prompt?.repeatType && prompt.repeatType !== "none"),
+  );
+  const [repeatType, setRepeatType] = useState(
+    prompt?.repeatType && prompt.repeatType !== "none" ? prompt.repeatType : "once",
+  );
+  const [specificDate, setSpecificDate] = useState(prompt?.specificDate || "");
+  const [specificTime, setSpecificTime] = useState(prompt?.specificTime || "09:00");
+  const [dayOfWeek, setDayOfWeek] = useState(prompt?.dayOfWeek ?? 0);
+  const [dayOfMonth, setDayOfMonth] = useState(prompt?.dayOfMonth || 1);
+  const [month, setMonth] = useState(
+    (prompt?.monthAndDay && Number(prompt.monthAndDay.split("-")[0])) || 1,
+  );
+  const [day, setDay] = useState(
+    (prompt?.monthAndDay && Number(prompt.monthAndDay.split("-")[1])) || 1,
+  );
+  const [url, setUrl] = useState(prompt?.url || "");
+  const [model, setModel] = useState(prompt?.model || MODEL_CONFIG.default);
+
+  const handleSave = useCallback(async () => {
+    setIsSaving(true);
+    setCommandError("");
+    setPromptError("");
+    setUrlError("");
+    setFormError("");
+
+    const trimmedCommand = command.trim();
+    const trimmedPrompt = promptText.trim();
+    const trimmedUrl = url.trim();
+
+    if (!trimmedCommand) {
+      setCommandError("Name is required");
+      setIsSaving(false);
+      return;
+    }
+
+    if (!trimmedPrompt) {
+      setPromptError("Prompt is required");
+      setIsSaving(false);
+      return;
+    }
+
+    if (scheduleEnabled && trimmedUrl) {
+      if (!trimmedUrl.startsWith("http://") && !trimmedUrl.startsWith("https://")) {
+        setUrlError("URL must start with http:// or https://");
+        setIsSaving(false);
+        return;
+      }
+
+      try {
+        new URL(trimmedUrl);
+      } catch {
+        setUrlError("Invalid URL format");
+        setIsSaving(false);
+        return;
+      }
+    }
+
+    const payload = {
+      prompt: trimmedPrompt,
+      command: trimmedCommand,
+      url: trimmedUrl || undefined,
+    };
+
+    if (scheduleEnabled) {
+      payload.repeatType = repeatType;
+      payload.specificTime = specificTime;
+      payload.model = model;
+      if (repeatType === "once") payload.specificDate = specificDate;
+      if (repeatType === "weekly") payload.dayOfWeek = dayOfWeek;
+      if (repeatType === "monthly") payload.dayOfMonth = dayOfMonth;
+      if (repeatType === "annually") {
+        payload.monthAndDay = `${String(month).padStart(2, "0")}-${String(day).padStart(
+          2,
+          "0",
+        )}`;
+      }
+    } else {
+      payload.repeatType = undefined;
+      payload.specificTime = undefined;
+      payload.specificDate = undefined;
+      payload.dayOfWeek = undefined;
+      payload.dayOfMonth = undefined;
+      payload.monthAndDay = undefined;
+      payload.model = undefined;
+    }
+
+    try {
+      if (isEditing) {
+        await updatePromptInStorage(prompt.id, payload);
+      } else {
+        await savePromptToStorage({
+          ...payload,
+          createdAt: Date.now(),
+          usageCount: 0,
+        });
+      }
+
+      onSave(isEditing);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to save";
+      if (message.includes("already in use")) {
+        setCommandError(message);
+      } else {
+        setFormError(message);
+      }
+    } finally {
+      setIsSaving(false);
+    }
+  }, [
+    command,
+    day,
+    dayOfMonth,
+    dayOfWeek,
+    isEditing,
+    model,
+    onSave,
+    prompt?.id,
+    promptText,
+    repeatType,
+    scheduleEnabled,
+    specificDate,
+    specificTime,
+    url,
+    month,
+  ]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => commandInputRef.current?.focus(), 100);
+
+    if (!isEditing) {
+      queryCurrentTabOrigin().then((origin) => {
+        if (origin) {
+          setUrl(origin);
+        }
+      });
+    }
+
+    return () => window.clearTimeout(timer);
+  }, [isEditing]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key !== "Enter") return;
+
+      const target = document.activeElement;
+      const tagName = target?.tagName;
+      const isEditable =
+        tagName === "INPUT" ||
+        tagName === "TEXTAREA" ||
+        tagName === "SELECT" ||
+        target?.isContentEditable;
+
+      if (!isEditable) {
+        event.preventDefault();
+        void handleSave();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleSave]);
+
+  return jsx(Modal, {
+    open: true,
+    onClose,
+    title: isEditing ? "Edit shortcut" : "Create shortcut",
+    sizeClassName: "max-w-4xl",
+    children: jsxs("div", {
+      className: "space-y-4",
+      children: [
+        jsx(Field, {
+          label: "Name",
+          error: commandError,
+          children: jsx("div", {
+            className: "relative",
+            children: jsxs(Fragment, {
+              children: [
+                jsx("span", {
+                  className:
+                    "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-300",
+                  children: "/",
+                }),
+                jsx("input", {
+                  ref: commandInputRef,
+                  type: "text",
+                  value: command,
+                  onChange: (event) => {
+                    const nextValue = event.target.value
+                      .replace(/\s/g, "-")
+                      .replace(/[^a-zA-Z0-9-_]/g, "");
+                    setCommand(nextValue);
+                    if (commandError) setCommandError("");
+                    if (formError) setFormError("");
+                  },
+                  placeholder: "task-name",
+                  className: cx(INPUT_CLASS, "pl-7"),
+                }),
+              ],
+            }),
+          }),
+        }),
+        jsx(Field, {
+          label: "Prompt",
+          error: promptError,
+          children: jsx("textarea", {
+            required: true,
+            value: promptText,
+            onChange: (event) => {
+              setPromptText(event.target.value);
+              if (promptError) setPromptError("");
+              if (formError) setFormError("");
+            },
+            placeholder: "Enter your prompt text...",
+            className: cx(TEXTAREA_CLASS, "min-h-32 max-h-64 overflow-y-auto text-sm"),
+          }),
+        }),
+        jsx(PromptScheduleControls, {
+          scheduleEnabled,
+          setScheduleEnabled,
+          repeatType,
+          setRepeatType,
+          specificDate,
+          setSpecificDate,
+          dayOfWeek,
+          setDayOfWeek,
+          dayOfMonth,
+          setDayOfMonth,
+          month,
+          setMonth,
+          day,
+          setDay,
+          specificTime,
+          setSpecificTime,
+          url,
+          setUrl: (nextUrl) => {
+            setUrl(nextUrl);
+            if (urlError) setUrlError("");
+          },
+          urlError,
+          model,
+          setModel,
+        }),
+        formError
+          ? jsx("div", {
+              className: "rounded-lg border border-danger-000/20 bg-danger-000/10 px-4 py-3 text-danger-000",
+              children: formError,
+            })
+          : null,
+        jsxs("div", {
+          className: "flex items-center justify-end gap-3 border-t border-border-300 pt-4",
+          children: [
+            jsx("button", {
+              type: "button",
+              onClick: onClose,
+              className: SECONDARY_BUTTON_CLASS,
+              children: "Cancel",
+            }),
+            jsx("button", {
+              type: "button",
+              onClick: handleSave,
+              disabled: isSaving,
+              className: PRIMARY_BUTTON_CLASS,
+              children: isSaving
+                ? "Saving..."
+                : isEditing
+                  ? "Save changes"
+                  : "Create shortcut",
+            }),
+          ],
+        }),
+      ],
     }),
-  ));
+  });
+}
+
+function PromptsTab() {
+  const { prompts, isLoaded, refreshPrompts } = usePromptList();
+  const [editingPrompt, setEditingPrompt] = useState(null);
+  const [isCreatingPrompt, setIsCreatingPrompt] = useState(false);
+  const [openMenuId, setOpenMenuId] = useState(null);
+
+  useEffect(() => {
+    if (!openMenuId) return undefined;
+
+    const handleDocumentClick = (event) => {
+      const menuRoot = event.target.closest("[data-prompt-menu-root='true']");
+      if (!menuRoot) {
+        setOpenMenuId(null);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+    return () => document.removeEventListener("click", handleDocumentClick);
+  }, [openMenuId]);
+
+  const scheduledPrompts = prompts.filter((prompt) => isPromptScheduled(prompt));
+  const otherPrompts = prompts.filter((prompt) => !isPromptScheduled(prompt));
+
+  const handleDelete = async (promptId) => {
+    const shouldDelete = window.confirm("Are you sure you want to delete this prompt?");
+    if (!shouldDelete) return;
+
+    await deletePromptFromStorage(promptId);
+    await refreshPrompts();
+    notify("Shortcut deleted");
+  };
+
+  const handleSavedPrompt = async (isEditing) => {
+    await refreshPrompts();
+    setEditingPrompt(null);
+    setIsCreatingPrompt(false);
+    notify(isEditing ? "Shortcut updated" : "Shortcut added");
+  };
+
+  if (!isLoaded) {
+    return jsx("div", {
+      className: "p-6 text-text-200",
+      children: "Loading shortcuts...",
+    });
+  }
+
+  return jsxs("div", {
+    className: "space-y-6",
+    children: [
+      jsx(SectionCard, {
+        title: "Shortcuts",
+        description: "Type / in the chat to use shortcuts or run them on schedule.",
+        children: jsxs(Fragment, {
+          children: [
+            jsxs("div", {
+              className: "mb-6 flex items-start justify-between gap-4",
+              children: [
+                jsx("div", {}),
+                jsx("button", {
+                  type: "button",
+                  onClick: () => {
+                    setEditingPrompt(null);
+                    setIsCreatingPrompt(true);
+                  },
+                  className: SECONDARY_BUTTON_CLASS,
+                  children: "+ Create shortcut",
+                }),
+              ],
+            }),
+
+            scheduledPrompts.length > 0
+              ? jsxs("div", {
+                  className: "space-y-4",
+                  children: [
+                    jsxs("div", {
+                      className: "mb-4 flex items-center gap-2",
+                      children: [
+                        jsx(ClockIcon, { className: "h-4 w-4 text-text-300" }),
+                        jsx("h4", {
+                          className: "font-base-bold text-text-200",
+                          children: "Scheduled",
+                        }),
+                      ],
+                    }),
+                    jsx("div", {
+                      className:
+                        "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3",
+                      children: scheduledPrompts.map((prompt) =>
+                        jsx(
+                          PromptCard,
+                          {
+                            prompt,
+                            scheduleText: formatPromptSchedule(prompt),
+                            menuOpen: openMenuId === prompt.id,
+                            setMenuOpen: setOpenMenuId,
+                            onEdit: () => setEditingPrompt(prompt),
+                            onDelete: () => handleDelete(prompt.id),
+                          },
+                          prompt.id,
+                        ),
+                      ),
+                    }),
+                  ],
+                })
+              : null,
+
+            otherPrompts.length > 0
+              ? jsxs("div", {
+                  className: "space-y-4",
+                  children: [
+                    scheduledPrompts.length > 0
+                      ? jsxs("div", {
+                          className: "mb-4 flex items-center gap-2",
+                          children: [
+                            jsx(KeyboardIcon, { className: "h-4 w-4 text-text-300" }),
+                            jsx("h4", {
+                              className: "font-base-bold text-text-200",
+                              children: "Other",
+                            }),
+                          ],
+                        })
+                      : null,
+                    jsx("div", {
+                      className:
+                        "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3",
+                      children: otherPrompts.map((prompt) =>
+                        jsx(
+                          PromptCard,
+                          {
+                            prompt,
+                            menuOpen: openMenuId === prompt.id,
+                            setMenuOpen: setOpenMenuId,
+                            onEdit: () => setEditingPrompt(prompt),
+                            onDelete: () => handleDelete(prompt.id),
+                          },
+                          prompt.id,
+                        ),
+                      ),
+                    }),
+                  ],
+                })
+              : null,
+
+            prompts.length === 0
+              ? jsxs("div", {
+                  className: "rounded-xl bg-bg-200 p-12 text-center",
+                  children: [
+                    jsx("div", {
+                      className:
+                        "mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-bg-000 text-text-300",
+                      children: jsx(KeyboardIcon, { className: "h-8 w-8" }),
+                    }),
+                    jsx("p", {
+                      className: "mx-auto max-w-xs text-text-300",
+                      children: "Create your first shortcut to get started",
+                    }),
+                  ],
+                })
+              : null,
+          ],
+        }),
+      }),
+      isCreatingPrompt
+        ? jsx(PromptEditorModal, {
+            prompt: null,
+            onClose: () => setIsCreatingPrompt(false),
+            onSave: handleSavedPrompt,
+          })
+        : null,
+      editingPrompt
+        ? jsx(PromptEditorModal, {
+            prompt: editingPrompt,
+            onClose: () => setEditingPrompt(null),
+            onSave: handleSavedPrompt,
+          })
+        : null,
+    ],
+  });
+}
+
+function OptionsTab() {
+  return jsxs("div", {
+    className: "space-y-6",
+    children: [
+      jsx(ShortcutSection, {}),
+      jsx(SafetyBannerSection, {}),
+    ],
+  });
+}
+
+function SideNav({ activeTab, onTabChange, onLogout, canLogout }) {
+  return jsxs("nav", {
+    className:
+      "relative mb-4 w-full overflow-x-auto p-2 md:sticky md:top-4 md:mb-0 md:w-full",
+    children: [
+      jsx("ul", {
+        className: "mb-0 flex gap-1 md:flex-col",
+        children: ALLOWED_TABS.map((tab) =>
+          jsx(
+            "li",
+            {
+              children: jsx("button", {
+                type: "button",
+                onClick: () => onTabChange(tab),
+                className: cx(
+                  NAV_BUTTON_CLASS,
+                  activeTab === tab
+                    ? "bg-bg-300 font-medium text-text-000"
+                    : "text-text-200 hover:bg-bg-200 hover:text-text-100",
+                ),
+                children:
+                  tab === "permissions"
+                    ? "Permissions"
+                    : tab === "prompts"
+                      ? "Shortcuts"
+                      : "Options",
+              }),
+            },
+            tab,
+          ),
+        ),
+      }),
+      canLogout
+        ? jsx("div", {
+            className: "mt-4 border-t border-border-300 pt-4",
+            children: jsx("button", {
+              type: "button",
+              onClick: onLogout,
+              className: cx(
+                DANGER_BUTTON_CLASS,
+                "w-full justify-start px-3 py-3 text-left",
+              ),
+              children: jsxs(Fragment, {
+                children: [
+                  jsx(LogoutIcon, { className: "h-4 w-4" }),
+                  "Log out",
+                ],
+              }),
+            }),
+          })
+        : null,
+    ],
+  });
+}
+
+function SettingsLayout({ activeTab, onTabChange, onLogout, canLogout, children }) {
+  return jsxs("div", {
+    className: "grid w-full max-w-6xl gap-x-8 md:grid-cols-[220px_minmax(0px,_1fr)]",
+    children: [
+      jsx(SideNav, {
+        activeTab,
+        onTabChange,
+        onLogout,
+        canLogout,
+      }),
+      jsx("div", { children }),
+    ],
+  });
+}
+
+function RequestMicrophoneModal({ open, returnTabId, onClose }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const [isRequesting, setIsRequesting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const statusRef = useRef({ returnTabId });
+
+  useEffect(() => {
+    statusRef.current = { returnTabId };
+  }, [returnTabId]);
+
+  const closeAndReturn = useCallback(() => {
+    if (isClosing) return;
+    setIsClosing(true);
+    window.setTimeout(() => {
+      const { returnTabId: targetTabId } = statusRef.current;
+      if (targetTabId) {
+        chrome.tabs.update(targetTabId, { active: true }, () => {
+          chrome.tabs.getCurrent((currentTab) => {
+            if (currentTab?.id) {
+              chrome.tabs.remove(currentTab.id);
+            }
+          });
+        });
+      } else {
+        chrome.tabs.getCurrent((currentTab) => {
+          if (currentTab?.id) {
+            chrome.tabs.remove(currentTab.id);
+          }
+        });
+      }
+    }, 200);
+  }, [isClosing]);
+
+  const [permissionState, refreshPermission] = useMicrophonePermission(
+    open,
+    closeAndReturn,
+  );
+
+  useEffect(() => {
+    if (!open) {
+      setIsClosing(false);
+      setIsRequesting(false);
+      setErrorMessage("");
+    }
+  }, [open]);
+
+  const handleRequestAccess = async () => {
+    setIsRequesting(true);
+    setErrorMessage("");
+
+    try {
+      await requestMicrophoneAccess();
+      const nextState = await refreshPermission();
+      if (nextState === "granted") {
+        closeAndReturn();
+        return;
+      }
+      setErrorMessage(
+        'You selected "Allow this time" which doesn\'t persist. Please click the button again and select "Allow while visiting the site" to enable voice narration.',
+      );
+    } catch (error) {
+      if (error instanceof DOMException) {
+        if (error.name === "NotAllowedError") {
+          await refreshPermission();
+        } else if (error.name === "NotFoundError") {
+          setErrorMessage("No microphone found. Please connect a microphone and try again.");
+        } else {
+          setErrorMessage(`Error: ${error.message}`);
+        }
+      } else if (error instanceof Error) {
+        setErrorMessage(`Error: ${error.message}`);
+      } else {
+        setErrorMessage("An unknown error occurred");
+      }
+    } finally {
+      setIsRequesting(false);
+    }
+  };
+
+  if (!open) return null;
+
+  const cardState = isClosing ? "opacity-0 scale-95" : "opacity-100 scale-100";
+
+  return jsx("div", {
+    className: cx(
+      "fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-200",
+      isClosing ? "opacity-0" : "opacity-100",
+    ),
+    children: jsx("div", {
+      className: cx(
+        "mx-4 w-full max-w-md rounded-2xl bg-bg-000 shadow-xl transition-all duration-200",
+        cardState,
+      ),
+      children: jsxs("div", {
+        className: "px-6 pb-6 pt-6 text-center",
+        children: [
+          jsxs("div", {
+            className: "mb-4 flex items-center justify-between",
+            children: [
+              jsx("div", { className: "w-8" }),
+              jsx("button", {
+                type: "button",
+                onClick: () => {
+                  setIsClosing(true);
+                  window.setTimeout(() => {
+                    onClose();
+                  }, 200);
+                },
+                className: "rounded-lg p-2 text-text-300 transition-colors hover:bg-bg-200",
+                "aria-label": "Close",
+                children: jsx(XCircleIcon, { className: "h-4 w-4" }),
+              }),
+            ],
+          }),
+          jsx("div", {
+            className:
+              "mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand-100/10 text-brand-100",
+            children: jsx(MicIcon, { className: "h-8 w-8" }),
+          }),
+          jsx("h2", {
+            className: "mb-2 font-xl-bold text-text-100",
+            children: "Enable microphone access",
+          }),
+          jsx("p", {
+            className: "mb-6 font-base text-text-300",
+            children:
+              "Codex needs microphone access to hear your voice narration while you demonstrate workflows. When prompted, select Allow while visiting the site to enable voice narration.",
+          }),
+          permissionState === "granted"
+            ? jsxs("div", {
+                className:
+                  "mb-6 rounded-xl border border-success-100/20 bg-success-100/10 p-4",
+                children: [
+                  jsxs("div", {
+                    className:
+                      "flex items-center justify-center gap-2 text-success-100",
+                    children: [
+                      jsx(CheckCircleIcon, { className: "h-5 w-5" }),
+                      jsx("span", {
+                        className: "font-large",
+                        children: "Microphone access granted",
+                      }),
+                    ],
+                  }),
+                  jsx("p", {
+                    className: "mt-2 font-base-sm text-text-300",
+                    children: "Returning to your workflow...",
+                  }),
+                ],
+              })
+            : null,
+          permissionState === "denied"
+            ? jsx("div", {
+                className:
+                  "mb-6 rounded-xl border border-danger-000/20 bg-danger-000/10 p-4",
+                children: jsx("p", {
+                  className: "font-base text-danger-000",
+                  children: jsxs(Fragment, {
+                    children: [
+                      "Microphone access was denied. You can either try again or ",
+                      jsx("button", {
+                        type: "button",
+                        onClick: () => {
+                          chrome.tabs.create({
+                            url: `chrome://settings/content/siteDetails?site=chrome-extension%3A%2F%2F${chrome.runtime.id}%2F`,
+                          });
+                        },
+                        className: "underline transition-colors hover:no-underline",
+                        children: "open Chrome settings",
+                      }),
+                      " to enable microphone access.",
+                    ],
+                  }),
+                }),
+              })
+            : null,
+          errorMessage
+            ? jsx("div", {
+                className:
+                  "mb-6 rounded-xl border border-danger-000/20 bg-danger-000/10 p-4",
+                children: jsx("p", {
+                  className: "font-base text-danger-000",
+                  children: errorMessage,
+                }),
+              })
+            : null,
+          permissionState !== "granted" && permissionState !== "denied"
+            ? jsxs(Fragment, {
+                children: [
+                  jsx("button", {
+                    type: "button",
+                    onClick: handleRequestAccess,
+                    disabled: isRequesting,
+                    className: cx(PRIMARY_BUTTON_CLASS, "w-full"),
+                    children: isRequesting ? "Requesting access..." : "Allow microphone access",
+                  }),
+                  jsx("button", {
+                    type: "button",
+                    onClick: () => {
+                      setIsClosing(true);
+                      window.setTimeout(() => {
+                        onClose();
+                      }, 200);
+                    },
+                    className: "mt-4 font-base-sm text-text-300 transition-colors hover:text-text-200",
+                    children: "Skip for now",
+                  }),
+                ],
+              })
+            : jsx("button", {
+                type: "button",
+                onClick: () => {
+                  setIsClosing(true);
+                  window.setTimeout(() => {
+                    onClose();
+                  }, 200);
+                },
+                className: "mt-4 font-base-sm text-text-300 transition-colors hover:text-text-200",
+                children: "Close",
+              }),
+        ],
+      }),
+    }),
+  });
+}
+
+function App() {
+  const authState = useAuthState();
+  const [activeTab, setActiveTab] = useState("permissions");
+  const [showRequestMicrophone, setShowRequestMicrophone] = useState(false);
+  const [returnTabId, setReturnTabId] = useState(undefined);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const { tab, requestMicrophone, returnTabId: nextReturnTabId } = parseHashState();
+      setActiveTab(tab);
+      setShowRequestMicrophone(requestMicrophone);
+      setReturnTabId(nextReturnTabId);
+    };
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, []);
+
+  const handleTabChange = (nextTab) => {
+    setActiveTab(nextTab);
+    window.location.hash = nextTab;
+  };
+
+  const handleLogin = async () => {
+    setIsLoggingIn(true);
+    try {
+      await startOAuthFlow();
+    } catch {
+      // The original page ignores login failures here.
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const result = await chrome.runtime.sendMessage({ type: "logout" });
+      if (!result?.success) {
+        throw new Error(result?.error || "Logout failed");
+      }
+      window.location.reload();
+    } catch {
+      alert("Failed to logout. Please try again.");
+    }
+  };
+
+  const canShowSettings = authState.isAuthenticated;
+
+  return jsxs("div", {
+    "data-theme": "claude",
+    children: [
+      jsx("div", {
+        className: "sticky top-0 z-header h-12 w-full bg-bg-100",
+        children: jsx("div", {
+          className: "flex h-full w-full items-center justify-between gap-4 pl-11 pr-3 lg:pl-8",
+          children: jsx("h1", {
+            className: "font-heading text-lg text-text-200",
+            children: "Codex in Chrome settings",
+          }),
+        }),
+      }),
+      jsx("main", {
+        className: "mx-auto mt-4 flex w-full flex-1 px-4 md:pl-8 lg:mt-6",
+        children: authState.isLoaded
+          ? canShowSettings
+            ? jsx(SettingsLayout, {
+                activeTab,
+                onTabChange: handleTabChange,
+                onLogout: handleLogout,
+                canLogout: true,
+                children: jsx(
+                  activeTab === "permissions"
+                    ? PermissionsTab
+                    : activeTab === "prompts"
+                      ? PromptsTab
+                      : OptionsTab,
+                  {},
+                ),
+              })
+            : jsx(LoginScreen, {
+                onLogin: handleLogin,
+                isLoggingIn,
+              })
+          : jsx(PageLoadingState, { label: "Loading settings..." }),
+      }),
+      jsx(ToastViewport, {}),
+      jsx(RequestMicrophoneModal, {
+        open: showRequestMicrophone,
+        returnTabId,
+        onClose: () => {
+          setShowRequestMicrophone(false);
+        },
+      }),
+    ],
+  });
+}
+
+// Keep the root render explicit and easy to inspect.
+ReactDOM.createRoot(document.getElementById("root")).render(
+  jsx(React.StrictMode, {
+    children: jsx(App, {}),
+  }),
+);
