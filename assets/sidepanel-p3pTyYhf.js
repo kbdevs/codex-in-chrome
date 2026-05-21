@@ -54233,7 +54233,7 @@ const cO = a.memo(
     isAgentRunning: o,
     isCompacting: i,
     isInitializing: r,
-    showConversionError: a,
+    showConversionError: A,
     conversionError: c,
     hasPermissionPrompt: u,
     currentStatus: d,
@@ -54357,7 +54357,7 @@ const cO = a.memo(
                         }),
                     ],
                   }),
-                  a &&
+                  A &&
                     l.jsx(qs, {
                       error: c,
                       tabId: m,
