@@ -104453,6 +104453,13 @@ function Mne() {
       },
       [U, B, ne],
     );
+  a.useEffect(() => {
+    if (!Se || !Me || c) return;
+    const e = new URLSearchParams(window.location.search);
+    e.get("tabId") !== String(Me) &&
+      (e.set("tabId", String(Me)),
+      window.location.replace(`${window.location.pathname}?${e.toString()}`));
+  }, [Se, Me, c]);
   if (
     "true" ===
     new URLSearchParams(window.location.search).get("mcpPermissionOnly")

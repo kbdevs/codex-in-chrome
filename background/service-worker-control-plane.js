@@ -291,17 +291,18 @@ async function openSidePanelForTab(tabId) {
     return;
   }
 
+  await tabGroupManager.initialize(true);
+
+  const group = await tabGroupManager.findGroupByTab(tabId);
+  const panelTabId = group && !group.isUnmanaged ? group.mainTabId : tabId;
   const setOptionsPromise = chrome.sidePanel.setOptions({
     tabId,
-    path: getSidePanelPath(tabId),
+    path: getSidePanelPath(panelTabId),
     enabled: true,
   });
   const openPromise = chrome.sidePanel.open({ tabId });
   await Promise.all([setOptionsPromise, openPromise]);
 
-  await tabGroupManager.initialize(true);
-
-  const group = await tabGroupManager.findGroupByTab(tabId);
   if (group) {
     if (group.isUnmanaged) {
       try {
