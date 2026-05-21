@@ -52,6 +52,13 @@
       "all_frames": true
     },
     {
+      "js": ["assets/focus-visibility-shim.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
       "js": ["assets/agent-visual-indicator.js-CQ3yeUso.js"],
       "matches": ["<all_urls>"],
       "run_at": "document_idle",
@@ -89,6 +96,7 @@
       "matches": ["<all_urls>"],
       "resources": [
         "assets/accessibility-tree.js-DxrE0N5Q.js",
+        "assets/focus-visibility-shim.js",
         "assets/agent-visual-indicator.js-CQ3yeUso.js"
       ],
       "use_dynamic_url": false
