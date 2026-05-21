@@ -991,18 +991,18 @@ function _s({
     m = a.useRef(null),
     f = a.useRef(0),
     g = a.useRef(0),
+    k = 24,
     v = a.useCallback(() => r.current, []),
     y = a.useCallback((e = "auto", t) => {
       if (!r.current) return;
       if (t?.onlyIfPinned && !d.current) return;
-      const { scrollHeight: n, scrollTop: s, clientHeight: o } = r.current;
-      s > n - o ||
-        ((h.current = !0),
+      ((h.current = !0),
         r.current.scrollTo({ top: r.current.scrollHeight, behavior: e }),
+        (d.current = !0),
         m.current && clearTimeout(m.current),
         (m.current = window.setTimeout(() => {
           h.current = !1;
-        }, 0)));
+        }, 120)));
     }, []),
     b = a.useCallback((e) => {
       d.current = e;
@@ -1024,15 +1024,15 @@ function _s({
       if (!e || !t || o.disabled) return;
       const n = () => {
           const { scrollHeight: t, scrollTop: n, clientHeight: s } = e,
-            o = n < f.current,
+            o = n < f.current - 2,
             i = t < g.current;
           if (((f.current = n), (g.current = t), h.current)) return;
           const r = t - n - s,
-            a = Math.floor(r) < 8;
-          ((p.current = a), a || !o || i || (d.current = !1));
+            a = Math.ceil(r) <= k;
+          ((p.current = a), a ? (d.current = !0) : o && !i && (d.current = !1));
         },
         s = new ResizeObserver(() => {
-          d.current && y();
+          y("auto", { onlyIfPinned: !0 });
         });
       return (
         e.addEventListener("scroll", n),
@@ -1683,7 +1683,9 @@ const Zs = ({
       ]);
     return (
       a.useLayoutEffect(() => {
-        (c.current !== n && (u(), i || t.current?.scrollToBottom("smooth")),
+        (c.current !== n &&
+          (u(),
+          i || t.current?.scrollToBottom("smooth", { onlyIfPinned: !0 })),
           (c.current = n));
       }, [n, u, t, i]),
       a.useLayoutEffect(() => {
@@ -54265,6 +54267,9 @@ const cO = a.memo(
         return t;
       }),
       T = Ls(s);
+    a.useEffect(() => {
+      o && (f.current?.setPinToBottom(!0), f.current?.scrollToBottom("smooth"));
+    }, [o, f]);
     return l.jsx(_s, {
       ref: f,
       parentClassName: "flex-1 " + (0 === e.length ? "!overflow-hidden" : ""),
