@@ -96840,38 +96840,50 @@ class CodexResponsesClient {
     const t = Array.isArray(e.content) ? e.content : null,
       n = [];
     if ("assistant" === e.role && t) {
-      const s = t.filter((e) => "tool_use" === e?.type),
-        o = t.filter((e) => "tool_use" !== e?.type);
-      o.length &&
-        n.push({
-          type: "message",
-          role: "assistant",
-          content: CodexResponsesClient.toResponsesContent(o, e.role),
-        });
-      for (const e of s)
-        n.push({
-          type: "function_call",
-          call_id: e.id,
-          name: e.name,
-          arguments: JSON.stringify(e.input || {}),
-        });
+      let s = [];
+      const o = () => {
+        (s.length &&
+          (n.push({
+            type: "message",
+            role: "assistant",
+            content: CodexResponsesClient.toResponsesContent(s, e.role),
+          }),
+          (s = [])));
+      };
+      for (const e of t)
+        "tool_use" === e?.type
+          ? (o(),
+            n.push({
+              type: "function_call",
+              call_id: e.id,
+              name: e.name,
+              arguments: JSON.stringify(e.input || {}),
+            }))
+          : s.push(e);
+      o();
       return n;
     }
     if ("user" === e.role && t) {
-      const s = t.filter((e) => "tool_result" === e?.type),
-        o = t.filter((e) => "tool_result" !== e?.type);
-      o.length &&
-        n.push({
-          type: "message",
-          role: "user",
-          content: CodexResponsesClient.toResponsesContent(o, e.role),
-        });
-      for (const e of s)
-        n.push({
-          type: "function_call_output",
-          call_id: e.tool_use_id,
-          output: CodexResponsesClient.toolResultText(e),
-        });
+      let s = [];
+      const o = () => {
+        (s.length &&
+          (n.push({
+            type: "message",
+            role: "user",
+            content: CodexResponsesClient.toResponsesContent(s, e.role),
+          }),
+          (s = [])));
+      };
+      for (const e of t)
+        "tool_result" === e?.type
+          ? (o(),
+            n.push({
+              type: "function_call_output",
+              call_id: e.tool_use_id,
+              output: CodexResponsesClient.toolResultText(e),
+            }))
+          : s.push(e);
+      o();
       return n;
     }
     return [
@@ -99886,7 +99898,14 @@ function ine(e) {
                                       (await chrome.tabs.group({
                                         tabIds: o.id,
                                         groupId: n.groupId,
-                                      }));
+                                    }));
+                                    await ft.initialize();
+                                    const p = await ft.findGroupByTab(a);
+                                    p &&
+                                      (await ft.addTabToGroup(
+                                        p.mainTabId,
+                                        o.id,
+                                      ));
                                     const r = {
                                         tabId: o.id,
                                         permissionManager: d,
@@ -99929,6 +99948,7 @@ function ine(e) {
                                           ),
                                         }))
                                       : (i("navigate", !0),
+                                        (a = o.id),
                                         t.push({
                                           action: "new_tab",
                                           input: { url: s },
