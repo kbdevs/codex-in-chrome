@@ -6520,6 +6520,90 @@ const et = {
       };
     },
   };
+const WebSearchTool = {
+  name: "web_search",
+  description:
+    "Search the web for current information without navigating the browser. Use this when you need facts, documentation, troubleshooting context, or external information before deciding what to do next. Returns concise search results with titles, URLs, and snippets.",
+  parameters: {
+    query: {
+      type: "string",
+      description: "Search query. Be specific and include relevant keywords.",
+    },
+    num_results: {
+      type: "number",
+      description:
+        "Maximum number of results to return. Defaults to 5, maximum 10.",
+    },
+  },
+  execute: async (e) => {
+    try {
+      const t = String(e?.query || "").trim();
+      if (!t) return { error: "query is required" };
+      const r = Math.max(1, Math.min(Number(e?.num_results || 5), 10)),
+        o = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(t)}`,
+        a = await fetch(o, {
+          headers: {
+            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          },
+        });
+      if (!a.ok) return { error: `Search failed: ${a.status} ${a.statusText}` };
+      const n = await a.text(),
+        s = new DOMParser().parseFromString(n, "text/html"),
+        i = [];
+      for (const e of s.querySelectorAll(".result")) {
+        const n = e.querySelector(".result__a"),
+          s = e.querySelector(".result__snippet"),
+          o = n?.textContent?.replace(/\s+/g, " ").trim(),
+          a = s?.textContent?.replace(/\s+/g, " ").trim();
+        let l = n?.getAttribute("href") || "";
+        try {
+          const e = new URL(l, "https://duckduckgo.com");
+          if (e.pathname.includes("/l/") && e.searchParams.get("uddg"))
+            l = decodeURIComponent(e.searchParams.get("uddg") || l);
+          else l = e.href;
+        } catch {}
+        o && l && i.push({ title: o, url: l, snippet: a || "" });
+        if (i.length >= r) break;
+      }
+      if (0 === i.length)
+        return { output: `No search results found for "${t}".` };
+      return {
+        output: `Search results for "${t}":\n\n${i
+          .map(
+            (e, t) =>
+              `${t + 1}. ${e.title}\n   URL: ${e.url}${e.snippet ? `\n   Snippet: ${e.snippet}` : ""}`,
+          )
+          .join("\n\n")}\n\nLinks: ${JSON.stringify(
+          i.map((e) => ({ title: e.title, url: e.url })),
+        )}`,
+      };
+    } catch (t) {
+      return {
+        error: `Search failed: ${t instanceof Error ? t.message : "Unknown error"}`,
+      };
+    }
+  },
+  toAnthropicSchema: async () => ({
+    name: "web_search",
+    description:
+      "Search the web for current information without navigating the browser. Use this when you need facts, documentation, troubleshooting context, or external information before deciding what to do next. Returns concise search results with titles, URLs, and snippets.",
+    input_schema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: "Search query. Be specific and include relevant keywords.",
+        },
+        num_results: {
+          type: "number",
+          description:
+            "Maximum number of results to return. Defaults to 5, maximum 10.",
+        },
+      },
+      required: ["query"],
+    },
+  }),
+};
 function at(e, t) {
   return "follow_a_plan" === e && !t;
 }
@@ -12437,4 +12521,5 @@ export {
   qe as x,
   Be as y,
   Pe as z,
+  WebSearchTool,
 };

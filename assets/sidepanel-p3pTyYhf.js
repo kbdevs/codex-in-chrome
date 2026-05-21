@@ -195,6 +195,7 @@ import {
   ab as un,
   ac as dn,
   ad as pn,
+  WebSearchTool as WST,
 } from "./mcpPermissions-X6RKG-4F.js";
 import { t as hn } from "./punycode.es6-D49_gIz_.js";
 import { P as mn } from "./PairingPrompt-Bqsp4vIU.js";
@@ -49449,6 +49450,7 @@ const oL = (e, t, n, s) => {
                   };
           }
           case "WebSearch":
+          case "web_search":
             return {
               text: n.formatMessage({
                 defaultMessage: "Web search",
@@ -49594,6 +49596,7 @@ const oL = (e, t, n, s) => {
     "resize_window",
     "gif_creator",
     "execute_js",
+    "web_search",
   ]);
 const rL = Object.freeze([]),
   aL = lt((e) => ({
@@ -53012,7 +53015,7 @@ const nO = a.memo(
             }
           }
         if ("turn_answer_start" === e.name) return null;
-        if ("WebSearch" === e.name)
+        if ("WebSearch" === e.name || "web_search" === e.name)
           return l.jsx(ZN, {
             input: e.input,
             toolResult: s,
@@ -97642,7 +97645,14 @@ const jte = Object.freeze(
 );
 function Ste(e, t, n, s) {
   if ("system" === t || "non-script" === t) {
-    const n = ["navigate", "update_plan", "TodoWrite", "turn_answer_start", dt];
+    const n = [
+      "navigate",
+      "update_plan",
+      "TodoWrite",
+      "turn_answer_start",
+      "web_search",
+      dt,
+    ];
     if (!n.includes(e))
       return {
         allowed: !1,
@@ -97652,7 +97662,10 @@ function Ste(e, t, n, s) {
   }
   return "update_plan" === e && "follow_a_plan" !== n
     ? { allowed: !0 }
-    : bt(n, s) && "update_plan" !== e && "turn_answer_start" !== e
+    : bt(n, s) &&
+        "update_plan" !== e &&
+        "turn_answer_start" !== e &&
+        "web_search" !== e
       ? {
           allowed: !1,
           errorMessage:
@@ -97937,6 +97950,7 @@ function Ute({
     Dt,
     Pt,
     Ft,
+    WST,
   ]);
   (a.useEffect(() => {
     const e = ce.current.some((e) => e.name === dt);
